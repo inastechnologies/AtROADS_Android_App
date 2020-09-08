@@ -1,0 +1,315 @@
+<resources>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="google_maps_key">AIzaSyCpUeDFPliW3X10L1aUCY4Y2nUdutPfpic</string>
+
+    <string name="app_name">Atroads</string>
+    <string name="PairedSuccessfully">Paired Successfully</string>
+    <string name="PairedSuccessfullyMsg">You have been Paired Successfully</string>
+    <string name="BillingDetails">Billing Details</string>
+    <string name="phone_number_or_email">Phone Number or Email</string>
+    <string name="phone_no_email">Email/ Mobile No.</string>
+    <string name="password">Password</string>
+    <string name="remember_me_always">Remember me always</string>
+    <string name="login">Login</string>
+    <string name="forgot_password">FORGOT PASSWORD ?</string>
+    <string name="full_name">Full Name</string>
+    <string name="email">Email</string>
+    <string name="email_optional">Email(Optional)</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="create_password">Create Password</string>
+    <string name="re_enter_password">Re-Enter Password</string>
+    <string name="create_account">CREATE ACCOUNT</string>
+    <string name="err_please_enter_phone_email">Please Enter Phone or Email id</string>
+    <string name="err_please_enter_full_name">Please Enter Full Name</string>
+    <string name="err_please_enter_emailid">Please Enter Emai id</string>
+    <string name="err_please_enter_valid_email">Please enter valid email</string>
+    <string name="err_please_enter_mobile_number">Please Enter Mobile Number</string>
+    <string name="err_please_enter_valid_mobile_number">Please enter 10 digits mobile number</string>
+    <string name="err_please_enter_password">Please Enter Password</string>
+    <string name="err_please_enter_create_password">Please Create Passowrd</string>
+    <string name="err_password_do_not_match">Password Do not Match</string>
+    <string name="register">Register</string>
+    <string name="welcome_to_Atroads">Welcome to Atroads</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet.consectetur adipisicing elit,sed co eiusmod tempor incididunt ut labore et
+                                dolore magna aliqua.</string>
+    <string name="terms_conditions"><![CDATA[By signing up you accept and agree to Atroads\'s Privacy policy and Terms & Conditions.]]></string>
+    <string name="enter_otp">Enter OTP</string>
+    <string name="submit">Submit</string>
+    <string name="forgot_password_toolbar">Forgot Password</string>
+    <string name="otp">OTP</string>
+    <string name="resend_otp">Resend OTP</string>
+    <string name="send_otp">Send OTP</string>
+    <string name="create_new_password">Create New Password</string>
+    <string name="re_new_password">Re-Enter New Password</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="password_must_contain_sixcharacter">Password must be contain six character</string>
+
+    <string name="you_ride">Your Rides</string>
+    <string name="wallet">Wallet</string>
+    <string name="refer_nav"><![CDATA[Refer & Earn]]></string>
+    <string name="help">Help</string>
+    <string name="settings">Settings</string>
+    <string name="terms_con"><![CDATA[Terms & Conditions]]></string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="aboutus">About Us</string>
+    <string name="user_name">User Name</string>
+    <string name="auto_taxi">Auto/Taxi</string>
+    <string name="car">Car</string>
+    <string name="bike">Bike</string>
+    <string name="cab">Cab</string>
+    <string name="support">Support</string>
+    <string name="howit_works">How it works ?</string>
+    <string name="title_subject">Title/Subject</string>
+    <string name="attachment">Attachment</string>
+    <string name="description">Description</string>
+    <string name="one_how_work">1. Any tarrifs for frequent users?</string>
+    <string name="one_answ_how_work">Not as of now, but we are coming with the new tarrifs on the occasion of new year.</string>
+
+    <string name="two_how_work">2. Is there any charge for keeping the cycle for whole night?</string>
+    <string name="two_answ_how_work">No, there is no charge from 7:00 PM to 8:00 AM.</string>
+
+    <string name="three_how_work">3. Is there any Outstation facility available?</string>
+    <string name="three_answ_how_work">Not as of now, but it will be available soon.</string>
+
+    <string name="four_how_work">4. Is there any charge for keeping the cycle for whole night?</string>
+    <string name="four_answ_how_work">No, there is no charge from 7:00 PM to 8:00 AM.</string>
+
+    <string name="five_how_work">5. Is there any Outstation facility available?</string>
+    <string name="five_answ_how_work">Not as of now, but it will be available soon.</string>
+    <string name="search_for_locality_or_landmark">Search for locality or landmark</string>
+    <string name="enter_pin_location">Enter Pin Location</string>
+    <string name="logout">Logout</string>
+    <string name="notification">Notification</string>
+
+
+    <string name="majestic">majestic</string>
+    <string name="majestic_snippet">majestic_snippet</string>
+    <string name="no_maps">no Maps</string>
+    <string name="icon">Incon</string>
+
+
+    <string name="no_location_data_provided">no_location_data_provided</string>
+    <string name="service_not_available">service_not_available</string>
+    <string name="invalid_lat_long_used">invalid_lat_long_used</string>
+    <string name="no_address_found">no_address_found</string>
+    <string name="ride_now">Ride Now</string>
+    <string name="cancel_pairing">Cancel Pairing</string>
+    <string name="find_pair">Finding a Pair</string>
+    <string name="enter_new_password">Enter New Password</string>
+    <string name="enter_mobile_no">Enter Mobile Number</string>
+    <string name="enter_Current_password">Enter Current Password</string>
+    <string name="con_new_password">Confirm New Password</string>
+    <string name="update">Update</string>
+    <string name="err_please_enter_old_password">Please Enter old Password</string>
+    <string name="err_please_enter_six_characters">Please Enter minimum six Characters</string>
+
+
+    <string name="terms_con_into">1. Introduction </string>
+    <string name="terms_con_one">These Website Standard Terms And Conditions (these “Terms” or these “Website Standard Terms And Conditions”) contained herein on this webpage, shall govern your use of this website, including all pages within this website (collectively referred to herein below as this “Website”). These Terms apply in full force and effect to your use of this Website and by using this Website, you expressly accept all terms and conditions contained herein in full. You must not use this Website, if you have any objection to any of these Website Standard Terms And Conditions.
+
+This Website is not for use by any minors (defined as those who are not at least 18 years of age), and you must not use this Website if you a minor.</string>
+
+    <string name="terms_con_into_two">2. Intellectual Property Rights</string>
+
+    <string name="terms_con_two">Other than content you own, which you may have opted to include on this Website, under these Terms, [Sender.Company] and/or its licensors own all rights to the intellectual property and material contained in this Website, and all such rights are reserved. You are granted a limited license only, subject to the restrictions provided in these Terms, for purposes of viewing the material contained on this Website.</string>
+
+    <string name="about_us_into">1.I need to start this article by qualifying what makes an amazing About Us page. The reason for this is that some About Us pages look amazing but have terrible content whilst others look terrible but grab your attention immediately. The list I have compiled here are based on the fact that they:</string>
+
+
+    <string-array name="share">
+        <item>"1"</item>
+        <item>"2"</item>
+        <item>"3"</item>
+    </string-array>
+    <!-- &lt;!&ndash;Facabook&ndash;&gt;
+     <string name="back4app_server_url">https://parseapi.back4app.com/</string>
+     <string name="back4app_app_id">PASTE_YOUR_APPLICATION_ID_HERE</string>
+     <string name="back4app_client_key">PASTE_YOUR_CLIENT_KEY_HERE</string>-->
+
+
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="str_btn_find">Find</string>
+    <string name="permission_denied">permission_denied</string>
+    <string name="autocomplete_hint">Auto completed</string>
+    <string name="all">ALL</string>
+    <string name="update_notif">UPDATES</string>
+    <string name="offer_notif">OFFERS</string>
+    <string name="search_place">Search Place</string>
+    <string name="paynow">Pay Now</string>
+    <string name="PriceType">Are you travelling with Meter or Manual Price?</string>
+    <string name="StartRide">Start Ride</string>
+
+    <string-array name="place_type">
+        <item>airport</item>
+        <item>atm</item>
+        <item>bank</item>
+        <item>bus_station</item>
+        <item>church</item>
+        <item>doctor</item>
+        <item>hospital</item>
+        <item>mosque</item>
+        <item>movie_theater</item>
+        <item>hindu_temple</item>
+        <item>restaurant</item>
+    </string-array>
+
+    <string-array name="place_type_name">
+        <item>Airport</item>
+        <item>ATM</item>
+        <item>Bank</item>
+        <item>Bus Station</item>
+        <item>Church</item>
+        <item>Doctor</item>
+        <item>Hospital</item>
+        <item>Mosque</item>
+        <item>Movie Theater</item>
+        <item>Hindu Temple</item>
+        <item>Restaurant</item>
+    </string-array>
+
+
+    <array name="placeTypes">
+        <item>PlaceType</item>
+        <item>Address</item>
+        <item>Cities</item>
+        <item>Establishment</item>
+        <item>Geocode</item>
+        <item>Regions</item>
+        <item>All</item>
+    </array>
+    <array name="placeTypesValue">
+        <item>0</item>
+        <item>2</item>
+        <item>5</item>
+        <item>34</item>
+        <item>1007</item>
+        <item>4</item>
+        <item>0</item>
+    </array>
+    <string name="title_activity_home_screen">HomeScreen</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+    <string name="Welcome">Welcome</string>
+    <string name="NewUser">Register Here</string>
+    <string name="title_activity_home_maps_screen">Map</string>
+    <string name="Logout">Logout</string>
+    <string name="No">No</string>
+    <string name="ClosingApp">Closing App</string>
+    <string name="AreYouSure">Are You Sure to Logout?</string>
+    <string name="AreYouSureSOS">Are You Sure to Send SMS and Email to Your Added Contacts?</string>
+    <string name="AreYouSureToExit">Do You Want to Exit?</string>
+    <string name="AreYouSureToEnd">Are You Sure to End the Ride?</string>
+    <string name="Yes">Yes</string>
+    <string name="Cancel">Cancel</string>
+    <string name="OK">Ok</string>
+    <string name="MyWalletBal">My Wallet Balance</string>
+    <string name="EnterAmount">Enter Amount</string>
+    <string name="AddMoney">Add Money</string>
+    <string name="Permissions">Permissions</string>
+    <string name="PermissionMsg">This App needs location Permission to show you the Location using Google Maps.Without these Permission App may not work to provide you the Locations.Click on Allow to continue.</string>
+    <string name="PermissionSettings">This App needs location Permission to show you the Location using Google Maps.Click on Allow to Move to Settings and Enable the Permission.</string>
+    <string name="gps_network_not_enabled">Please Enable the Location Services on Your Device</string>
+    <string name="open_location_settings">Open Location Settings</string>
+    <string name="title_activity_pair_success_screen">Map</string>
+    <string name="title_activity_gmaps_screen">GMapsScreen</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_home_maps">HomeMapsActivity</string>
+    <string name="SomethingWentWrong">Something Went Wrong! Please Try Again..</string>
+    <string name="OnGoing">ONGOING</string>
+    <string name="PastRides">PAST RIDES</string>
+    <string name="AutoNumber">Auto Number</string>
+    <string name="TotalFare">Total Fare</string>
+    <string name="PayableAmt">Payable Amount</string>
+    <string name="Fare">Fare</string>
+    <string name="MOP">Mode of Payment</string>
+    <string name="Distance">Distance</string>
+    <string name="Chat">Chat</string>
+    <string name="use_this_location">Use Location</string>
+    <string name="ShowLocation">Show Location</string>
+    <string name="AcceptOtherGender">Accept Other Gender</string>
+    <string name="Sorry">Sorry!</string>
+    <string name="Change">Change</string>
+    <string name="UnableToFindPairMsg">We are unable to find the pair based on your selection criteria.Please continue to get the nearby Suggested users or change your preferred location.</string>
+
+    //Tracker
+    <string name="notification_text">Tracking, tap to cancel</string>
+    <string name="transport_id" translatable="false">123</string>
+    <string name="firebase_path" translatable="false">Locations</string>
+    <string name="firebase_path_users" translatable="false">AtroadsUsers</string>
+    <string name="firebase_email" translatable="false">Sup@gmail.com</string>
+    <string name="firebase_password" translatable="false">sup@123</string>
+    <string name="SelectImageFrom">Select Image From</string>
+    <string name="VerificationCode">Verification Code</string>
+    <string name="verifyotptext">Please enter the verification code sent to your Mobile number</string>
+    <string name="Go">Go</string>
+    <string name="EMAIL">Email</string>
+    <string name="TravelWithOtherGender">Are you comfortable to travel with person of other gender?</string>
+    <string name="Continue">Continue</string>
+    <string name="GetVerificationCode">Get Verification Code</string>
+    <string name="PlzEnterEmailOrMobile">Please Enter your Registered Email or Mobile Number to get the Verification Code</string>
+    <string name="AmountPaid">Amount Paid</string>
+    <string name="RateTheRide">Rate the Ride</string>
+    <string name="Review">Review</string>
+    <string name="PartnerUPIAddress">Partner UPI Address</string>
+    <string name="Name">Name</string>
+    <string name="UPIPayment">UPI Payment</string>
+    <string name="Payment">Payment</string>
+    <string name="OR">OR</string>
+    <string name="ScanQR">Scan QR</string>
+    <string name="ShowQR">Show QR</string>
+    <string name="ClickOnCallBtn">Click on call Button to Receive the call</string>
+    <string name="Emergency">Emergency</string>
+    <string name="UploadQR">Upload QR</string>
+    <string name="call_channel_id">CALL_CHANNEL_ID</string>
+    <string name="cal_channel_name">Call</string>
+    <string name="call_channel_description">Client calls</string>
+    <string name="alert_title">Send SMS and Call</string>
+    <string name="alert_msg">You want to send SMS to Emergency contacts and Call to one of the Contact</string>
+    <string name="sos">SOS</string>
+    <string name="add">Add</string>
+    <string name="add_contacts">Add Contacts</string>
+    <string name="name">Name</string>
+    <string name="mobile">Mobile No</string>
+    <string name="alert_title_limit">Contacts Limit Exceeded</string>
+    <string name="alert_msg_limit">You may add only 3 Emergency Contacts</string>
+    <string name="enter_name">Enter the Name</string>
+    <string name="enter_mobile">Enter Mobile Number</string>
+    <string name="enter_email">Enter Email Id</string>
+    <string name="sos_msg">Please standby, we are currently requesting for help.</string>
+    <string name="view_contacts">View Contacts</string>
+    <string name="no_contacts">No contacts yet</string>
+    <string name="edit_contacts">Edit Contacts</string>
+    <string name="SOS">SOS</string>
+    <string name="ShareApp">Refer or Share App</string>
+    <string name="ReferFriend">Refer your Friends and share the App</string>
+    <string name="another_location">Add another Location</string>
+    <string name="home_location">Home Location</string>
+    <string name="work_location">Work Location</string>
+    <string name="time_from">from time</string>
+    <string name="time_end">to time</string>
+    <string name="another_location_edit">Another Location</string>
+    <string name="notify">Notify before:</string>
+    <string name="SchedulingRide">Schedule A Ride</string>
+    <string name="Suggestions">Suggestions</string>
+    <string name="OnOrOffPairing">On/Off Pairing</string>
+    <string-array name="Spinner_Items">
+        <item>10 mins</item>
+        <item>20 mins</item>
+        <item>30 mins</item>
+        <item>40 mins</item>
+        <item>50 mins</item>
+        <item>60 mins</item>
+    </string-array>
+</resources>

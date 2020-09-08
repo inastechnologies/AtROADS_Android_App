@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "714862442219",
+    "firebase_url": "https://atroads-d26a5.firebaseio.com",
+    "project_id": "atroads-d26a5",
+    "storage_bucket": "atroads-d26a5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:714862442219:android:79161ebe2831edc73570ae",
+        "android_client_info": {
+          "package_name": "com.inas.atroads"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "714862442219-t7fhvsneb2d84ihh0dmtf3937le845ek.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.inas.atroads",
+            "certificate_hash": "4c8a884b697bf8793439e7020e570f7b221fc42b"
+          }
+        },
+        {
+          "client_id": "714862442219-26ciscumjpo3crnbgp9dije1d2dn5m8l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpUeDFPliW3X10L1aUCY4Y2nUdutPfpic"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "714862442219-26ciscumjpo3crnbgp9dije1d2dn5m8l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

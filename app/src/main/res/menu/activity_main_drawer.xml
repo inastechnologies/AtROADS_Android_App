@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+       <item
+        android:id="@+id/Emergency_nav"
+        android:title="@string/Emergency"
+        app:actionLayout="@layout/menu_arrow" />
+
+    <item
+        android:id="@+id/scheduling_ride"
+        android:title="@string/SchedulingRide"
+        app:actionLayout="@layout/menu_arrow" />
+
+    <item
+        android:id="@+id/youRide_nav"
+        android:title="@string/you_ride"
+        app:actionLayout="@layout/menu_arrow" />
+    <item
+        android:id="@+id/wallet_nav"
+        android:title="@string/wallet"
+        android:visible="false"
+        app:actionLayout="@layout/menu_arrow" />
+    <item
+        android:id="@+id/chat_nav"
+        android:title="@string/Chat"
+        app:actionLayout="@layout/menu_arrow" />
+    <item
+        android:id="@+id/Show_qr"
+        android:title="@string/ShowQR"
+        app:actionLayout="@layout/menu_arrow" />
+    <item
+        android:id="@+id/refer_nav"
+        android:title="@string/refer_nav"
+        app:actionLayout="@layout/menu_arrow" />
+    <item
+        android:id="@+id/help_nav"
+        android:title="@string/help"
+        app:actionLayout="@layout/menu_arrow" />
+    <item
+        android:id="@+id/howitworks_nav"
+        android:title="@string/howit_works"
+        app:actionLayout="@layout/menu_arrow" />
+    <item
+        android:id="@+id/settings_nav"
+        android:title="@string/settings"
+        app:actionLayout="@layout/menu_arrow" />
+    <item
+        android:id="@+id/terms_con_nav"
+        android:title="@string/terms_con"
+        app:actionLayout="@layout/menu_arrow" />
+    <item
+        android:id="@+id/privacy_policy_nav"
+        android:title="@string/privacy_policy"
+        app:actionLayout="@layout/menu_arrow" />
+
+    <item
+        android:id="@+id/aboutus_nav"
+        android:title="@string/aboutus"
+        app:actionLayout="@layout/menu_arrow" />
+
+    <item
+        android:id="@+id/logout_nav"
+        android:title="@string/logout"
+        app:actionLayout="@layout/menu_arrow" />
+
+</menu>

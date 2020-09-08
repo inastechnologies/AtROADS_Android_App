@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.inas.atroads">
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the 'MyLocation' functionality.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"/>
+    <!-- <uses-feature -->
+    <!-- android:name="android.hardware.camera.any" -->
+    <!-- android:required="true" /> -->
+    <!-- <uses-feature -->
+    <!-- android:name="android.hardware.camera.autofocus" -->
+    <!-- android:required="false" /> -->
+    <!-- <uses-permission android:name="android.permission.CAMERA"/> -->
+    <uses-feature
+        android:name="android.hardware.microphone"
+        android:required="false" />
+
+    <application
+        android:name=".services.CustomApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".views.UI.SchedulingRideScreen"></activity>
+        <activity android:name=".views.UI.ViewEmergencyContacts" />
+        <activity android:name=".views.UI.SOSActivity" />
+        <activity android:name=".views.PlacesActivity" />
+        <activity android:name=".views.UI.UploadQRActivity" />
+        <activity
+            android:name=".views.UI.ShowQRActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.UI.EnterUPIDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.UI.VoiceCallActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.UI.CallActivity"
+            android:screenOrientation="portrait" />
+
+        <receiver android:name=".services.MyPhoneReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PHONE_STATE" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".views.UI.PaymentScreen"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.UI.UPIPaymentScreen"
+            android:screenOrientation="portrait">
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
+        </activity>
+        <activity
+            android:name=".views.UI.YourBillScreen"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.UI.SuggestionsListScreen"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.UI.PairedDetailsScreen"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.UI.GetUserDetailsScreen"
+            android:screenOrientation="portrait">
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
+        </activity>
+        <activity
+            android:name=".views.UI.MobileNumberRegisterScreen"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.Activities.TrackerDisplayActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.Activities.TrackerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.Activities.SelectCurrentLocationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.Activities.ChatActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="com.google.android.geo.api_key"
+                android:value="@string/google_api_key" />
+        </activity>
+        <activity
+            android:name=".views.Activities.UsersActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.Activities.NotificationScreen"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.Activities.HomeMapsActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+        -->
+        <!-- <meta-data -->
+        <!-- android:name="com.google.android.geo.API_KEY" -->
+        <!-- android:value="@string/google_maps_key" /> &lt;!&ndash; Start of Firebase &ndash;&gt; -->
+        <!-- <meta-data -->
+        <!-- android:name="com.google.android.gms.version" -->
+        <!-- android:value="@integer/google_play_services_version" /> -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.geo.api_key"
+            android:value="@string/google_api_key" />
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="@string/google_api_key" />
+
+        <service
+            android:name=".notifications.FCMService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".views.Activities.TrackerService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".services.CallBgService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".services.MyServiceToCheckIsAppClosed"
+            android:stopWithTask="false" /> <!-- <service -->
+        <!-- android:enabled="true" -->
+        <!-- android:name=".services.MyServiceToCheckIsAppClosed" -->
+        <!-- android:exported="false" -->
+        <!-- android:stopWithTask="false" /> -->
+        <!--
+ Set custom default icon. This is used when no icon is set for incoming notification messages.
+     See README(https://goo.gl/l4GJaQ) for more.
+        -->
+        <!-- <meta-data -->
+        <!-- android:name="com.google.firebase.messaging.default_notification_icon" -->
+        <!-- android:resource="@drawable/wego_logo" /> -->
+        <!--
+ Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more.
+        -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
+
+        <activity
+            android:name=".views.Activities.PairSuccessScreen"
+            android:label="@string/PairedSuccessfully"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.Activities.EditProfileScreen"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.Activities.BillingDetailsActivity"
+            android:label="@string/BillingDetails"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.UI.SpalshScreen"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".views.Activities.TravelModeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.UI.OtpActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.Activities.HelpActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.Activities.HowtoWorksActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.Activities.PairActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.Activities.YourRidesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.Activities.ReferEarnActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.Activities.SettingsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.Activities.AboutUsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.Activities.PrivacyPolicyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.Activities.TermsConditionsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.Activities.CaptureActivityPortrait"
+            android:screenOrientation="portrait"
+            android:stateNotNeeded="true"
+            android:theme="@style/zxing_CaptureTheme"
+            android:windowSoftInputMode="stateAlwaysHidden">
+
+            <!-- <activity -->
+            <!-- android:name="com.journeyapps.barcodescanner.CaptureActivity" -->
+            <!-- android:screenOrientation="portrait" -->
+            <!-- tools:replace="android:screenOrientation" -->
+            <!-- android:stateNotNeeded="true"/> -->
+        </activity>
+
+        <service android:name=".views.UI.SinchService" />
+
+        <activity
+            android:name=".views.UI.IncomingCallScreenActivity"
+            android:noHistory="true"
+            android:screenOrientation="portrait" />
+
+        <receiver android:name=".services.CallReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.PHONE_STATE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.NEW_OUTGOING_CALL" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+
+
+</manifest>
