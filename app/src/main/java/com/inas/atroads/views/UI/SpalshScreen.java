@@ -28,8 +28,6 @@ public class SpalshScreen extends AppCompatActivity
         startService(new Intent(this, MyServiceToCheckIsAppClosed.class));
         Log.i(TAG, "onCreate: End Of OnCreate");
     }
-
-
     /*
       This method is used to move from Splash screen to Register screen
     */
@@ -44,12 +42,10 @@ public class SpalshScreen extends AppCompatActivity
                 SharedPreferences pref = getApplicationContext().getSharedPreferences("RegPref", 0);
                 user_id = pref.getInt("user_id", 0);
                 Log.i("user_id:", String.valueOf(user_id));
-                if(user_id == 0)
-                {
+                if(user_id == 0) {
                     Intent i = new Intent(SpalshScreen.this, MobileNumberRegisterScreen.class);
                     startActivity(i);
-                }
-                else {
+                } else {
                     Intent i = new Intent(SpalshScreen.this, HomeMapsActivity.class);
                     startActivity(i);
                 }

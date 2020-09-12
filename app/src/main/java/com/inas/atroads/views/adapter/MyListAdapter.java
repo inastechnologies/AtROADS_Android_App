@@ -13,27 +13,24 @@ import android.widget.TextView;
 import com.inas.atroads.R;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class MyListAdapter extends ArrayAdapter<String> {
 
     private final Activity context;
-    private final String[] maintitle;
-   // private final String[] subtitle;
-    private final String[] imgid;
+    ArrayList<String> al;
+    ArrayList<String> al_pic;
     HashMap<String, String> map = new HashMap<>();
 
 
-    public MyListAdapter(Activity context, String[] maintitle, String[] imgid, HashMap<String, String> map) {
-        super(context, R.layout.user_list_item, maintitle);
+    public MyListAdapter(Activity context, ArrayList<String> al, ArrayList<String> al_pic) {
+        super(context, R.layout.user_list_item);
         // TODO Auto-generated constructor stub
-
         this.context=context;
-        this.maintitle=maintitle;
-       // this.subtitle=subtitle;
-        this.imgid=imgid;
-        this.map = map;
+        this.al= al;
+        this.al_pic=al_pic;
 
     }
 
@@ -43,8 +40,8 @@ public class MyListAdapter extends ArrayAdapter<String> {
 
         TextView titleText = (TextView) rowView.findViewById(R.id.NameTv);
         ImageView imageView = (ImageView) rowView.findViewById(R.id.profile_image);
-//        titleText.setText(maintitle[position]);
-//        LoadImageFromUrl(context,imgid[position],imageView);
+        titleText.setText(al.get(position));
+        LoadImageFromUrl(context,al_pic.get(position),imageView);
 
 
         for(Map.Entry map1  :  map.entrySet() )

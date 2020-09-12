@@ -57,6 +57,7 @@ public class UsersActivity extends AppCompatActivity {
     ListView usersList;
     TextView noUsersText;
     ArrayList<String> al = new ArrayList<>();
+    ArrayList<String> al_pic = new ArrayList<>();
     int totalUsers = 0;
     ProgressDialog pd;
     private Subscription mSubscription;
@@ -106,7 +107,7 @@ public class UsersActivity extends AppCompatActivity {
 //        });
     }
 
-    public void doOnSuccess(String s, String mobileNumber, String otherUsername){
+    public void doOnSuccess(String s, String mobileNumber, String otherUsername, String otherProfilePic){
         try {
             JSONObject obj = new JSONObject(s);
             JSONArray array = obj.names();
@@ -127,6 +128,7 @@ public class UsersActivity extends AppCompatActivity {
                 if(key.equals(mobileNumber))
                 {
                     al.add(otherUsername);
+                    al_pic.add(otherProfilePic);
                     String[] name = {};
 
                 }
@@ -161,9 +163,9 @@ public class UsersActivity extends AppCompatActivity {
 //            map.clear();
 //            map.put(OtherUsername,OtherProfilePic);
 
-//            MyListAdapter adapter=new MyListAdapter(this, name,images,map);
-//            usersList.setAdapter(adapter);
-            usersList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, al));
+            MyListAdapter adapter=new MyListAdapter(this, al,al_pic);
+            usersList.setAdapter(adapter);
+           // usersList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, al,al_pic));
         }
 
         pd.dismiss();
@@ -253,7 +255,7 @@ public class UsersActivity extends AppCompatActivity {
                             StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
                                 @Override
                                 public void onResponse(String s) {
-                                    doOnSuccess(s,MobileNumber,OtherUsername);
+                                    doOnSuccess(s,MobileNumber,OtherUsername, OtherProfilePic);
                                 }
                             },new Response.ErrorListener(){
                                 @Override

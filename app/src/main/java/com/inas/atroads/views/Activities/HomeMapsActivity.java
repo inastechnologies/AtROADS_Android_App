@@ -314,7 +314,7 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
     private void PlacesSelection()
     {
         AutocompleteSupportFragment autocomplete_fragmentpin = (AutocompleteSupportFragment)
-               getSupportFragmentManager().findFragmentById(R.id.Pin_autocomplete_fragment);
+                getSupportFragmentManager().findFragmentById(R.id.Pin_autocomplete_fragment);
         autocomplete_fragmentpin.getView().findViewById(R.id.Pin_autocomplete_fragment).setVisibility(View.GONE);
 // Specify the types of place data to return.
         autocomplete_fragmentpin.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
@@ -435,13 +435,13 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
         */
     private void GetSharedPrefs()
     {
-            SharedPreferences pref = getApplicationContext().getSharedPreferences("RegPref", 0); // 0 - for private mode
-            UserId = pref.getInt("user_id", 0);
-            Mobile = pref.getString("mobile_number",DEFAULT);
-            Email =  pref.getString("email_id",DEFAULT);
-            CallGetUserInfoAPI();
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("RegPref", 0); // 0 - for private mode
+        UserId = pref.getInt("user_id", 0);
+        Mobile = pref.getString("mobile_number",DEFAULT);
+        Email =  pref.getString("email_id",DEFAULT);
+        CallGetUserInfoAPI();
 
-            Log.i(TAG, "GetSharedPrefs: UserId: "+UserId);
+        Log.i(TAG, "GetSharedPrefs: UserId: "+UserId);
 
     }
 
@@ -538,7 +538,7 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
                             .into(autoImage);
                     autoText.setTextColor(getColor(R.color.black));
                 } else if (DropEditText.getText().toString().equals("")) {
-                   // ridenowBtn.setBackgroundColor(getColor(R.color.grey));
+                    // ridenowBtn.setBackgroundColor(getColor(R.color.grey));
                     ridenowBtn.setBackgroundResource(R.drawable.round_rect_white_button_bg);
                     ridenowBtn.setEnabled(false);
                     Glide.with(HomeMapsActivity.this).load(R.drawable.auto_grey)
@@ -581,13 +581,11 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
      /*
      AutoCompleteIntent
      */
-    private void AutoCompleteIntent()
-    {
+    private void AutoCompleteIntent() {
         // Set the fields to specify which types of place data to
-// return after the user has made a selection.
+        // return after the user has made a selection.
         List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.NAME);
-
-// Start the autocomplete intent.
+        // Start the autocomplete intent.
         Intent intent = new Autocomplete.IntentBuilder(
                 AutocompleteActivityMode.FULLSCREEN, fields)
                 .build(HomeMapsActivity.this);
@@ -653,7 +651,7 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 
 
     /********************************START OF getAddressComponentsAPI******************/
-     /**
+    /**
      *
      * @param PlaceId
      */
@@ -814,7 +812,7 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
         try {
             // May throw an IOException
             address = CustomApplication.geoCoder.getFromLocationName(strAddress, 5);
-           // address = coder.getFromLocationName(strAddress, 5);
+            // address = coder.getFromLocationName(strAddress, 5);
             if (address == null) {
                 return null;
             }
@@ -1090,7 +1088,7 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
                         if (location != null) {
                             // Logic to handle location object
                             String addressOfLocation = GetAddressFromLatLng(location.getLatitude(), location.getLongitude());
-                           // PinEditText = findViewById(R.id.PinEditText);
+                            // PinEditText = findViewById(R.id.PinEditText);
                             PinEditText.setText(addressOfLocation);
                             PinLatitude = location.getLatitude();
                             PinLongitude = location.getLongitude();
@@ -1625,8 +1623,8 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
         requestModel.setUserDestLatLong(newcurrentlatLngdropStr);
         requestModel.setShareWith(Integer.valueOf(shareTxt));
         requestModel.setVehicleType("Auto");
-       // requestModel.setRideDateTime(currentdatetime);
-      //  Log.i(TAG, "getRideDetailsObject: "+ new Gson().toJsonTree(requestModel).getAsJsonObject());
+        // requestModel.setRideDateTime(currentdatetime);
+        //  Log.i(TAG, "getRideDetailsObject: "+ new Gson().toJsonTree(requestModel).getAsJsonObject());
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
     }
 
@@ -1800,7 +1798,7 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
                         else {
                             if(mRespone.getRstatus() == 0)
                             {
-                             //   GetPairedDetailsAPI();
+                                //   GetPairedDetailsAPI();
                                 if(mRespone.getMessage().equals("User already paired"))
                                 {
                                     Intent intent = new Intent(HomeMapsActivity.this, PairActivity.class);
@@ -1856,7 +1854,7 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
         requestModel.setUserDestLatLong(newcurrentlatLngdropStr);
         requestModel.setShareWith(Integer.valueOf(shareTxt));
         requestModel.setVehicleType("Auto");
-       // requestModel.setRideDateTime(currentdatetime);
+        // requestModel.setRideDateTime(currentdatetime);
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
     }
 
@@ -1999,14 +1997,14 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
                         Log.i(TAG, "PairedDetailsResponseModel: "+mRespone);
                         if(mRespone.getStatus() == 1)
                         {
-                          String Attention = mRespone.getResult().get(0).getAttention();
-                          String SrcAddress = mRespone.getResult().get(0).getUserSourceAddress();
-                          String DestAddress = mRespone.getResult().get(0).getUserDestAddress();
-                          int PUserId = mRespone.getResult().get(0).getUserId();
-                          int pstatus = mRespone.getResult().get(0).getmPstatus();
-                          int user_ride_id = mRespone.getResult().get(0).getUser_ride_id();
+                            String Attention = mRespone.getResult().get(0).getAttention();
+                            String SrcAddress = mRespone.getResult().get(0).getUserSourceAddress();
+                            String DestAddress = mRespone.getResult().get(0).getUserDestAddress();
+                            int PUserId = mRespone.getResult().get(0).getUserId();
+                            int pstatus = mRespone.getResult().get(0).getmPstatus();
+                            int user_ride_id = mRespone.getResult().get(0).getUser_ride_id();
 //                          ShowDialogAccordingToPStatus(pstatus,Attention,SrcAddress,DestAddress);
-                          CustomDialogWithOneBtn(HomeMapsActivity.this,"Hey..! You are Already Paired", Attention + "\n" + SrcAddress + "\n" + DestAddress,"Continue", new Runnable() {
+                            CustomDialogWithOneBtn(HomeMapsActivity.this,"Hey..! You are Already Paired", Attention + "\n" + SrcAddress + "\n" + DestAddress,"Continue", new Runnable() {
                                 @Override
                                 public void run() {
                                     Intent intent = new Intent(HomeMapsActivity.this, PairActivity.class);
@@ -2020,7 +2018,7 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
                                     startActivity(intent);
                                     finish();
                                 }
-                          });
+                            });
                         }
                         else {
                             //RideAlreadyInitiatedDialog(HomeMapsActivity.this,"",mRespone.getMessage(),"Ok");
@@ -2160,7 +2158,7 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
         DialogWithTwoButtons(HomeMapsActivity.this, getString(R.string.ClosingApp), getString(R.string.AreYouSureToExit), getString(R.string.Yes), new Runnable() {
             @Override
             public void run() {
-              closeApplication();
+                closeApplication();
             }
         }, getString(R.string.No), new Runnable() {
             @Override
@@ -2444,7 +2442,7 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 //                                startActivity(i);
 
                                 CallDetailsOfRideAPI();
-                        }
+                            }
                             else {
 
                                 List<Double> srcList = mResponse.getResult().get(0).getUserSourceLatLong();
