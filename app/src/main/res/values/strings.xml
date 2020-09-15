@@ -6,6 +6,7 @@
 
     <string name="app_name">Atroads</string>
     <string name="PairedSuccessfully">Paired Successfully</string>
+    <string name="PairedUser">Paired User</string>
     <string name="PairedSuccessfullyMsg">You have been Paired Successfully</string>
     <string name="BillingDetails">Billing Details</string>
     <string name="phone_number_or_email">Phone Number or Email</string>

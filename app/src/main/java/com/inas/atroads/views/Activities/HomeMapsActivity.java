@@ -163,7 +163,7 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 	GoogleApiClient mGoogleApiClient;
 	FusedLocationProviderClient fusedLocationProviderClient;
 	//private FusedLocationProviderClient fusedLocationClient;
-	private LinearLayout auto_lty;
+	private LinearLayout auto_lty,bike_lty,car_lty;
 	private Spinner spinnerShare;
 	private ArrayAdapter sharearray;
 	private static String shareTxt;
@@ -455,6 +455,8 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 	private void SetViews()
 	{
 		auto_lty = findViewById(R.id.auto_lty);
+		car_lty = findViewById(R.id.car_lty);
+		bike_lty = findViewById(R.id.bike_lty);
 		autoImage = findViewById(R.id.autoImage);
 		autoText = findViewById(R.id.autoText);
 		imageMarker = findViewById(R.id.imageMarker);
@@ -481,6 +483,19 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 		//        GetSharedPrefs();
 		SetShareSpinner();
 		AutoLayoutClick();
+		car_lty.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Toast.makeText(HomeMapsActivity.this,"Coming Soon...",Toast.LENGTH_LONG).show();
+			}
+		});
+
+		bike_lty.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Toast.makeText(HomeMapsActivity.this,"Coming Soon...",Toast.LENGTH_LONG).show();
+			}
+		});
 
 	}
 

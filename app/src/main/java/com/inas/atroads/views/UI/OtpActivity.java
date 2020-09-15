@@ -563,6 +563,7 @@ public class OtpActivity extends BaseActivity
         Intent intent = new Intent(OtpActivity.this, HomeMapsActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
+        finish();
     }
 
     /**

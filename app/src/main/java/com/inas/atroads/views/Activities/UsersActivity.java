@@ -1,6 +1,9 @@
 package com.inas.atroads.views.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -54,10 +57,11 @@ import rx.schedulers.Schedulers;
 public class UsersActivity extends AppCompatActivity {
 
     private static final String TAG = "UsersActivity";
-    ListView usersList;
+    RecyclerView usersList;
     TextView noUsersText;
     ArrayList<String> al = new ArrayList<>();
     ArrayList<String> al_pic = new ArrayList<>();
+    ArrayList<Integer> al_userId = new ArrayList<>();
     int totalUsers = 0;
     ProgressDialog pd;
     private Subscription mSubscription;
@@ -71,9 +75,11 @@ public class UsersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_users);
         GetSharedPrefs();
-        usersList = (ListView)findViewById(R.id.usersList);
+        usersList = (RecyclerView)findViewById(R.id.usersList);
         noUsersText = (TextView)findViewById(R.id.noUsersText);
-
+        Toolbar toolbar = findViewById(R.id.toolbar3);
+        toolbar.setTitle(getString(R.string.PairedUser));
+        toolbar.setTitleMargin(16,0,0,0);
 //        pd = new ProgressDialog(UsersActivity.this);
 //        pd.setMessage("Loading...");
 //        pd.show();
@@ -107,7 +113,7 @@ public class UsersActivity extends AppCompatActivity {
 //        });
     }
 
-    public void doOnSuccess(String s, String mobileNumber, String otherUsername, String otherProfilePic){
+    public void doOnSuccess(String s, String mobileNumber, String otherUsername, String otherProfilePic, int otheruserId){
         try {
             JSONObject obj = new JSONObject(s);
             JSONArray array = obj.names();
@@ -129,6 +135,7 @@ public class UsersActivity extends AppCompatActivity {
                 {
                     al.add(otherUsername);
                     al_pic.add(otherProfilePic);
+                    al_userId.add(otheruserId);
                     String[] name = {};
 
                 }
@@ -163,8 +170,14 @@ public class UsersActivity extends AppCompatActivity {
 //            map.clear();
 //            map.put(OtherUsername,OtherProfilePic);
 
-            MyListAdapter adapter=new MyListAdapter(this, al,al_pic);
+            System.out.println("al--"+al.size());
+            System.out.println("al_pic--"+al_pic.size());
+            MyListAdapter adapter = new MyListAdapter(this,al, al_pic,al_userId);
+            usersList.setHasFixedSize(true);
+            usersList.setLayoutManager(new LinearLayoutManager(this));
             usersList.setAdapter(adapter);
+            //MyListAdapter adapter=new MyListAdapter(this, al,al_pic);
+            //usersList.setAdapter(adapter);
            // usersList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, al,al_pic));
         }
 
@@ -255,7 +268,7 @@ public class UsersActivity extends AppCompatActivity {
                             StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
                                 @Override
                                 public void onResponse(String s) {
-                                    doOnSuccess(s,MobileNumber,OtherUsername, OtherProfilePic);
+                                    doOnSuccess(s,MobileNumber,OtherUsername, OtherProfilePic, OtheruserId);
                                 }
                             },new Response.ErrorListener(){
                                 @Override
@@ -267,17 +280,17 @@ public class UsersActivity extends AppCompatActivity {
                             RequestQueue rQueue = Volley.newRequestQueue(UsersActivity.this);
                             rQueue.add(request);
 
-                            usersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                                @Override
-                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                    UserDetails.chatWith = al.get(position);
-                                    //startActivity(new Intent(UsersActivity.this, ChatActivity.class));
-                                    Intent i = new Intent(UsersActivity.this, ChatActivity.class);
-                                    i.putExtra("OtheruserId",OtheruserId);
-                                    i.putExtra("FROMACTIVITY","UsersActivity");
-                                    startActivity(i);
-                                }
-                            });
+//                            usersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                                @Override
+//                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                                    UserDetails.chatWith = al.get(position);
+//                                    //startActivity(new Intent(UsersActivity.this, ChatActivity.class));
+//                                    Intent i = new Intent(UsersActivity.this, ChatActivity.class);
+//                                    i.putExtra("OtheruserId",OtheruserId);
+//                                    i.putExtra("FROMACTIVITY","UsersActivity");
+//                                    startActivity(i);
+//                                }
+//                            });
 
                         }
                         else {

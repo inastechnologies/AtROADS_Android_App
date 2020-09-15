@@ -25,7 +25,7 @@ public class SpalshScreen extends AppCompatActivity
         setContentView(R.layout.activity_spalsh_screen);
         isNetworkAvailable(SpalshScreen.this);
         MoveToRegister();
-        startService(new Intent(this, MyServiceToCheckIsAppClosed.class));
+       // startService(new Intent(this, MyServiceToCheckIsAppClosed.class));
         Log.i(TAG, "onCreate: End Of OnCreate");
     }
     /*
@@ -51,7 +51,7 @@ public class SpalshScreen extends AppCompatActivity
                 }
 
             }
-        },3000);
+        },2000);
         Log.i(TAG, "onCreate: End Of MoveToRegister");
     }
 

@@ -3,5 +3,5 @@ package com.inas.atroads.views.Activities;
 public class UserDetails {
     static String username = "";
     static String password = "";
-    static String chatWith = "";
+   public static String chatWith = "";
 }

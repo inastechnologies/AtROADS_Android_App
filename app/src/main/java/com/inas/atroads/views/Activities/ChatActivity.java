@@ -191,7 +191,7 @@ public class ChatActivity extends AppCompatActivity implements OnMapReadyCallbac
         fab();
         scrollView = (ScrollView)findViewById(R.id.scrollView);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle(" "+UserDetails.chatWith+"");
+        toolbar.setTitle(getIntent().getStringExtra("OtheruserName"));
         Log.i(TAG, "SetViewsFromLayout: UserDetails.chatWith"+UserDetails.chatWith);
         Log.i(TAG, "SetViewsFromLayout: UserDetails.username"+UserDetails.username);
         SetProgressDialog();
@@ -244,7 +244,7 @@ public class ChatActivity extends AppCompatActivity implements OnMapReadyCallbac
     {
         Firebase.setAndroidContext(this);
 //        reference1 = new Firebase(AtroadsConstant.DATABASE_MSGS_URL + UserDetails.username + "_" + UserDetails.chatWith);
-        reference1 = new Firebase(AtroadsConstant.DATABASE_MSGS_URL + Thisusername + "_" + UserDetails.chatWith);
+        reference1 = new Firebase(AtroadsConstant.DATABASE_MSGS_URL + Thisusername + "_" + getIntent().getStringExtra("OtheruserName"));
 //        reference2 = new Firebase(AtroadsConstant.DATABASE_MSGS_URL + UserDetails.chatWith + "_" + UserDetails.username);
         reference2 = new Firebase(AtroadsConstant.DATABASE_MSGS_URL + UserDetails.chatWith + "_" + Thisusername);
     }
@@ -365,6 +365,7 @@ public class ChatActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
 
+
     /**
      * Floating action button Animation
      */
@@ -378,19 +379,19 @@ public class ChatActivity extends AppCompatActivity implements OnMapReadyCallbac
                 switch (actionItem.getId())
                 {
                     case R.id.fab_location:
-                        Toast.makeText(ChatActivity.this, "fab_location", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(ChatActivity.this, "fab_location", Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(ChatActivity.this,SelectCurrentLocationActivity.class);
-                        startActivity(i);
+                        startActivityForResult(i, 101);
                         break;
 
                     case R.id.fab_add:
                         SelectImageDialog();
-                        Toast.makeText(ChatActivity.this, "fab_add", Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(ChatActivity.this, "fab_add", Toast.LENGTH_SHORT).show();
 
                         break;
 
                     case R.id.fab_call:
-                        Toast.makeText(ChatActivity.this, "fab_call", Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(ChatActivity.this, "fab_call", Toast.LENGTH_SHORT).show();
                         int OtherID = getIntent().getIntExtra("OtheruserId",0);
                         Intent intent = new Intent(ChatActivity.this, VoiceCallActivity.class);
                         intent.putExtra("ReciverName",UserDetails.chatWith);
@@ -609,6 +610,27 @@ public class ChatActivity extends AppCompatActivity implements OnMapReadyCallbac
 //                        uploadFile(PflImageUri);
                     }
                 }
+                case 101:
+                    Location = getIntent().getStringExtra("CurrentLocation");
+                    latitude = getIntent().getDoubleExtra("latitude",0.0);
+                    longitude = getIntent().getDoubleExtra("longitude",0.0);
+                    Log.i(TAG, "onCreate: Location"+Location);
+                    Log.i(TAG, "onCreate: latitude"+latitude);
+                    Log.i(TAG, "onCreate: longitude"+longitude);
+                    Map<String, String> map = new HashMap<String, String>();
+                    map.put("message", latitude+"-"+longitude);
+//            map.put("user", UserDetails.username);
+                    map.put("user", Thisusername);
+                    map.put("msg_type","3");
+                    reference1.push().setValue(map);
+                    reference2.push().setValue(map);
+                    if(FROMACTIVITY.equals("SelectCurrentLocationActivity"))
+                    {
+                        // addMessageBox("You \n" + Location, 3);
+                    }
+                    else {
+
+                    }
         }
     }
 

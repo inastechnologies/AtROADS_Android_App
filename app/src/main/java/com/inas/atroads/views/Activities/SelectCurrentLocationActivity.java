@@ -76,32 +76,36 @@ public class SelectCurrentLocationActivity extends AppCompatActivity implements 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mContext = getApplicationContext();
-
         //assining layout
         setContentView(R.layout.activity_select_current_location);
+        mContext = getApplicationContext();
         currentLocationBtn = findViewById(R.id.currentLocationBtn);
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(LocationServices.API)
                 .build();
-        showProgressDialog();
+       // showProgressDialog();
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 hideProgressDialog();
             }
-        },2000);
+        },1000);
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
+        LocationManager lm = (LocationManager) getSystemService(LOCATION_SERVICE);
+        if (!lm.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            Toast.makeText(this, "Please enable location services", Toast.LENGTH_SHORT).show();
+            finish();
+        }
         fetchLastLocation();
 
         setViews();
-        Intent intent = new Intent(SelectCurrentLocationActivity.this, TrackerActivity.class);
-        startActivity(intent);
+       // Intent intent = new Intent(SelectCurrentLocationActivity.this, TrackerActivity.class);
+        //startActivity(intent);
 
     }
 
@@ -361,13 +365,16 @@ public class SelectCurrentLocationActivity extends AppCompatActivity implements 
         currentLocationBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SelectCurrentLocationActivity.this, ChatActivity.class);
+               // Intent intent = new Intent(SelectCurrentLocationActivity.this, ChatActivity.class);
+                Intent intent = new Intent();
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("FROMACTIVITY","SelectCurrentLocationActivity");
                 intent.putExtra("CurrentLocation", currentLocationstart);
                 intent.putExtra("latitude",Latitude);
                 intent.putExtra("longitude",Longitude);
-                startActivity(intent);
+                setResult(101,intent);
+                finish();
+                //startActivity(intent);
             }
         });
     }
