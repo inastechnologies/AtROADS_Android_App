@@ -192,6 +192,16 @@ public class ChatActivity extends AppCompatActivity implements OnMapReadyCallbac
         scrollView = (ScrollView)findViewById(R.id.scrollView);
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(getIntent().getStringExtra("OtheruserName"));
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
         Log.i(TAG, "SetViewsFromLayout: UserDetails.chatWith"+UserDetails.chatWith);
         Log.i(TAG, "SetViewsFromLayout: UserDetails.username"+UserDetails.username);
         SetProgressDialog();

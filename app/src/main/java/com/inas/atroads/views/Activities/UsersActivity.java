@@ -77,9 +77,18 @@ public class UsersActivity extends AppCompatActivity {
         GetSharedPrefs();
         usersList = (RecyclerView)findViewById(R.id.usersList);
         noUsersText = (TextView)findViewById(R.id.noUsersText);
-        Toolbar toolbar = findViewById(R.id.toolbar3);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(getString(R.string.PairedUser));
-        toolbar.setTitleMargin(16,0,0,0);
+        toolbar.setTitleMargin(0,0,0,0);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 //        pd = new ProgressDialog(UsersActivity.this);
 //        pd.setMessage("Loading...");
 //        pd.show();
