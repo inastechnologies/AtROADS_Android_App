@@ -152,8 +152,7 @@ public class VoiceCallActivity extends AppCompatActivity {
     /**
      * SetSinchClient
      */
-    private void SetSinchClient()
-    {
+    private void SetSinchClient() {
         sinchClient = Sinch.getSinchClientBuilder()
                 .context(this)
                 .userId(Caller)
@@ -163,6 +162,8 @@ public class VoiceCallActivity extends AppCompatActivity {
                 .build();
 
         sinchClient.setSupportCalling(true);
+        sinchClient.setSupportManagedPush(true);
+        sinchClient.setSupportActiveConnectionInBackground(true);
         sinchClient.startListeningOnActiveConnection();
         sinchClient.start();
 
@@ -181,7 +182,8 @@ public class VoiceCallActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (call == null) {
                     // Calling Receiver
-                    call = sinchClient.getCallClient().callUser(Receiver);
+                    CallClient callClient = sinchClient.getCallClient();
+                    call = callClient.callUser(Receiver);
                     call.addCallListener(new SinchCallListener());
                     CallBtn.setText("Hang Up");
                 } else {
@@ -352,11 +354,9 @@ public class VoiceCallActivity extends AppCompatActivity {
         endBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(call!=null)
-                {
+                if(call!=null) {
                     call.hangup();
                 }
-
                 VoiceCallActivity.super.onBackPressed();
             }
         });

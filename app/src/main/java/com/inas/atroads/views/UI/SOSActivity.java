@@ -463,7 +463,7 @@ public class SOSActivity extends BaseActivity
                             Log.v(TAG,"Location = " + myLocation);
                             //showDialog();
                             sendSMS(myLocation);
-                            sendEmail(myLocation);
+                          //  sendEmail(myLocation);
                             Log.v(TAG,"Email sent");
 
                             String contact_no = contactsList.get(0).getMobileNumber();//"8142327425";
@@ -649,7 +649,7 @@ public class SOSActivity extends BaseActivity
 				}
 				*/
                 sendSMS(myLocation);
-                sendEmail(myLocation);
+                //sendEmail(myLocation);
                 Log.v(TAG,"Email sent");
 
                 String contact_no = contactsList.get(0).getMobileNumber();//"8142327425";
@@ -714,12 +714,12 @@ public class SOSActivity extends BaseActivity
         Log.v(TAG, "stringArray = " + stringArray);
         String msg = "My Location : ".concat(myLocation);
         Intent it = new Intent(Intent.ACTION_SEND);
-        //it.putExtra(Intent.EXTRA_EMAIL, new String[]{"prasanna.jonnala@gmail.com", "srinivasreddym9@gmail.com"});
+        it.setData(Uri.parse("mailto:"));
         it.putExtra(Intent.EXTRA_EMAIL, stringArray);
         it.putExtra(Intent.EXTRA_SUBJECT,getResources().getString(R.string.sos_msg));
         it.putExtra(Intent.EXTRA_TEXT,msg);
         it.setType("message/rfc822");
-        startActivity(Intent.createChooser(it,"Choose Mail App"));
+        startActivity(Intent.createChooser(it,"Send mail..."));
     }
 
     /**

@@ -313,4 +313,11 @@ This Website is not for use by any minors (defined as those who are not at least
         <item>50 mins</item>
         <item>60 mins</item>
     </string-array>
+
+    <string name="invite_friends_title">Invite Friends</string>
+    <string name="invite_friends">Invite friends and get rewards</string>
+    <string name="invite_code">Invite code : </string>
+    <string name="total_rewards">TOTAL REWARDS</string>
+    <string name="others">Others</string>
+    <string name="whats_app">WhatsApp</string>
 </resources>

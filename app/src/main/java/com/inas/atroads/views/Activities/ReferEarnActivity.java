@@ -1,5 +1,7 @@
 package com.inas.atroads.views.Activities;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Address;
@@ -10,6 +12,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
@@ -40,7 +45,12 @@ public class ReferEarnActivity extends BaseActivity {
     private String provider;
     private static String TAG = "MAP LOCATION";
     FusedLocationProviderClient fusedLocationProviderClient;
-    Button shareBtn;
+    LinearLayout shareBtn,btn_whatsapp_share;
+    ImageView iv_copy;
+    TextView txt_invite_code;
+
+    ClipboardManager myClipboard;
+    ClipData myClip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +85,12 @@ public class ReferEarnActivity extends BaseActivity {
     }
 
     private void setViews() {
-        shareBtn = findViewById(R.id.shareBtn);
+        shareBtn = findViewById(R.id.btn_others_share);
+        btn_whatsapp_share= findViewById(R.id.btn_whatsapp_share);
+        iv_copy= findViewById(R.id.iv_copy);
+        txt_invite_code= findViewById(R.id.txt_invite_code);
+
+        myClipboard =  (ClipboardManager)getSystemService(Context.CLIPBOARD_SERVICE);
         shareBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,6 +100,36 @@ public class ReferEarnActivity extends BaseActivity {
                 sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "ATROADS");
                 sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, content);
                 startActivity(Intent.createChooser(sharingIntent, "Share via"));
+            }
+        });
+
+        btn_whatsapp_share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // val imgUri = Uri.parse(pictureFile.getAbsolutePath())
+                Intent whatsappIntent = new Intent(android.content.Intent.ACTION_SEND);
+                whatsappIntent.setType ("text/plain");
+                whatsappIntent.setPackage("com.whatsapp");
+                String content = "Hey..! Im using ATROADS App. You can download this By the following link.";
+                whatsappIntent.putExtra(
+                        Intent.EXTRA_TEXT,
+                        content);
+                whatsappIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+                try {
+                    startActivity(whatsappIntent);
+                } catch (Exception e) {
+                    Toast.makeText(ReferEarnActivity.this, "Whatsapp have not been installed.", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        iv_copy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myClip = ClipData.newPlainText("text", txt_invite_code.getText().toString());
+                myClipboard.setPrimaryClip(myClip);
+                Toast.makeText(ReferEarnActivity.this, "Text Copied", Toast.LENGTH_LONG).show();
             }
         });
     }

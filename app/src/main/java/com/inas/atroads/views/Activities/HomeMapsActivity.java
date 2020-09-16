@@ -499,8 +499,6 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 
 	}
 
-	/**********************************END OF SET VIEWS*******************************/
-
 	/*******************************START OF SET SPINNER*****************************/
 	/**
 	 SetShareSpinner
