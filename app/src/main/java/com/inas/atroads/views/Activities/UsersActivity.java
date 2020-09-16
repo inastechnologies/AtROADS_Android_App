@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -59,6 +60,7 @@ public class UsersActivity extends AppCompatActivity {
     private static final String TAG = "UsersActivity";
     RecyclerView usersList;
     TextView noUsersText;
+    LinearLayout lin_nodata;
     ArrayList<String> al = new ArrayList<>();
     ArrayList<String> al_pic = new ArrayList<>();
     ArrayList<Integer> al_userId = new ArrayList<>();
@@ -77,6 +79,7 @@ public class UsersActivity extends AppCompatActivity {
         GetSharedPrefs();
         usersList = (RecyclerView)findViewById(R.id.usersList);
         noUsersText = (TextView)findViewById(R.id.noUsersText);
+        lin_nodata= findViewById(R.id.lin_nodata);
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(getString(R.string.PairedUser));
         toolbar.setTitleMargin(0,0,0,0);
@@ -159,11 +162,11 @@ public class UsersActivity extends AppCompatActivity {
         Log.i(TAG, "doOnSuccess: totalUsers:"+totalUsers);
 
         if(totalUsers <=1){
-            noUsersText.setVisibility(View.VISIBLE);
+            lin_nodata.setVisibility(View.VISIBLE);
             usersList.setVisibility(View.GONE);
         }
         else{
-            noUsersText.setVisibility(View.GONE);
+            lin_nodata.setVisibility(View.GONE);
             usersList.setVisibility(View.VISIBLE);
 
             String[] name ={
@@ -254,40 +257,43 @@ public class UsersActivity extends AppCompatActivity {
                     @Override
                     public void onNext(PairedDetailsForChatResponseModel mRespone) {
                         Log.i(TAG, "PairedDetailsResponseModel: "+mRespone);
-                        if(mRespone.getStatus() == 1)
-                        {
-                            OtherUsername = mRespone.getResult().get(0).getName();
-                            Log.i(TAG, "onNext:OtherUsername "+OtherUsername);
-                            OtherProfilePic = mRespone.getResult().get(0).getProfilePic();
-                            OtheruserId = mRespone.getResult().get(0).getUserId();
-                            MobileNumber = mRespone.getResult().get(0).getMobile_number();
+                        if(mRespone.getStatus() == 1) {
 
-                            SharedPreferences pref = getApplicationContext().getSharedPreferences("OtherCreds", 0); // 0 - for private mode
-                            SharedPreferences.Editor editor = pref.edit();
-                            editor.putInt("OtheruserId", OtheruserId);
-                            editor.apply();
-                            editor.commit();
-                            pd = new ProgressDialog(UsersActivity.this);
-                            pd.setMessage("Loading...");
-                            pd.show();
+                            if (mRespone.getResult().size() > 0) {
+                                lin_nodata.setVisibility(View.GONE);
+                                usersList.setVisibility(View.VISIBLE);
+                                OtherUsername = mRespone.getResult().get(0).getName();
+                                Log.i(TAG, "onNext:OtherUsername " + OtherUsername);
+                                OtherProfilePic = mRespone.getResult().get(0).getProfilePic();
+                                OtheruserId = mRespone.getResult().get(0).getUserId();
+                                MobileNumber = mRespone.getResult().get(0).getMobile_number();
 
-                            //String url = "https://atroads-d26a5.firebaseio.com/users.json";
-                            String url = AtroadsConstant.AtroadsUsers_URL_JSON;
+                                SharedPreferences pref = getApplicationContext().getSharedPreferences("OtherCreds", 0); // 0 - for private mode
+                                SharedPreferences.Editor editor = pref.edit();
+                                editor.putInt("OtheruserId", OtheruserId);
+                                editor.apply();
+                                editor.commit();
+                                pd = new ProgressDialog(UsersActivity.this);
+                                pd.setMessage("Loading...");
+                                pd.show();
 
-                            StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
-                                @Override
-                                public void onResponse(String s) {
-                                    doOnSuccess(s,MobileNumber,OtherUsername, OtherProfilePic, OtheruserId);
-                                }
-                            },new Response.ErrorListener(){
-                                @Override
-                                public void onErrorResponse(VolleyError volleyError) {
-                                    System.out.println("" + volleyError);
-                                }
-                            });
+                                //String url = "https://atroads-d26a5.firebaseio.com/users.json";
+                                String url = AtroadsConstant.AtroadsUsers_URL_JSON;
 
-                            RequestQueue rQueue = Volley.newRequestQueue(UsersActivity.this);
-                            rQueue.add(request);
+                                StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+                                    @Override
+                                    public void onResponse(String s) {
+                                        doOnSuccess(s, MobileNumber, OtherUsername, OtherProfilePic, OtheruserId);
+                                    }
+                                }, new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError volleyError) {
+                                        System.out.println("" + volleyError);
+                                    }
+                                });
+
+                                RequestQueue rQueue = Volley.newRequestQueue(UsersActivity.this);
+                                rQueue.add(request);
 
 //                            usersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //                                @Override
@@ -301,6 +307,11 @@ public class UsersActivity extends AppCompatActivity {
 //                                }
 //                            });
 
+                            }else{
+
+                                lin_nodata.setVisibility(View.VISIBLE);
+                                usersList.setVisibility(View.GONE);
+                            }
                         }
                         else {
                             //RideAlreadyInitiatedDialog(HomeMapsActivity.this,"",mRespone.getMessage(),"Ok");

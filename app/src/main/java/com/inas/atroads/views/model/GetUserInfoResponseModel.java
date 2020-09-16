@@ -53,6 +53,10 @@ public class GetUserInfoResponseModel {
         private String mProfilePic;
         @SerializedName("user_id")
         private Long mUserId;
+        @SerializedName("coins")
+        private int coins;
+        @SerializedName("referralcode")
+        private String referralcode;
 
         public String getAcceptingOtherGender() {
             return mAcceptingOtherGender;
@@ -100,6 +104,22 @@ public class GetUserInfoResponseModel {
 
         public void setUserId(Long userId) {
             mUserId = userId;
+        }
+
+        public int getCoins() {
+            return coins;
+        }
+
+        public void setCoins(int coins) {
+            coins = coins;
+        }
+
+        public String getreferralcode() {
+            return referralcode;
+        }
+
+        public void setreferralcode(int referralcode) {
+            referralcode = referralcode;
         }
 
     }

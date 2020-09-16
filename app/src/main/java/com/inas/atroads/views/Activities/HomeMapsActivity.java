@@ -1475,6 +1475,13 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 							String mobileNo = mResponse.getResult().get(0).getMobileNumber();
 							String emailId = mResponse.getResult().get(0).getEmailId();
 							String pflPic = mResponse.getResult().get(0).getProfilePic();
+							String refferalCode= mResponse.getResult().get(0).getreferralcode();
+							int coins= mResponse.getResult().get(0).getCoins();
+							SharedPreferences pref = getApplicationContext().getSharedPreferences("RegPref", 0); // 0 - for private mode
+							SharedPreferences.Editor editor = pref.edit();
+							editor.putInt("coins", coins);
+							editor.putString("refferalCode", refferalCode);
+							editor.commit();
 							Log.i(TAG, "pflpic url: "+ APIConstants.IMAGE_URL+pflPic);
 							UserNameTv.setText(username);
 							MobileNoTv.setText(mobileNo);

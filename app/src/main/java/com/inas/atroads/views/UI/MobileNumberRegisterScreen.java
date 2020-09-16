@@ -171,8 +171,10 @@ public class MobileNumberRegisterScreen extends AppCompatActivity
                             int user_id = mRespone.getResult().get(0).getUserId();
                             String mobileNumber = mRespone.getResult().get(0).getMobileNumber();
                             String OTP = mRespone.getResult().get(0).getOTP();
+                            String refferalCode= mRespone.getResult().get(0).getreferralcode();
+                            int coins= mRespone.getResult().get(0).getCoins();
                             Log.i(TAG, "onNext: "+user_id);
-                            SaveSharedPrefs(mobileNumber,token,user_id);
+                            SaveSharedPrefs(mobileNumber,token,user_id,coins,refferalCode);
                             MoveToOTPScreen("New",mobileNumber);
 //                            FirebaseRegister(user_id,mobileNumber,token);
 //                            FirebaseCreateUserWithMail(mRespone.getResult().get(0).getEmailId(),mRespone.getResult().get(0).getPassword());
@@ -181,11 +183,15 @@ public class MobileNumberRegisterScreen extends AppCompatActivity
                             String token = mRespone.getResult().get(0).getDeviceToken();
                             int user_id = mRespone.getResult().get(0).getUserId();
                             String mobileNumber = mRespone.getResult().get(0).getMobileNumber();
+                            String refferalCode= mRespone.getResult().get(0).getreferralcode();
+                            int coins= mRespone.getResult().get(0).getCoins();
                             Log.i(TAG, "onNext: "+user_id);
                                 SharedPreferences pref = getApplicationContext().getSharedPreferences("RegPref", 0); // 0 - for private mode
                                 SharedPreferences.Editor editor = pref.edit();
                                 editor.putString("mobile_number", mobileNumber); // Storing string
                                 editor.putInt("user_id", user_id);
+                                editor.putInt("coins", coins);
+                                editor.putString("refferalCode", refferalCode);
                                 editor.commit();
                             MoveToOTPScreen("Old",phoneNumberEditText.getText().toString());
 
@@ -211,18 +217,21 @@ public class MobileNumberRegisterScreen extends AppCompatActivity
     }
 
     /**
-     *
-     * @param mobileNumber
+     *  @param mobileNumber
      * @param token
      * @param user_id
+     * @param coins
+     * @param refferalCode
      */
-    private void SaveSharedPrefs(String mobileNumber,String token,int user_id)
+    private void SaveSharedPrefs(String mobileNumber, String token, int user_id, int coins, String refferalCode)
     {
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MobileRegPref", 0); // 0 - for private mode
         SharedPreferences.Editor editor = pref.edit();
         editor.putString("mobile_number", mobileNumber); // Storing string
         editor.putString("token", token);
         editor.putInt("user_id", user_id);
+        editor.putInt("coins", coins);
+        editor.putString("refferalCode", refferalCode);
         editor.commit();
     }
 

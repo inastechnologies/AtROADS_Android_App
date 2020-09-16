@@ -4,6 +4,7 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -47,7 +48,9 @@ public class ReferEarnActivity extends BaseActivity {
     FusedLocationProviderClient fusedLocationProviderClient;
     LinearLayout shareBtn,btn_whatsapp_share;
     ImageView iv_copy;
-    TextView txt_invite_code;
+    TextView txt_invite_code,tv_totalcoins;
+    String refferalCode;
+    int coins;
 
     ClipboardManager myClipboard;
     ClipData myClip;
@@ -89,6 +92,11 @@ public class ReferEarnActivity extends BaseActivity {
         btn_whatsapp_share= findViewById(R.id.btn_whatsapp_share);
         iv_copy= findViewById(R.id.iv_copy);
         txt_invite_code= findViewById(R.id.txt_invite_code);
+        tv_totalcoins= findViewById(R.id.tv_totalcoins);
+
+        GetSharedPrefs();
+        txt_invite_code.setText(refferalCode.toString());
+        tv_totalcoins.setText(""+coins +" Coins");
 
         myClipboard =  (ClipboardManager)getSystemService(Context.CLIPBOARD_SERVICE);
         shareBtn.setOnClickListener(new View.OnClickListener() {
@@ -110,7 +118,7 @@ public class ReferEarnActivity extends BaseActivity {
                 Intent whatsappIntent = new Intent(android.content.Intent.ACTION_SEND);
                 whatsappIntent.setType ("text/plain");
                 whatsappIntent.setPackage("com.whatsapp");
-                String content = "Hey..! Im using ATROADS App. You can download this By the following link.";
+                String content = "Hey..! Im using ATROADS App. You can download this By the following link. and your refferal code is: "+refferalCode;
                 whatsappIntent.putExtra(
                         Intent.EXTRA_TEXT,
                         content);
@@ -134,6 +142,12 @@ public class ReferEarnActivity extends BaseActivity {
         });
     }
 
+    private void GetSharedPrefs()
+    {
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("RegPref", 0); // 0 - for private mode
+        refferalCode = pref.getString("refferalCode","");
+        coins= pref.getInt("coins",0);
+    }
 
     @Override
     public void onBackPressed() {

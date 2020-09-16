@@ -53,6 +53,11 @@ public class GetPhoneNumberResponseModel {
         private String mOTP;
         @SerializedName("user_id")
         private int mUserId;
+        @SerializedName("coins")
+        private int coins;
+        @SerializedName("referralcode")
+        private String referralcode;
+
 
         public String getCreatedTime() {
             return mCreatedTime;
@@ -92,6 +97,22 @@ public class GetPhoneNumberResponseModel {
 
         public void setUserId(int userId) {
             mUserId = userId;
+        }
+
+        public int getCoins() {
+            return coins;
+        }
+
+        public void setCoins(int coins) {
+            coins = coins;
+        }
+
+        public String getreferralcode() {
+            return referralcode;
+        }
+
+        public void setreferralcode(int referralcode) {
+            referralcode = referralcode;
         }
 
     }
