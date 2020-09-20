@@ -2,6 +2,7 @@ package com.inas.atroads.views.UI;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
 import android.content.Intent;
@@ -63,12 +64,25 @@ public class UploadQRActivity extends AppCompatActivity {
     private Subscription mSubscription;
     String Username, Email, Mobile;
     int UserId;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_q_r);
         qrIV = findViewById(R.id.qrIV);
+
+        toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(getString(R.string.ShowQR));
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
         GetSharedPrefs();
         SharedPreferences pref = getApplicationContext().getSharedPreferences("QRImage", 0); // 0 - for private mode
         PflImageBase64 = pref.getString("PflImageBase64",DEFAULT);

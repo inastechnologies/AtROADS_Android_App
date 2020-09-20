@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/white"
     android:orientation="vertical">
 
@@ -13,6 +14,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/tvhelp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="26dp"
+        android:gravity="center"
+        android:text="Make your app more secure!!"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/include7"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="91dp"></TextView>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/oldpasswordTextInputLayout"
@@ -24,7 +38,7 @@
         android:layout_marginEnd="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include7"
+        app:layout_constraintTop_toBottomOf="@+id/tvhelp"
         app:passwordToggleTint="@color/black">
 
         <EditText
@@ -38,6 +52,7 @@
             android:imeOptions="actionDone"
             android:inputType="textPersonName"
             android:maxLength="20"
+            android:textSize="14dp"
             android:paddingLeft="10dp"
             android:singleLine="true"
             android:textColorHint="@color/black"
@@ -69,6 +84,7 @@
             android:imeOptions="actionDone"
             android:inputType="textPassword"
             android:maxLength="20"
+            android:textSize="14dp"
             android:paddingLeft="10dp"
             android:singleLine="true"
             android:textColorHint="@color/black"
@@ -99,6 +115,7 @@
             android:imeOptions="actionDone"
             android:inputType="textPassword"
             android:maxLength="20"
+            android:textSize="14dp"
             android:paddingLeft="10dp"
             android:singleLine="true"
             android:textColorHint="@color/black"

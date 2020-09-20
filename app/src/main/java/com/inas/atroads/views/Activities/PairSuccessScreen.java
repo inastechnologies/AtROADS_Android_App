@@ -21,6 +21,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Location;
@@ -916,6 +917,7 @@ public class PairSuccessScreen extends AppCompatActivity implements OnMapReadyCa
     {
         final Dialog dialog = new Dialog(context);
         dialog.setContentView(R.layout.dialogwithonebtn);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCanceledOnTouchOutside(false);
         dialog.show();
         TextView title = (TextView) dialog.findViewById(R.id.TitleTv);

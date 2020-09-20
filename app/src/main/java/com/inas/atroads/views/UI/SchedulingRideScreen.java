@@ -98,7 +98,6 @@ public class SchedulingRideScreen extends BaseActivity implements GoogleApiClien
         Log.i(TAG, "GetSharedPrefs: UserId: "+UserId);
     }
 
-
     private void initViews()
     {
         toolbar = findViewById(R.id.toolbar);
@@ -297,10 +296,10 @@ public class SchedulingRideScreen extends BaseActivity implements GoogleApiClien
     private void AutoCompleteIntent()
     {
         // Set the fields to specify which types of place data to
-// return after the user has made a selection.
+        // return after the user has made a selection.
         List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.NAME);
 
-// Start the autocomplete intent.
+        // Start the autocomplete intent.
         Intent intent = new Autocomplete.IntentBuilder(
                 AutocompleteActivityMode.FULLSCREEN, fields)
                 .build(SchedulingRideScreen.this);
@@ -319,9 +318,7 @@ public class SchedulingRideScreen extends BaseActivity implements GoogleApiClien
         if (requestCode == AUTOCOMPLETE_REQUEST_CODE)
         {
             LatLng PinlatLng = null,DropLatLng = null;
-            if (resultCode == RESULT_OK)
-            {
-
+            if (resultCode == RESULT_OK) {
                 Place place = Autocomplete.getPlaceFromIntent(data);
                 Log.i(TAG, "Place: " + place.getName() + ", " + place.getId());
                 Log.i(TAG, "PlaceAddress: " + place.getAddress());
@@ -412,7 +409,7 @@ public class SchedulingRideScreen extends BaseActivity implements GoogleApiClien
                 if (isChecked) {
                     // The toggle is enabled
                     isPairing = 1;
-                    CallSchedulingRideNotifyAPI();
+                    //CallSchedulingRideNotifyAPI();
                 } else {
                     // The toggle is disabled
                     isPairing = 0;
@@ -422,8 +419,7 @@ public class SchedulingRideScreen extends BaseActivity implements GoogleApiClien
     }
 
 
-    private void AddAnotherBtnOnclick()
-    {
+    private void AddAnotherBtnOnclick() {
         another_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -433,21 +429,19 @@ public class SchedulingRideScreen extends BaseActivity implements GoogleApiClien
     }
 
 
-    private void SetSubmitBtn()
-    {
+    private void SetSubmitBtn() {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(home_edit.length()==0)
-                {
+                if(home_edit.length()==0) {
                     home_edit.setError("Please enter home location");
                 }
-                else if(work_edit.length()==0)
-                {
+                else if(work_edit.length()==0) {
                     work_edit.setError("Please enter work location");
                 }
                 else
                 {
+                    showProgressDialog();
 //                    Toast.makeText(SchedulingRideScreen.this,"submitted",Toast.LENGTH_SHORT).show();
                     CallSchedulingRideAPI();
                 }
@@ -503,9 +497,6 @@ public class SchedulingRideScreen extends BaseActivity implements GoogleApiClien
         });
     }
 
-
-
-
     /********************************START OF CallSchedulingRideAPI*******************************/
     /*
      * CallSchedulingRideAPI
@@ -547,14 +538,9 @@ public class SchedulingRideScreen extends BaseActivity implements GoogleApiClien
                         }
                         else if(mResponse.getStatus() == 1)
                         {
-                            CustomDialog(SchedulingRideScreen.this, "Schedule Ride", "Scheduling ride added successfully", "Done", new Runnable() {
-                                @Override
-                                public void run() {
-                                    Intent i = new Intent(SchedulingRideScreen.this, HomeMapsActivity.class);
-//                            i.putExtra("payableAmount",payableAmount.getText().toString());
-                                    startActivity(i);
-                                }
-                            });
+
+                            CallSchedulingRideNotifyAPI();
+
                         }
                     }
                 });
@@ -630,10 +616,20 @@ public class SchedulingRideScreen extends BaseActivity implements GoogleApiClien
 //                        Toast.makeText(YourBillScreen.this, mResponse.getMessage(), Toast.LENGTH_SHORT).show();
                         if(mResponse.getStatus() == 0)
                         {
-
+                            hideProgressDialog();
+                            finish();
                         }
                         else if(mResponse.getStatus() == 1)
                         {
+                            hideProgressDialog();
+                            CustomDialog(SchedulingRideScreen.this, "Schedule Ride", "Scheduling ride added successfully", "Done", new Runnable() {
+                                @Override
+                                public void run() {
+                                    Intent i = new Intent(SchedulingRideScreen.this, HomeMapsActivity.class);
+//                            i.putExtra("payableAmount",payableAmount.getText().toString());
+                                    startActivity(i);
+                                }
+                            });
                          //schedule notification here
                         }
                     }

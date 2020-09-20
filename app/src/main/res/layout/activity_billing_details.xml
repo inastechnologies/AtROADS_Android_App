@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
 
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
+    <include
+        android:id="@+id/include111"
+        layout="@layout/toolbar_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,16 +21,23 @@
 <!--        app:layout_constraintStart_toStartOf="parent"-->
 <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
     <TextView
         android:id="@+id/bookingDetailsTv"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
         android:text="TextView"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="19sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
@@ -43,6 +47,7 @@
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_marginStart="16dp"
+        android:weightSum="1"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:orientation="horizontal"
@@ -52,16 +57,17 @@
 
         <TextView
             android:id="@+id/AutoNumberTv"
-            android:layout_width="150dp"
+            android:layout_width="0dp"
+            android:layout_weight=".5"
             android:layout_height="wrap_content"
             android:text="@string/AutoNumber"
             android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/AutoNo"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight=".5"
             android:text="0"
             android:textColor="@color/black" />
     </LinearLayout>
@@ -75,22 +81,24 @@
         android:layout_marginEnd="16dp"
         android:orientation="horizontal"
         android:visibility="invisible"
+        android:weightSum="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/autoNolinearLayout">
 
         <TextView
             android:id="@+id/totalFareTv"
-            android:layout_width="150dp"
+            android:layout_width="0dp"
+            android:layout_weight=".5"
             android:layout_height="wrap_content"
             android:text="@string/TotalFare"
             android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/totalfare"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight=".5"
             android:text="0.0"
             android:textColor="@color/black" />
     </LinearLayout>
@@ -103,35 +111,38 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:orientation="horizontal"
-        android:visibility="visible"
+        android:visibility="gone"
+        android:weightSum="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/autoNolinearLayout">
 
         <TextView
             android:id="@+id/metertotalFareTv"
-            android:layout_width="150dp"
+            android:layout_width="0dp"
+            android:layout_weight=".5"
             android:layout_height="wrap_content"
             android:text="@string/TotalFare"
             android:textColor="@color/black" />
 
         <EditText
             android:id="@+id/metertotalfare"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
             android:layout_marginRight="10dp"
-            android:layout_weight="1"
+            android:layout_weight=".25"
+            android:inputType="number"
             android:background="@drawable/edittxt_bg"
             android:gravity="center"
             android:hint="@string/Fare" />
 
         <Button
             android:id="@+id/okBtn"
-            android:layout_width="40dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="8dp"
-            android:layout_weight="1"
+            android:layout_weight=".25"
             android:background="@drawable/round_rect_button_bg"
             android:text="@string/OK"
             android:textColor="@color/white" />
@@ -146,6 +157,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:weightSum="1"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -153,16 +165,17 @@
 
         <TextView
             android:id="@+id/payableAmountTv"
-            android:layout_width="150dp"
+            android:layout_width="0dp"
+            android:layout_weight=".5"
             android:layout_height="wrap_content"
             android:text="@string/PayableAmt"
             android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/payableAmount"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight=".5"
             android:text="0.0"
             android:textColor="@color/black" />
     </LinearLayout>
@@ -177,39 +190,55 @@
         android:layout_marginEnd="16dp"
         android:orientation="horizontal"
         android:visibility="gone"
+        android:weightSum="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/payableAmountLLayout">
 
         <TextView
             android:id="@+id/distanceTv"
-            android:layout_width="150dp"
+            android:layout_width="0dp"
+            android:layout_weight=".5"
             android:layout_height="wrap_content"
             android:text="@string/Distance"
             android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/distance"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight=".5"
             android:text="0.0"
             android:textColor="@color/black" />
     </LinearLayout>
 
+        <TextView
+            android:id="@+id/mopTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="38dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/MOP"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/distanceLLayout" />
 
-    <RadioGroup
+
+        <RadioGroup
         android:id="@+id/radioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="32dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mopTv">
+        >
 
         <RadioButton
             android:id="@+id/cashRadioBtn"
@@ -240,31 +269,22 @@
 
     </RadioGroup>
 
-    <TextView
-        android:id="@+id/mopTv"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/MOP"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/distanceLLayout" />
 
     <Button
         android:id="@+id/payNowbtn"
-        android:layout_width="0dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="100dp"
         android:background="@drawable/round_rect_button_bg"
         android:text="@string/paynow"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
+</LinearLayout>

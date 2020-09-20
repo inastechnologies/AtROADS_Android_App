@@ -181,9 +181,6 @@ public class UsersActivity extends AppCompatActivity {
 //            HashMap<String,String> map = new HashMap<>();
 //            map.clear();
 //            map.put(OtherUsername,OtherProfilePic);
-
-            System.out.println("al--"+al.size());
-            System.out.println("al_pic--"+al_pic.size());
             MyListAdapter adapter = new MyListAdapter(this,al, al_pic,al_userId);
             usersList.setHasFixedSize(true);
             usersList.setLayoutManager(new LinearLayoutManager(this));

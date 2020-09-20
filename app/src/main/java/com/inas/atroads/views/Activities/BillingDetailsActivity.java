@@ -3,6 +3,8 @@ package com.inas.atroads.views.Activities;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -80,7 +82,16 @@ public class BillingDetailsActivity extends AppCompatActivity implements PaytmPa
         setContentView(R.layout.activity_billing_details);
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(getString(R.string.BillingDetails));
+        toolbar.setTitleMargin(0,0,0,0);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
         UserId = getIntent().getIntExtra("UserId",0);
         UserRideId = getIntent().getIntExtra("UserRideId",0);
         AutoNumber = getIntent().getStringExtra("AutoNumber");
@@ -187,9 +198,15 @@ public class BillingDetailsActivity extends AppCompatActivity implements PaytmPa
         okBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CallMeterCalculationAPI();
-                hideKeyboard(v,BillingDetailsActivity.this);
-                metertotalfare.setEnabled(false);
+
+                if(metertotalfare.getText().toString().equals("")){
+                    Toast.makeText(BillingDetailsActivity.this, "Enter valid amount",Toast.LENGTH_LONG).show();
+                    return;
+                }else {
+                    CallMeterCalculationAPI();
+                    hideKeyboard(v, BillingDetailsActivity.this);
+                    metertotalfare.setEnabled(false);
+                }
             }
         });
     }
@@ -396,6 +413,7 @@ public class BillingDetailsActivity extends AppCompatActivity implements PaytmPa
     {
         final Dialog dialog = new Dialog(context);
         dialog.setContentView(R.layout.dialogwithonebtn);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCanceledOnTouchOutside(false);
         dialog.show();
         TextView title = (TextView) dialog.findViewById(R.id.TitleTv);
@@ -851,6 +869,7 @@ public class BillingDetailsActivity extends AppCompatActivity implements PaytmPa
     {
         final Dialog dialog = new Dialog(context);
         dialog.setContentView(R.layout.dialogwithonebtn);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCanceledOnTouchOutside(false);
         dialog.show();
         TextView title = (TextView) dialog.findViewById(R.id.TitleTv);

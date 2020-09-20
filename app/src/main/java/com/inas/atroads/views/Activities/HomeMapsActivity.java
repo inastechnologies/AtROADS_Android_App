@@ -1,6 +1,7 @@
 package com.inas.atroads.views.Activities;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -10,6 +11,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
@@ -33,6 +35,7 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -57,6 +60,7 @@ import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 
+import android.os.Handler;
 import android.provider.Settings;
 import android.text.InputType;
 import android.util.Log;
@@ -84,6 +88,7 @@ import com.inas.atroads.services.CustomApplication;
 import com.inas.atroads.services.ServiceFactory;
 import com.inas.atroads.util.Utilities;
 import com.inas.atroads.util.localData.FetchURL;
+import com.inas.atroads.views.GpsUtils;
 import com.inas.atroads.views.Interface.TaskLoadedCallback;
 import com.inas.atroads.views.UI.MobileNumberRegisterScreen;
 import com.inas.atroads.views.UI.PairedDetailsScreen;
@@ -163,7 +168,7 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 	GoogleApiClient mGoogleApiClient;
 	FusedLocationProviderClient fusedLocationProviderClient;
 	//private FusedLocationProviderClient fusedLocationClient;
-	private LinearLayout auto_lty,bike_lty,car_lty;
+	private LinearLayout auto_lty,bike_lty,car_lty,lin_top_head;
 	private Spinner spinnerShare;
 	private ArrayAdapter sharearray;
 	private static String shareTxt;
@@ -193,6 +198,8 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 	int user_ride_id = 0;
 	private Button sosBtn;
 	int PStatus = -1;
+	boolean isGPS;
+	Location mLocation;
 	/*****************************END OF DECLARATIONS**********************************/
 
 	@Override
@@ -210,7 +217,6 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 		if(isRangeAlertShown == false)
 		{
 			isRangeAlertShown = true;
-			//RangeAlertDialog(HomeMapsActivity.this,"Distance Range",getString(R.string.Permissions))
 		}
 		else {
 
@@ -219,26 +225,6 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 		AskPermission();
 		SetNavigationDrawer();
 		PairedUserDetailsAPI();
-		//        FloatingActionButton fab = findViewById(R.id.fab);
-		//        fab.setOnClickListener(new View.OnClickListener() {
-		//            @Override
-		//            public void onClick(View view) {
-		//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-		//                        .setAction("Action", null).show();
-		//            }
-		//        });
-		//        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-		//        NavigationView navigationView = findViewById(R.id.nav_view);
-		//        // Passing each menu ID as a set of Ids because each
-		//        // menu should be considered as top level destinations.
-		//        mAppBarConfiguration = new AppBarConfiguration.Builder(
-		//                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
-		//                R.id.nav_tools, R.id.nav_share, R.id.nav_send)
-		//                .setDrawerLayout(drawer)
-		//                .build();
-		//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-		//        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-		//        NavigationUI.setupWithNavController(navigationView, navController);
 	}
 
 	/*****************************START OF INIT GAPICLIENT********************************/
@@ -371,18 +357,13 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 		NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 		navigationView.setItemIconTintList(null);
 		View hView =  navigationView.inflateHeaderView(R.layout.nav_header_gmaps_screen);
+		lin_top_head= hView.findViewById(R.id.lin_top_head);
 		profilePicInSideBar = (CircleImageView)hView.findViewById(R.id.ProfilePicImg);
 		profilePicInSideBar.setImageResource(R.drawable.profile);
-		profilePicInSideBar.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(HomeMapsActivity.this, EditProfileScreen.class);
-				intent.putExtra("FROMACTIVITY","GMapsScreen");
-				startActivity(intent);
-			}
-		});
 		UserNameTv = (TextView)hView.findViewById(R.id.NameTv);
-		UserNameTv.setOnClickListener(new View.OnClickListener() {
+		MobileNoTv = (TextView)hView.findViewById(R.id.phnNumber);
+		EmailTv = (TextView)hView.findViewById(R.id.email);
+		lin_top_head.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(HomeMapsActivity.this, EditProfileScreen.class);
@@ -390,25 +371,14 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 				startActivity(intent);
 			}
 		});
-
-		MobileNoTv = (TextView)hView.findViewById(R.id.phnNumber);
-		MobileNoTv.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				//                Intent intent = new Intent(HomeScreen.this, ProfileScreen.class);
-				//                intent.putExtra("FROMACTIVITY","GMapsScreen");
-				//                startActivity(intent);
-			}
-		});
-		EmailTv = (TextView)hView.findViewById(R.id.email);
-		EmailTv.setOnClickListener(new View.OnClickListener() {
+		/*EmailTv.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				//                Intent intent = new Intent(GMapsScreen.this, ProfileScreen.class);
 				//                intent.putExtra("FROMACTIVITY","GMapsScreen");
 				//                startActivity(intent);
 			}
-		});
+		});*/
 		// Passing each menu ID as a set of Ids because each
 		// menu should be considered as top level destinations.
 		mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -542,6 +512,7 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 				autoText.setTextColor(getColor(R.color.colorPrimary));
 
 				if (PinEditText.getText().toString().equals("")) {
+					Toast.makeText(HomeMapsActivity.this,"Enter Start Location", Toast.LENGTH_LONG).show();
 					//                    ridenowBtn.setBackgroundColor(getColor(R.color.grey));
 					ridenowBtn.setBackgroundResource(R.drawable.round_rect_white_button_bg);
 					ridenowBtn.setEnabled(false);
@@ -551,6 +522,8 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 							.into(autoImage);
 					autoText.setTextColor(getColor(R.color.black));
 				} else if (DropEditText.getText().toString().equals("")) {
+
+					Toast.makeText(HomeMapsActivity.this,"Enter Drop Location", Toast.LENGTH_LONG).show();
 					// ridenowBtn.setBackgroundColor(getColor(R.color.grey));
 					ridenowBtn.setBackgroundResource(R.drawable.round_rect_white_button_bg);
 					ridenowBtn.setEnabled(false);
@@ -580,7 +553,6 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 					ridenowBtn.setTextColor(Color.parseColor("#ffffff"));
 					ridenowBtn.setEnabled(true);
 				}
-
 			}
 		});
 
@@ -658,6 +630,35 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 				Log.i(TAG, status.getStatusMessage());
 			} else if (resultCode == RESULT_CANCELED) {
 				// The user canceled the operation.
+			}
+		}
+
+		/*if(resultCode==-1) {
+			if (requestCode == 201) {
+
+				GetLastKnownLocation();
+
+				Log.i(TAG, "requestcode 201");
+				isGPS = true; // flag maintain before get location
+			}
+		}*/
+
+
+		if (resultCode == Activity.RESULT_OK) {
+			if (requestCode == 201) {
+				if (resultCode == -1) {
+					showProgressDialog();
+					Handler handler = new Handler();
+					handler.postDelayed(new Runnable() {
+						@Override
+						public void run()
+						{
+							GetLastKnownLocation();
+						}
+					},100);
+
+				}
+				isGPS = true; // flag maintain before get location
 			}
 		}
 	}
@@ -1047,7 +1048,18 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 	 */
 	private void CheckLocationEnabledOrNot()
 	{
-		LocationManager lm = (LocationManager)this.getSystemService(Context.LOCATION_SERVICE);
+
+		new GpsUtils(this).turnGPSOn(new GpsUtils.onGpsListener() {
+			@Override
+			public void gpsStatus(boolean isGPSEnable) {
+				Log.i(TAG, "GpsUtils");
+				// turn on GPS
+				isGPS = isGPSEnable;
+				//GetLastKnownLocation();
+			}
+		});
+
+		/*LocationManager lm = (LocationManager)this.getSystemService(Context.LOCATION_SERVICE);
 		boolean gps_enabled = false;
 		boolean network_enabled = false;
 
@@ -1062,18 +1074,18 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 		if(!gps_enabled && !network_enabled)
 		{
 			// notify user
-            /*PermissionDialog(HomeMapsActivity.this, "Enable Location", getString(R.string.gps_network_not_enabled),
+            *//*PermissionDialog(HomeMapsActivity.this, "Enable Location", getString(R.string.gps_network_not_enabled),
                     "Allow", "Cancel", new Runnable() {
                         @Override
-                        public void run() {*/
+                        public void run() {*//*
 			startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-                        /*}
-                    });*/
+                        *//*}
+                    });*//*
 		}
 		else {
 			Log.i(TAG, "CheckLocationEnabledOrNot: "+gps_enabled);
 
-		}
+		}*/
 
 
 	}
@@ -1091,7 +1103,13 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 					@Override
 					public void onSuccess(Location location) {
 						// Got last known location. In some rare situations this can be null.
+
 						if (location != null) {
+
+							if(mProgressDialog!=null){
+								hideProgressDialog();
+							}
+							Log.i(TAG, "GetAddressFromLatLng: "+location.getLatitude());
 							// Logic to handle location object
 							String addressOfLocation = GetAddressFromLatLng(location.getLatitude(), location.getLongitude());
 							// PinEditText = findViewById(R.id.PinEditText);
@@ -1099,6 +1117,8 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 							PinLatitude = location.getLatitude();
 							PinLongitude = location.getLongitude();
 							SetMarkerOnMap(location.getLatitude(),location.getLongitude(), BitmapDescriptorFactory.HUE_MAGENTA);
+						}else{
+							GetLastKnownLocation();
 						}
 					}
 				});
@@ -1929,6 +1949,7 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 	{
 		final Dialog dialog = new Dialog(context);
 		dialog.setContentView(R.layout.dialogwithonebtn);
+		dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 		dialog.setCanceledOnTouchOutside(false);
 		dialog.show();
 		TextView title = (TextView) dialog.findViewById(R.id.TitleTv);
@@ -2066,7 +2087,6 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 
 	@Override
 	public void onConnected(@Nullable Bundle bundle) {
-
 
 	}
 

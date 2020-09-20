@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -69,6 +70,7 @@ public class OnGoingRidesFragment extends Fragment implements OnMapReadyCallback
     String Username,Email,Mobile;
     int UserId;
     TextView dateandtime,number,pickup,droplocation;
+    LinearLayout lin_nodata;
     private GoogleMap map;
     GoogleApiClient mGoogleApiClient;
     FusedLocationProviderClient fusedLocationProviderClient;
@@ -118,6 +120,7 @@ public class OnGoingRidesFragment extends Fragment implements OnMapReadyCallback
 
     private void SetViews()
     {
+        lin_nodata= view.findViewById(R.id.lin_nodata);
         ongoing_ride_cardview = view.findViewById(R.id.ongoing_ride_cardview);
         number = view.findViewById(R.id.number);
         dateandtime = view.findViewById(R.id.dateandtime);
@@ -255,9 +258,11 @@ public class OnGoingRidesFragment extends Fragment implements OnMapReadyCallback
                             if(mResponse.getResult().size() == 0)
                             {
                                 ongoing_ride_cardview.setVisibility(View.INVISIBLE);
+                                lin_nodata.setVisibility(View.VISIBLE);
                             }
                             else {
                                 ongoing_ride_cardview.setVisibility(View.VISIBLE);
+                                lin_nodata.setVisibility(View.GONE);
                                 number.setText(" : "+mResponse.getResult().get(0).getAutoNumber());
                                 dateandtime.setText(""+Utilities.GetCurrentDateTime());
                                 pickup.setText(""+mResponse.getResult().get(0).getUserSourceAddress());

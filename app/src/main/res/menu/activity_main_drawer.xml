@@ -53,6 +53,7 @@
     <item
         android:id="@+id/privacy_policy_nav"
         android:title="@string/privacy_policy"
+        android:icon="@drawable/ic_privacy_policy"
         app:actionLayout="@layout/menu_arrow" />
 
     <item

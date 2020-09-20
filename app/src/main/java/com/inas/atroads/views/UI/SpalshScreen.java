@@ -20,19 +20,16 @@ public class SpalshScreen extends AppCompatActivity
     private String TAG = SpalshScreen.class.getName();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.i(TAG, "onCreate: Start Of OnCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spalsh_screen);
         isNetworkAvailable(SpalshScreen.this);
         MoveToRegister();
        // startService(new Intent(this, MyServiceToCheckIsAppClosed.class));
-        Log.i(TAG, "onCreate: End Of OnCreate");
     }
     /*
       This method is used to move from Splash screen to Register screen
     */
-    private void MoveToRegister()
-    {
+    private void MoveToRegister() {
         Log.i(TAG, "onCreate: Start Of MoveToRegister");
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -45,9 +42,11 @@ public class SpalshScreen extends AppCompatActivity
                 if(user_id == 0) {
                     Intent i = new Intent(SpalshScreen.this, MobileNumberRegisterScreen.class);
                     startActivity(i);
+                    finish();
                 } else {
                     Intent i = new Intent(SpalshScreen.this, HomeMapsActivity.class);
                     startActivity(i);
+                    finish();
                 }
 
             }

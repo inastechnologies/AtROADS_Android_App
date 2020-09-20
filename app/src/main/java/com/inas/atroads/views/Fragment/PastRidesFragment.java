@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -44,6 +45,7 @@ public class PastRidesFragment extends Fragment
     private Subscription mSubscription;
     private static String TAG = "PastRidesFragment";
     String Username,Email,Mobile;
+    LinearLayout lin_nodata;
     int UserId;
     private RecyclerView recyclerView;
     private PastRidesHistoryAdapter pastRidesHistoryAdapter;
@@ -52,6 +54,8 @@ public class PastRidesFragment extends Fragment
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.past_rides_fragment, container, false);
+        lin_nodata= view.findViewById(R.id.lin_nodata);
+        recyclerView = view.findViewById(R.id.recyclerView);
         GetSharedPrefs();
         return view;
     }
@@ -65,7 +69,7 @@ public class PastRidesFragment extends Fragment
 
     private void SetRecyclerView(View view, RidesHistoryResponseModel mResponse)
     {
-        recyclerView = view.findViewById(R.id.recyclerView);
+
         pastRidesHistoryAdapter = new PastRidesHistoryAdapter(getActivity(), mResponse);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
@@ -131,11 +135,20 @@ public class PastRidesFragment extends Fragment
                         Toast.makeText(getActivity(), mResponse.getMessage(), Toast.LENGTH_SHORT).show();
                         if(mResponse.getStatus() == 0)
                         {
+                            lin_nodata.setVisibility(View.VISIBLE);
+                            recyclerView.setVisibility(View.GONE);
                             //Toast.makeText(PairSuccessScreen.this, mResponse.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                         else if(mResponse.getStatus() == 1)
                         {
-                            SetRecyclerView(view,mResponse);
+                            if(mResponse.getResult().size()>0) {
+                                lin_nodata.setVisibility(View.GONE);
+                                recyclerView.setVisibility(View.VISIBLE);
+                                SetRecyclerView(view, mResponse);
+                            }else{
+                                lin_nodata.setVisibility(View.VISIBLE);
+                                recyclerView.setVisibility(View.GONE);
+                            }
                         }
                     }
                 });

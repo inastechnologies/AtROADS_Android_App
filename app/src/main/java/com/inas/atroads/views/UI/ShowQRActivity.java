@@ -1,10 +1,12 @@
 package com.inas.atroads.views.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,12 +18,26 @@ import com.inas.atroads.R;
 
 public class ShowQRActivity extends AppCompatActivity {
     TextView upiIdTv,NameTv;
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_q_r);
         NameTv = findViewById(R.id.NameTv);
         upiIdTv = findViewById(R.id.upiIdTv);
+
+        toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(getString(R.string.ShowQR));
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
         String UPICODE = getIntent().getStringExtra("UPICODE");
         String UPIID = getIntent().getStringExtra("UPIID");
         String Name = getIntent().getStringExtra("Name");
