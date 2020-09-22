@@ -637,9 +637,7 @@ public class PairActivity extends BaseActivity implements OnMapReadyCallback,
                         else if(mResponse.getStatus() == 1)
                         {
                             Log.i(TAG, "mResponse.getResult().size(): "+mResponse.getResult().size());
-                            if(mResponse.getResult().size() == 0)
-                            {
-
+                            if(mResponse.getResult().size() == 0) {
                                 PairedUserDetailsAPI();
                             }
                             else {

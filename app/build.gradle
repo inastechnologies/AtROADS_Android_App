@@ -1,7 +1,8 @@
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
 
 android {
     compileSdkVersion 29
@@ -129,6 +130,7 @@ dependencies {
     implementation(name:'sinch-android-rtc', version:'+', ext:'aar')
     implementation 'com.github.gratusik:AGIKSwipeButton:1.0.1'
     implementation 'com.github.stfalcon:swipeable-button:0.1.0'
+    implementation 'com.google.firebase:firebase-crashlytics-ktx:17.2.1'
 //    implementation 'org.osmdroid:osmdroid-android:6.1.8'
 ////    implementation 'org.osmdroid:osmdroid-geopackage:6.1.8'
 //    implementation 'org.osmdroid:osmdroid-mapsforge:6.1.8'

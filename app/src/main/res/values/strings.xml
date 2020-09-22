@@ -288,7 +288,7 @@ This Website is not for use by any minors (defined as those who are not at least
     <string name="enter_name">Enter the Name</string>
     <string name="enter_mobile">Enter Mobile Number</string>
     <string name="enter_email">Enter Email Id</string>
-    <string name="sos_msg">Please standby, we are currently requesting for help.</string>
+    <string name="sos_msg">Requesting for help.</string>
     <string name="view_contacts">View Contacts</string>
     <string name="no_contacts">No contacts yet</string>
     <string name="edit_contacts">Edit Contacts</string>
@@ -320,4 +320,5 @@ This Website is not for use by any minors (defined as those who are not at least
     <string name="total_rewards">TOTAL REWARDS</string>
     <string name="others">Others</string>
     <string name="whats_app">WhatsApp</string>
+    <string name="select_date">Select Date</string>
 </resources>

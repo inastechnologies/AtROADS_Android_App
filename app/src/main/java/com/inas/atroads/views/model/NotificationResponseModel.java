@@ -47,6 +47,9 @@ public class NotificationResponseModel {
         private String mMessageTitle;
         @SerializedName("user_id")
         private int mUserId;
+        @SerializedName("created_date")
+        private String mcreated_date;
+
 
         public String getMessageBody() {
             return mMessageBody;
@@ -70,6 +73,14 @@ public class NotificationResponseModel {
 
         public void setUserId(int userId) {
             mUserId = userId;
+        }
+
+        public void setcreatedDate(String created_date) {
+            mcreated_date = created_date;
+        }
+
+        public String getcreatedDate() {
+            return mcreated_date;
         }
 
     }

@@ -14,6 +14,36 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <LinearLayout
+        android:id="@+id/lin_nodata"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:visibility="gone"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_centerInParent="true"
+            android:id="@+id/iv_nodata"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:visibility="visible"
+            android:src="@drawable/nodata"/>
+
+        <TextView
+            android:id="@+id/noUsersText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No record found!"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="25dp"
+            android:textSize="16dp"
+            android:visibility="visible" />
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/NotificationRv"
         android:layout_width="0dp"

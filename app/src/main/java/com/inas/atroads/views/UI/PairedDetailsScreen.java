@@ -56,7 +56,6 @@ public class PairedDetailsScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_paired_details_screen);
         SetViewsFromLayout();
-
     }
 
     private void SetViewsFromLayout()

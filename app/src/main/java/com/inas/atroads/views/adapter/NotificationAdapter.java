@@ -46,6 +46,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     public void onBindViewHolder(@NonNull NotificationVH holder, int position) {
         final String messageBody = mResponse.getResult().get(position).getMessageBody();
         holder.notificationTv.setText(messageBody);
+        holder.notificationTime.setText(""+mResponse.getResult().get(position).getcreatedDate());
     }
 
 
@@ -56,11 +57,12 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
 
     public class NotificationVH extends RecyclerView.ViewHolder {
-        public TextView notificationTv;
+        public TextView notificationTv,notificationTime;
 
         public NotificationVH(@NonNull View itemView) {
             super(itemView);
             notificationTv=itemView.findViewById(R.id.notificationTv);
+            notificationTime= itemView.findViewById(R.id.notificationTime);
         }
     }
 }

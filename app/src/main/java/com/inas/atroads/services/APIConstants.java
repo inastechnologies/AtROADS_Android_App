@@ -137,4 +137,7 @@ public interface APIConstants {
     //Get Emergency Contacts
     String get_emergency_contacts = BASE_URL + "get_emergency_contacts";
 
+   //Get Emergency Contacts
+   String calling_Api = BASE_URL + "call";
+
 }

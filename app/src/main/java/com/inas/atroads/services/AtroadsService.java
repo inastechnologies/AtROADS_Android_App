@@ -115,7 +115,6 @@ public interface AtroadsService
     @POST(APIConstants.manual_calculations)
     Observable<ManualCalculationResponseModel> ManualCalculationResponse(@Body JsonObject data);
 
-
     @POST(APIConstants.get_source_dest_details)
     Observable<RouteSourceDestResponseModel> RouteSourceDestDetailsResponse(@Body JsonObject data);
 
@@ -161,7 +160,6 @@ public interface AtroadsService
     @POST(APIConstants.scheduling_ride_notification)
     Observable<ScheduleRideNotifyResponseModel> SchedulingRideNotify(@Body JsonObject data);
 
-
     @POST(APIConstants.your_bill)
     Observable<YourBillResponseModel> YourBillResponse(@Body JsonObject data);
 
@@ -204,5 +202,7 @@ public interface AtroadsService
     @POST(APIConstants.edit_emergency_contacts)
     Observable<Res_EditEmergencyContact> editEmergencyContacts(@Body Req_EditEmergencyContact data);
 
-
+    // calling api
+    @POST(APIConstants.calling_Api)
+    Observable<ScheduleRideNotifyResponseModel> callingApi(@Body JsonObject data);
 }

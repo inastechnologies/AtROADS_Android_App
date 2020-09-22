@@ -31,6 +31,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
     ArrayList<String> al;
     ArrayList<String> al_pic;
     ArrayList<Integer> al_userId;
+    int userRideId;
 
     // RecyclerView recyclerView;
     public MyListAdapter(Activity context, ArrayList<String> al, ArrayList<String> al_pic, ArrayList<Integer> al_userId) {
@@ -38,6 +39,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
         this.al= al;
         this.al_pic=al_pic;
         this.al_userId = al_userId;
+        this.userRideId= userRideId;
     }
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

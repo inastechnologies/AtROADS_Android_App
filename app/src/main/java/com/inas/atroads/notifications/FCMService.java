@@ -62,9 +62,8 @@ public class FCMService extends FirebaseMessagingService implements CallClientLi
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-        // ...
-
-        if (SinchHelpers.isSinchPushPayload(remoteMessage.getData()))
+        // .....
+       /* if (SinchHelpers.isSinchPushPayload(remoteMessage.getData()))
         {
             Log.i(TAG, "onMessageReceived: SinchHelpers"+remoteMessage.getNotification());
             Log.i(TAG, "onMessageReceived: SinchHelpers"+remoteMessage.getData());
@@ -85,7 +84,7 @@ public class FCMService extends FirebaseMessagingService implements CallClientLi
             }
 
 
-        } else {
+        } else {*/
             // it's NOT Sinch message - process yourself
             // TODO(developer): Handle FCM messages here.
             // Not getting messages here? See why this may be: https://goo.gl/39bRNJ
@@ -117,7 +116,7 @@ public class FCMService extends FirebaseMessagingService implements CallClientLi
 
             // Also if you intend on generating your own notifications as a result of a received FCM
             // message, here is where that should be initiated. See sendNotification method below.
-        }
+
 
 
     }

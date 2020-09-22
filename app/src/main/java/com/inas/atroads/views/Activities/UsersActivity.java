@@ -71,12 +71,14 @@ public class UsersActivity extends AppCompatActivity {
     int UserId,OtheruserId;
     private String DEFAULT = "N/A";
     private String MobileNumber;
+    private int UserRideId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_users);
         GetSharedPrefs();
+       // UserRideId = getIntent().getIntExtra("UserRideId", 0);
         usersList = (RecyclerView)findViewById(R.id.usersList);
         noUsersText = (TextView)findViewById(R.id.noUsersText);
         lin_nodata= findViewById(R.id.lin_nodata);

@@ -12,6 +12,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -43,6 +44,7 @@ public class NotificationScreen extends AppCompatActivity {
     private String Username,Email,Mobile;
     private static final String DEFAULT = "N/A";
     private Toolbar toolbar;
+    LinearLayout lin_nodata;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,7 @@ public class NotificationScreen extends AppCompatActivity {
         setContentView(R.layout.activity_notification_screen);
         GetSharedPrefs();
         toolbar = findViewById(R.id.toolbar);
+        lin_nodata= findViewById(R.id.lin_nodata);
         toolbar.setTitle(getString(R.string.notification));
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -57,9 +60,7 @@ public class NotificationScreen extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(NotificationScreen.this, HomeMapsActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
+
                 finish();
             }
         });
@@ -124,14 +125,22 @@ public class NotificationScreen extends AppCompatActivity {
 
                     @Override
                     public void onNext(NotificationResponseModel mResponse) {
-                        NotificationRv = findViewById(R.id.NotificationRv);
-                        notificationAdapter = new NotificationAdapter(NotificationScreen.this, mResponse);
-                        RecyclerView.LayoutManager mlayoutManager = new LinearLayoutManager(getApplicationContext());
-                        NotificationRv.setLayoutManager(mlayoutManager);
-                        mlayoutManager.requestLayout();
-                        NotificationRv.setItemAnimator(new DefaultItemAnimator());
-                        NotificationRv.addItemDecoration(new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL));
-                        NotificationRv.setAdapter(notificationAdapter);
+
+                        if(mResponse.getResult().size()>0) {
+                            NotificationRv = findViewById(R.id.NotificationRv);
+                            lin_nodata.setVisibility(View.GONE);
+                            NotificationRv.setVisibility(View.VISIBLE);
+                            notificationAdapter = new NotificationAdapter(NotificationScreen.this, mResponse);
+                            RecyclerView.LayoutManager mlayoutManager = new LinearLayoutManager(getApplicationContext());
+                            NotificationRv.setLayoutManager(mlayoutManager);
+                            mlayoutManager.requestLayout();
+                            NotificationRv.setItemAnimator(new DefaultItemAnimator());
+                            NotificationRv.addItemDecoration(new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL));
+                            NotificationRv.setAdapter(notificationAdapter);
+                        }else{
+                            lin_nodata.setVisibility(View.VISIBLE);
+                            NotificationRv.setVisibility(View.GONE);
+                        }
                     }
 
                 });
@@ -154,9 +163,6 @@ public class NotificationScreen extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(NotificationScreen.this, HomeMapsActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
         finish();
     }
 }

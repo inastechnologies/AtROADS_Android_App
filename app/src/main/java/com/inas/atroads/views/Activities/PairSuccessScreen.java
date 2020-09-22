@@ -29,6 +29,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -69,6 +70,7 @@ import com.inas.atroads.util.localData.FetchURL;
 import com.inas.atroads.views.Interface.TaskLoadedCallback;
 import com.inas.atroads.views.UI.EnterUPIDetailsActivity;
 import com.inas.atroads.views.UI.MobileNumberRegisterScreen;
+import com.inas.atroads.views.UI.PairedDetailsScreen;
 import com.inas.atroads.views.UI.SOSActivity;
 import com.inas.atroads.views.UI.SchedulingRideScreen;
 import com.inas.atroads.views.UI.UploadQRActivity;
@@ -159,6 +161,8 @@ public class PairSuccessScreen extends AppCompatActivity implements OnMapReadyCa
         SetRideButton();
         RouteSourceDestDetailsAPI();
         setChatBtn();
+
+
     }
 
 
@@ -167,7 +171,8 @@ public class PairSuccessScreen extends AppCompatActivity implements OnMapReadyCa
         chatBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PairSuccessScreen.this, UsersActivity.class));
+
+               startActivity(new Intent(PairSuccessScreen.this, UsersActivity.class));
             }
         });
     }
@@ -389,7 +394,7 @@ public class PairSuccessScreen extends AppCompatActivity implements OnMapReadyCa
         rideButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(RideStatus.equals("StartRide"))
+                if(rideButton.getText().toString().equals("Start Ride"))
                 {
                     StartRideForPairedUserAPI(AutoNo);
                 }else {
@@ -477,6 +482,14 @@ public class PairSuccessScreen extends AppCompatActivity implements OnMapReadyCa
         NavigationUI.setupWithNavController(navigationView, navController);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.bringToFront();
+
+        Menu menuNav=navigationView.getMenu();
+        MenuItem nav_item2 = menuNav.findItem(R.id.scheduling_ride);
+        nav_item2.setEnabled(false);
+        nav_item2.setVisible(false);
+        //Menu nav_Menu = navigationView.getMenu();
+        //nav_Menu.findItem(R.id.scheduling_ride).setVisible(Gone);
+
         Button nav_button = findViewById(R.id.nav_button);
         nav_button.setOnClickListener(new View.OnClickListener() {
             @Override

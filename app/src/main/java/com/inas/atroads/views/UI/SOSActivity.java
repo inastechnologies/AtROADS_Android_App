@@ -18,9 +18,11 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -110,7 +112,7 @@ public class SOSActivity extends BaseActivity
         }
         else
         {
-            String myLocation = LocationUtils.getMyLocation(SOSActivity.this);
+            //String myLocation = LocationUtils.getMyLocation(SOSActivity.this);
         }
 
 		/*if ((ContextCompat.checkSelfPermission(SOSActivity.this,Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) && (ContextCompat.checkSelfPermission(SOSActivity.this,Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(SOSActivity.this,Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED))
@@ -603,12 +605,13 @@ public class SOSActivity extends BaseActivity
                 {
                     Log.v(TAG,"tempMobileNumber = " + contactsList.get(i).getMobileNumber());
                     String sos_msg = getResources().getString(R.string.sos_msg).concat(" ").concat("My Location is : ").concat(myLocation);
-                    MultipleSMS(tempMobileNumber,myLocation);
+                    MultipleSMS(tempMobileNumber,sos_msg);
                     Thread.sleep(1000);
                 }
-                catch(InterruptedException e)
+                catch(Exception e)
                 {
                     e.printStackTrace();
+                    Log.v(TAG, "e--"+e.toString());
                 }
             }
         }
@@ -656,9 +659,7 @@ public class SOSActivity extends BaseActivity
                 Log.v(TAG,"contact_no = " + contact_no);
                 if(contact_no != null)
                 {
-                    if(isValidPhone(contact_no))
-                    {
-
+                    if(isValidPhone(contact_no)) {
                         callToEmergencyContact(contact_no);
                     }
                     else

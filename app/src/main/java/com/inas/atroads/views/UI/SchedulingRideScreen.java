@@ -3,6 +3,8 @@ package com.inas.atroads.views.UI;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+
+import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.*;
 import android.location.LocationManager;
@@ -11,7 +13,7 @@ import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.*;
-
+import com.inas.atroads.util.Utilities;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Status;
@@ -40,6 +42,7 @@ import com.inas.atroads.views.model.*;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.*;
 import retrofit2.adapter.rxjava.HttpException;
@@ -54,7 +57,8 @@ public class SchedulingRideScreen extends BaseActivity implements GoogleApiClien
     private static final String TAG = "SchedulingRideScreen";
     private static final String DEFAULT = "N/A";
     private static final int AUTOCOMPLETE_REQUEST_CODE = 1;
-    private TextView from_timer,end_timer;
+    private TextView from_timer,end_timer,edt_date;
+    private ImageView iv_date;
     private EditText home_edit,work_edit,another_edit;
     private Calendar calender;
     private int current_hour;
@@ -111,9 +115,13 @@ public class SchedulingRideScreen extends BaseActivity implements GoogleApiClien
                 onBackPressed();
             }
         });
+        edt_date = findViewById(R.id.edt_date);
+        iv_date = findViewById(R.id.iv_date);
         from_timer=findViewById(R.id.start_time);
         end_timer=findViewById(R.id.end_time);
         mspinner=findViewById(R.id.spinner);
+
+        setDate();
         mspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -157,7 +165,6 @@ public class SchedulingRideScreen extends BaseActivity implements GoogleApiClien
         });
 
         another_button=findViewById(R.id.another_btn);
-
         pairSwitch=findViewById(R.id.pairSwitch);
         SetEndTimer();
         SetFromTimer();
@@ -625,9 +632,10 @@ public class SchedulingRideScreen extends BaseActivity implements GoogleApiClien
                             CustomDialog(SchedulingRideScreen.this, "Schedule Ride", "Scheduling ride added successfully", "Done", new Runnable() {
                                 @Override
                                 public void run() {
-                                    Intent i = new Intent(SchedulingRideScreen.this, HomeMapsActivity.class);
+                                    finish();
+                                    //Intent i = new Intent(SchedulingRideScreen.this, HomeMapsActivity.class);
 //                            i.putExtra("payableAmount",payableAmount.getText().toString());
-                                    startActivity(i);
+                                 //   startActivity(i);
                                 }
                             });
                          //schedule notification here
@@ -783,4 +791,67 @@ public class SchedulingRideScreen extends BaseActivity implements GoogleApiClien
 
     /*************************************END OF GetSchedulingRideObject *******************************/
 
+    private void setDate()
+    {
+        String date = Utilities.getCurrentDate();
+        edt_date.setText(date);
+
+        edt_date.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                setDatePickerDialog();
+
+            }
+        });
+        iv_date.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                setDatePickerDialog();
+            }
+        });
+    }
+
+    /**
+     Description : Show Date picker dialog
+     */
+    private void setDatePickerDialog()
+    {
+        // Get Current Date
+        final Calendar c = Calendar.getInstance();
+        int mYear = c.get(Calendar.YEAR);
+        int mMonth = c.get(Calendar.MONTH);
+        int mDay = c.get(Calendar.DAY_OF_MONTH);
+
+        long currentDate = c.getTimeInMillis();
+        long maxDate = currentDate + (1000*60*60*24*15);
+        Log.v(TAG, " In setDatePickerDialog() currentDate = " + currentDate);
+
+        Log.v(TAG, " In setDatePickerDialog() maxDate = " + maxDate);
+
+        Date max_date = new Date(maxDate);
+        c.setTime(max_date);
+
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(SchedulingRideScreen.this,
+                new DatePickerDialog.OnDateSetListener() {
+
+                    @Override
+                    public void onDateSet(DatePicker view,int year,
+                                          int monthOfYear,int dayOfMonth) {
+
+                        String date=String.format("%02d/%02d/%d ", dayOfMonth,(monthOfYear + 1),year);
+                        edt_date.setText(""+date.trim());
+
+
+                    }
+                },mYear,mMonth,mDay);
+        datePickerDialog.getDatePicker().setMinDate(currentDate);
+
+        datePickerDialog.show();
+
+    }
 }

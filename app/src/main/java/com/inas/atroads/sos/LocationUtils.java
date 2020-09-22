@@ -108,16 +108,17 @@ public class LocationUtils
 		String add = "";
 //		Geocoder geocoder = new Geocoder(mActivity,Locale.getDefault());
 		try {
+
 			List<Address> addresses = geoCoder.getFromLocation(lat,lng,1);
 			Address obj = addresses.get(0);
 			add = obj.getAddressLine(0);
-			add = add + "\n" + obj.getCountryName();
-			add = add + "\n" + obj.getCountryCode();
-			add = add + "\n" + obj.getAdminArea();
-			add = add + "\n" + obj.getPostalCode();
-			add = add + "\n" + obj.getSubAdminArea();
-			add = add + "\n" + obj.getLocality();
-			add = add + "\n" + obj.getSubThoroughfare();
+			//add = add + "\n" + obj.getCountryName();
+			//add = add + "\n" + obj.getCountryCode();
+			//add = add + "\n" + obj.getAdminArea();
+			//addn = add + "\n" + obj.getPostalCode();
+			//add = add + "\n" + obj.getSubAdminArea();
+			//add = add + "\n" + obj.getLocality();
+		//	add = add + "\n" + obj.getSubThoroughfare();
 			
 			Log.v("IGA", "Address" + add);
 			// Toast.makeText(this, "Address=>" + add,

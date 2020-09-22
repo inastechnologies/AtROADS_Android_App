@@ -27,6 +27,8 @@ import android.provider.Settings;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -90,7 +92,9 @@ import com.inas.atroads.services.AtroadsService;
 import com.inas.atroads.services.ServiceFactory;
 import com.inas.atroads.util.AtroadsConstant;
 import com.inas.atroads.util.Utilities;
+import com.inas.atroads.util.localData.BaseActivity;
 import com.inas.atroads.views.UI.CallActivity;
+import com.inas.atroads.views.UI.SchedulingRideScreen;
 import com.inas.atroads.views.UI.VoiceCallActivity;
 import com.inas.atroads.views.model.GetUserInfoRequestModel;
 import com.inas.atroads.views.model.GetUserInfoResponseModel;
@@ -98,6 +102,8 @@ import com.inas.atroads.views.model.OnGoingRideRequestModel;
 import com.inas.atroads.views.model.OnGoingRidesResponseModel;
 import com.inas.atroads.views.model.PairedDetailsForChatRequestModel;
 import com.inas.atroads.views.model.PairedDetailsForChatResponseModel;
+import com.inas.atroads.views.model.ScheduleRideNotifiyRequestModel;
+import com.inas.atroads.views.model.ScheduleRideNotifyResponseModel;
 import com.inas.atroads.views.model.UploadImageToFBStorage;
 import com.leinardi.android.speeddial.SpeedDialActionItem;
 import com.leinardi.android.speeddial.SpeedDialView;
@@ -124,8 +130,9 @@ import rx.schedulers.Schedulers;
 
 import static com.inas.atroads.util.Utilities.Base64ToBitmap;
 import static com.inas.atroads.util.Utilities.BitmapToBase64;
+import static com.inas.atroads.views.Activities.BillingDetailsActivity.CustomDialog;
 
-public class ChatActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class ChatActivity extends BaseActivity implements OnMapReadyCallback {
     private static final int RESULT_GALLERY = 1 ;
     private static final int REQUEST_CAPTURE_IMAGE = 2;
     private static final int REQUEST_WRITE_PERMISSION = 3;
@@ -167,7 +174,7 @@ public class ChatActivity extends AppCompatActivity implements OnMapReadyCallbac
     private String OtherProfilePic;
     private String Thisusername;
     private LinearLayout chatLinerarActivity;
-
+    int UserRideId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -401,15 +408,19 @@ public class ChatActivity extends AppCompatActivity implements OnMapReadyCallbac
                         break;
 
                     case R.id.fab_call:
+
+
+                        showProgressDialog();
+                        callingAPI();
                        // Toast.makeText(ChatActivity.this, "fab_call", Toast.LENGTH_SHORT).show();
-                        int OtherID = getIntent().getIntExtra("OtheruserId",0);
+                       /* int OtherID = getIntent().getIntExtra("OtheruserId",0);
                         Intent intent = new Intent(ChatActivity.this, VoiceCallActivity.class);
                         intent.putExtra("ReciverName",UserDetails.chatWith);
 //                        intent.putExtra("username",UserDetails.username);
                         intent.putExtra("username",Thisusername);
                         intent.putExtra("UserId",UserId);
                         intent.putExtra("OtheruserId",OtherID);
-                        startActivity(intent);
+                        startActivity(intent);*/
                         break;
                 }
                 return false;
@@ -1624,5 +1635,87 @@ public class ChatActivity extends AppCompatActivity implements OnMapReadyCallbac
         snackbar.show();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.chat_screen, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                // todo: goto back activity from here
+
+                onBackPressed();
+                break;
+
+            case R.id.menu_call:
+                showProgressDialog();
+                callingAPI();
+                //Toast.makeText(ChatActivity.this,"Call",Toast.LENGTH_SHORT).show();
+                break;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return true;
+    }
+
+    private void callingAPI(){
+
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("PairedUserPref", 0); // 0 - for private mode
+        UserRideId = pref.getInt("user_ride_id",0);
+
+        JsonObject object = callingObject();
+        AtroadsService service = ServiceFactory.createRetrofitService(ChatActivity.this, AtroadsService.class);
+        mSubscription = service.callingApi(object)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<ScheduleRideNotifyResponseModel>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            ((HttpException) e).code();
+                            ((HttpException) e).message();
+                            ((HttpException) e).response().errorBody();
+                            try {
+                                ((HttpException) e).response().errorBody().string();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onNext(ScheduleRideNotifyResponseModel mResponse) {
+                        Log.i(TAG, "ScheduleRideNotifyResponseModel: "+mResponse);
+//                        Toast.makeText(YourBillScreen.this, mResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                        if(mResponse.getStatus() == 0) {
+                            hideProgressDialog();
+                            finish();
+                        }
+                        else if(mResponse.getStatus() == 1) {
+                            hideProgressDialog();
+                            Toast.makeText(ChatActivity.this,mResponse.getMessage(),Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+
+    }
+
+    private JsonObject callingObject()
+    {
+        ScheduleRideNotifiyRequestModel requestModel = new ScheduleRideNotifiyRequestModel();
+        requestModel.setUserId(UserId);
+        requestModel.setuser_ride_id(UserRideId);
+        return new Gson().toJsonTree(requestModel).getAsJsonObject();
+    }
 }

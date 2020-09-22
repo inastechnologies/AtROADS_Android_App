@@ -50,7 +50,56 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/work" />
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/cl_date"
+        android:background="@drawable/edittxt_bg"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="24dp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/another_btn"
+        >
 
+
+        <EditText
+            android:id="@+id/edt_date"
+            android:layout_width="@dimen/width"
+            android:layout_height="40dp"
+            android:layout_marginStart="@dimen/margin_start"
+            android:layout_marginEnd="@dimen/margin_end"
+            android:background="@null"
+            android:ems="10"
+            android:focusableInTouchMode="false"
+            android:gravity="center"
+            android:hint="@string/select_date"
+            android:inputType="phone"
+            android:textSize="@dimen/txt_size"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/iv_date"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_date"
+            android:layout_width="16dp"
+            android:layout_height="14dp"
+            android:layout_marginEnd="@dimen/margin_end"
+            android:src="@drawable/ic_date_range_black_24dp"
+            app:layout_constraintBottom_toBottomOf="@id/edt_date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintStart_toEndOf="@id/edt_date"
+            app:layout_constraintTop_toTopOf="@id/edt_date" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <TextView
         android:id="@+id/start_time"
         android:layout_width="150dp"
@@ -66,7 +115,7 @@
         android:text="@string/time_from"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/another_loc" />
+        app:layout_constraintTop_toBottomOf="@+id/cl_date" />
 
     <Button
         android:id="@+id/submit"
@@ -98,7 +147,7 @@
         android:text="@string/time_end"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/another_loc" />
+        app:layout_constraintTop_toBottomOf="@+id/cl_date" />
 
     <EditText
         android:id="@+id/another_loc"

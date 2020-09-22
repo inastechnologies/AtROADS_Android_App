@@ -24,8 +24,8 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/upi_refer_bg"
+            android:scaleType="fitXY"
+            android:src="@drawable/refer_head"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

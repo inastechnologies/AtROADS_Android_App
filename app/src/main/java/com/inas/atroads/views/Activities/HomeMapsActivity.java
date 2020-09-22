@@ -1998,7 +1998,7 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 	/*
 	 * GetPairedDetailsAPI
 	 * */
-	private void GetPairedDetailsAPI()
+/*	private void GetPairedDetailsAPI()
 	{
 		JsonObject object = getPairedDetailsObject();
 		AtroadsService service = ServiceFactory.createRetrofitService(HomeMapsActivity.this, AtroadsService.class);
@@ -2062,7 +2062,7 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 					}
 				});
 
-	}
+	}*/
 
 	/**
 	 * Json object of getPairedDetailsObject
@@ -2375,6 +2375,7 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 							SharedPreferences.Editor editor = pref1.edit();
 							editor.putInt("user_ride_id", user_ride_id);
 							editor.commit();
+							Log.i(TAG, "user_ride_id: "+user_ride_id);
 							//                           CustomDialogWithOneBtn(HomeMapsActivity.this, "Attention!", mResponse.getResult().get(0).getAttention()+"\n"
 							//                                   +mResponse.getResult().get(0).getSource()+"\n"+mResponse.getResult().get(0).getDestination()+"\n", "Ok", new Runnable() {
 							//                               @Override
@@ -2482,6 +2483,11 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 								List<Double> destList = mResponse.getResult().get(0).getUserDestLatLong();
 								LatLng srcLatLng = new LatLng(srcList.get(0),srcList.get(1));
 								LatLng destLatLng = new LatLng(destList.get(0),destList.get(1));
+								/*SharedPreferences pref = getApplicationContext().getSharedPreferences("RegPref", 0); // 0 - for private mode
+								SharedPreferences.Editor editor = pref.edit();
+								editor.putInt("UserRideId", user_ride_id);
+								editor.commit();*/
+
 								Intent i = new Intent(HomeMapsActivity.this, PairSuccessScreen.class);
 								i.putExtra("RideStatus","RideStarted");
 								i.putExtra("UserRideId",user_ride_id);

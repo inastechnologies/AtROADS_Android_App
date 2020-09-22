@@ -30,6 +30,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 
@@ -218,5 +219,13 @@ public class Utilities {
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         } catch(Exception ignored) {
         }
+    }
+
+    public static String getCurrentDate()
+    {
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        return df.format(calendar.getTime());
+
     }
 }
