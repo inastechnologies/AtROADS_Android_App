@@ -12,6 +12,7 @@
     <item
         android:id="@+id/scheduling_ride"
         android:title="@string/SchedulingRide"
+        android:icon="@drawable/ic_security_humburger"
         app:actionLayout="@layout/menu_arrow" />
 
     <item
