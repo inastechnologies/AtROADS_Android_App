@@ -115,7 +115,6 @@
         android:layout_height="100dp"
         android:layout_margin="10dp"
         android:layout_weight="1"
-        android:src="@drawable/googleplus"
         android:visibility="gone"
         app:layout_constraintEnd_toStartOf="@+id/facebookImageView"
         app:layout_constraintStart_toStartOf="parent"
@@ -127,7 +126,6 @@
         android:layout_height="100dp"
         android:layout_margin="10dp"
         android:layout_weight="1"
-        android:src="@drawable/facebook"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/constraintLayout7" />

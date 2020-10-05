@@ -21,11 +21,11 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"/>
-    <!-- <uses-feature -->
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" /> <!-- <uses-feature -->
     <!-- android:name="android.hardware.camera.any" -->
     <!-- android:required="true" /> -->
     <!-- <uses-feature -->
@@ -45,7 +45,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".views.UI.SchedulingRideScreen"></activity>
+        <activity android:name=".views.Activities.WebViewActivity"></activity>
+        <activity android:name=".views.Activities.StartUpActivity" />
+        <activity android:name=".views.UI.SchedulingRideScreen" />
         <activity android:name=".views.UI.ViewEmergencyContacts" />
         <activity android:name=".views.UI.SOSActivity" />
         <activity android:name=".views.PlacesActivity" />
@@ -56,18 +58,6 @@
         <activity
             android:name=".views.UI.EnterUPIDetailsActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".views.UI.VoiceCallActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".views.UI.CallActivity"
-            android:screenOrientation="portrait" />
-
-        <receiver android:name=".services.MyPhoneReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.PHONE_STATE" />
-            </intent-filter>
-        </receiver>
 
         <activity
             android:name=".views.UI.PaymentScreen"
@@ -168,10 +158,10 @@
             android:name=".views.Activities.TrackerService"
             android:enabled="true"
             android:exported="true" />
-        <service
+       <!-- <service
             android:name=".services.CallBgService"
             android:enabled="true"
-            android:exported="true" />
+            android:exported="true" />-->
         <service
             android:name=".services.MyServiceToCheckIsAppClosed"
             android:stopWithTask="false" /> <!-- <service -->
@@ -224,9 +214,6 @@
             android:name=".views.Activities.HelpActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".views.Activities.HowtoWorksActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".views.Activities.PairActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -239,46 +226,13 @@
             android:name=".views.Activities.SettingsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".views.Activities.AboutUsActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".views.Activities.PrivacyPolicyActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".views.Activities.TermsConditionsActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".views.Activities.CaptureActivityPortrait"
             android:screenOrientation="portrait"
             android:stateNotNeeded="true"
             android:theme="@style/zxing_CaptureTheme"
             android:windowSoftInputMode="stateAlwaysHidden">
-
-            <!-- <activity -->
-            <!-- android:name="com.journeyapps.barcodescanner.CaptureActivity" -->
-            <!-- android:screenOrientation="portrait" -->
-            <!-- tools:replace="android:screenOrientation" -->
-            <!-- android:stateNotNeeded="true"/> -->
         </activity>
 
-        <service android:name=".views.UI.SinchService" />
-
-        <activity
-            android:name=".views.UI.IncomingCallScreenActivity"
-            android:noHistory="true"
-            android:screenOrientation="portrait" />
-
-        <receiver android:name=".services.CallReceiver" >
-            <intent-filter>
-                <action android:name="android.intent.action.PHONE_STATE" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.NEW_OUTGOING_CALL" />
-            </intent-filter>
-        </receiver>
-
     </application>
-
-
 
 </manifest>

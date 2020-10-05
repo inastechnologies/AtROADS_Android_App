@@ -11,20 +11,25 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.ContactsContract;
 import android.telephony.SmsManager;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -64,9 +69,10 @@ import static com.inas.atroads.util.Utilities.isNetworkAvailable;
 public class SOSActivity extends BaseActivity
 {
     private static final String TAG = SOSActivity.class.getSimpleName();
-    ConstraintLayout cl_add_contacts;
-    Button btn_sos, btn_add_contacts,btn_view_contacts, btn_add;
-    EditText edt_name, edt_mobile, edt_email;
+    LinearLayout cl_add_contacts;
+    Button btn_sos, btn_add_contacts,btn_view_contacts, btn_add,add_contact;
+    TextView edt_name, edt_mobile;
+    EditText edt_email;
     String str_name = "", str_mobile = "", str_email = "";
     private SensorManager mSensorManager;
     private float mAccel;
@@ -75,9 +81,10 @@ public class SOSActivity extends BaseActivity
     List<Res_GetEmergencyContacts.Sos> contactsList = new ArrayList<Res_GetEmergencyContacts.Sos>();
     //String myLocation = "";
     RecyclerView rv_contacts;
-
+    private final int REQUEST_CODE=99;
     String Username,Email,Mobile;
     int UserId;
+     MediaPlayer mp;
     private static final String DEFAULT = "N/A";
 
     int PERMISSION_ALL = 1;
@@ -85,8 +92,10 @@ public class SOSActivity extends BaseActivity
             Manifest.permission.SEND_SMS,
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.READ_CONTACTS
     };
     private Toolbar toolbar;
+    public  static final int RequestPermissionCode  = 1 ;
 
 
     @Override
@@ -99,14 +108,17 @@ public class SOSActivity extends BaseActivity
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        mp = MediaPlayer.create(SOSActivity.this, R.raw.sos_sound);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                mp.stop();
                 onBackPressed();
             }
         });
         isNetworkAvailable(SOSActivity.this);
-
+        //EnableRuntimePermission();
         if (!hasPermissions(this, PERMISSIONS)) {
             ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_ALL);
         }
@@ -114,17 +126,6 @@ public class SOSActivity extends BaseActivity
         {
             //String myLocation = LocationUtils.getMyLocation(SOSActivity.this);
         }
-
-		/*if ((ContextCompat.checkSelfPermission(SOSActivity.this,Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) && (ContextCompat.checkSelfPermission(SOSActivity.this,Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(SOSActivity.this,Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED))
-		{
-
-			// Getting Location from LocationUtils
-			myLocation = LocationUtils.getMyLocation(SOSActivity.this);
-		}
-		else
-		{
-			ActivityCompat.requestPermissions(SOSActivity.this,new String[]{Manifest.permission.SEND_SMS},101);
-		}*/
 
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         Objects.requireNonNull(mSensorManager).registerListener(mSensorListener,mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
@@ -137,6 +138,7 @@ public class SOSActivity extends BaseActivity
         setViewsFromLayout();
 
     }
+
 
 
     /**********************************START OF SHARED PREFERENCES**************/
@@ -191,8 +193,18 @@ public class SOSActivity extends BaseActivity
         edt_name = findViewById(R.id.txt_name_sos);
         edt_mobile = findViewById(R.id.txt_mobile_sos);
         edt_email = findViewById(R.id.txt_email_sos);
+       // add_contact= findViewById(R.id.add_contact);
         GetSharedPrefs();
         getEmergencyContacts();
+
+        edt_name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_PICK,
+                        ContactsContract.Contacts.CONTENT_URI);
+                startActivityForResult(intent, REQUEST_CODE);
+            }
+        });
 
         setOnClickListenerForSOSBtn();
         setOnClickListenerForAddContactsBtn();
@@ -460,6 +472,9 @@ public class SOSActivity extends BaseActivity
                         String myLocation = "";
                         if(contactsList != null && contactsList.size() > 0)
                         {
+
+
+                            mp.start();
                             myLocation = LocationUtils.getMyLocation(SOSActivity.this);
                             Log.v(TAG,"In setOnClickListenerForSOSBtn() Location = " + myLocation);
                             Log.v(TAG,"Location = " + myLocation);
@@ -489,6 +504,9 @@ public class SOSActivity extends BaseActivity
                         }
                         else
                         {
+                           // final MediaPlayer mp = MediaPlayer.create(SOSActivity.this, R.raw.sos_sound);
+                            //mp.start();
+                            Toast.makeText(SOSActivity.this,"Please add contact.",Toast.LENGTH_SHORT).show();
                             btn_add_contacts.setVisibility(View.VISIBLE);
                         }
                     }
@@ -651,6 +669,7 @@ public class SOSActivity extends BaseActivity
 
 				}
 				*/
+                mp.start();
                 sendSMS(myLocation);
                 //sendEmail(myLocation);
                 Log.v(TAG,"Email sent");
@@ -892,5 +911,50 @@ public class SOSActivity extends BaseActivity
             // permissions this app might request
         }
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(mp!=null) {
+            mp.stop();
+        }
+    }
+
+
+    @Override public void onActivityResult(int reqCode, int resultCode, Intent data) {
+        super.onActivityResult(reqCode, resultCode, data);
+        switch (reqCode) {
+            case (REQUEST_CODE):
+                if (resultCode == Activity.RESULT_OK) {
+                    Uri contactData = data.getData();
+                    Cursor c = getContentResolver().query
+                            (contactData, null, null, null, null);
+                    if (c.moveToFirst()) {
+                        String contactId = c.getString(c.getColumnIndex
+                                (ContactsContract.Contacts._ID));
+                        String hasNumber = c.getString(c.getColumnIndex
+                                (ContactsContract.Contacts.HAS_PHONE_NUMBER));
+                        String num = "";
+                        String name = "";
+                        if (Integer.valueOf(hasNumber) == 1) {
+                            Cursor numbers = getContentResolver().query
+                                    (ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,
+                                            ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = " + contactId, null, null);
+                            while (numbers.moveToNext()) {
+                                num = numbers.getString(numbers.getColumnIndex
+                                        (ContactsContract.CommonDataKinds.Phone.NUMBER));
+                                name = numbers.getString(numbers.getColumnIndex
+                                        (ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+
+                                num = num.replace("+91", "");
+                                edt_name.setText(""+name);
+                                edt_mobile.setText(""+num);
+                            }
+                        }
+                    }
+                    break;
+                }
+        }
     }
 }

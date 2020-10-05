@@ -12,6 +12,8 @@ public class SchedulingRideRequestModel {
     private String mHome;
     @SerializedName("office")
     private String mOffice;
+    @SerializedName("Date")
+    private String mDate;
     @SerializedName("other")
     private String mOther;
     @SerializedName("pairing")
@@ -45,6 +47,14 @@ public class SchedulingRideRequestModel {
 
     public void setOffice(String office) {
         mOffice = office;
+    }
+
+    public String getDate() {
+        return mDate;
+    }
+
+    public void setDate(String date) {
+        mDate = date;
     }
 
     public String getOther() {

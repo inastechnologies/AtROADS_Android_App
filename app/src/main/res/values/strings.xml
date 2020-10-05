@@ -2,7 +2,8 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="google_maps_key">AIzaSyCpUeDFPliW3X10L1aUCY4Y2nUdutPfpic</string>
+   <!-- <string name="google_maps_key">AIzaSyCpUeDFPliW3X10L1aUCY4Y2nUdutPfpic</string>-->
+    <!--<string name="google_maps_key">AIzaSyBu1W3ZAT2Yb5OWyR2rFHBUB5aFzUMLL0I</string>-->
 
     <string name="app_name">Atroads</string>
     <string name="PairedSuccessfully">Paired Successfully</string>
@@ -272,6 +273,7 @@ This Website is not for use by any minors (defined as those who are not at least
     <string name="ShowQR">Show QR</string>
     <string name="ClickOnCallBtn">Click on call Button to Receive the call</string>
     <string name="Emergency">Emergency</string>
+    <string name="Covid">Covid 19</string>
     <string name="UploadQR">Upload QR</string>
     <string name="call_channel_id">CALL_CHANNEL_ID</string>
     <string name="cal_channel_name">Call</string>
@@ -280,7 +282,7 @@ This Website is not for use by any minors (defined as those who are not at least
     <string name="alert_msg">You want to send SMS to Emergency contacts and Call to one of the Contact</string>
     <string name="sos">SOS</string>
     <string name="add">Add</string>
-    <string name="add_contacts">Add Contacts</string>
+    <string name="add_contacts">Trusted Contacts</string>
     <string name="name">Name</string>
     <string name="mobile">Mobile No</string>
     <string name="alert_title_limit">Contacts Limit Exceeded</string>

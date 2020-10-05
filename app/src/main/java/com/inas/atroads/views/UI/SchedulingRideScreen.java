@@ -570,6 +570,7 @@ public class SchedulingRideScreen extends BaseActivity implements GoogleApiClien
         requestModel.setHome(home_edit.getText().toString());
         requestModel.setOffice(work_edit.getText().toString());
         requestModel.setOther(another_edit.getText().toString());
+        requestModel.setDate(edt_date.getText().toString());
         requestModel.setPairing(isPairing);
         Pattern p = Pattern.compile("[0-9]+");
         Matcher m = p.matcher(selectedTime);
@@ -711,6 +712,8 @@ public class SchedulingRideScreen extends BaseActivity implements GoogleApiClien
                             home_edit.setText(Home+"");
                             String Office = mResponse.getResult().get(0).getSchedulingRide().getOffice();
                             work_edit.setText(Office+"");
+                            String date= mResponse.getResult().get(0).getSchedulingRide().getDate();
+                            edt_date.setText(""+date);
                             String Another = mResponse.getResult().get(0).getSchedulingRide().getOther();
                             if(Another.equals(""))
                             {

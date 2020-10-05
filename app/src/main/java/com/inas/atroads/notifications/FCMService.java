@@ -10,7 +10,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
@@ -21,38 +20,17 @@ import androidx.core.app.NotificationCompat;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.inas.atroads.R;
-import com.inas.atroads.services.AnswerCallReceiver;
-import com.inas.atroads.services.CallBgService;
-import com.inas.atroads.services.DeclineCallReceiver;
 import com.inas.atroads.views.Activities.HomeMapsActivity;
-import com.inas.atroads.views.UI.IncomingCallScreenActivity;
-import com.inas.atroads.views.UI.VoiceCallActivity;
-import com.sinch.android.rtc.ClientRegistration;
-import com.sinch.android.rtc.PushPair;
-import com.sinch.android.rtc.SinchClient;
-import com.sinch.android.rtc.SinchClientListener;
-import com.sinch.android.rtc.SinchError;
-import com.sinch.android.rtc.SinchHelpers;
 import com.sinch.android.rtc.calling.Call;
 import com.sinch.android.rtc.calling.CallClient;
 import com.sinch.android.rtc.calling.CallClientListener;
-import com.sinch.android.rtc.calling.CallListener;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-
-import static android.Manifest.permission_group.LOCATION;
-
-public class FCMService extends FirebaseMessagingService implements CallClientListener{
+public class FCMService extends FirebaseMessagingService{
     String TAG="FCMService";
     public static String Token;
     public static String DeviceTokenURL = "http://35.224.241.203:9000/fitzcube/push_notifications";
     private int mStatusCode = 0;
-    VoiceCallActivity voiceCallActivity = new VoiceCallActivity();
+   // VoiceCallActivity voiceCallActivity = new VoiceCallActivity();
     private Notification.Builder notification;
     private Bitmap remote_picture;
     private String CallerName = "";
@@ -279,90 +257,11 @@ public class FCMService extends FirebaseMessagingService implements CallClientLi
 //        Log.d(TAG, "createRequestToServer : End of Function");
 //    }
 
-//
-
-
-    public void defineNotification(String num) {
-        new Thread(new Runnable() {
-            public void run() {
-                Intent i = new Intent(FCMService.this, VoiceCallActivity.class);
-                PendingIntent pi = PendingIntent.getActivity(FCMService.this, 0, i, 0);
-                NotificationCompat.Builder mBuilder =
-                        new NotificationCompat.Builder(getApplicationContext());
-                notification.setContentTitle("New Order Received");
-                notification.setContentText("Train No.12724 \n Amount 500");
-                notification.setWhen(System.currentTimeMillis());
-                notification.setSmallIcon(R.mipmap.ic_launcher);
-                notification.addAction(R.drawable.receive_call_icon, "Accept", pi);
-                notification.addAction(R.drawable.end_call_icon, "Decline", pi);
-                notification.setPriority(Notification.PRIORITY_MAX);
-
-//                    remote_picture = BitmapFactory.decodeStream((InputStream) new URL(getIntent().getExtras().getString("imageurl")).getContent());
-//                    NotificationCompat.BigPictureStyle notiStyle = new NotificationCompat.BigPictureStyle();
-//                    notiStyle.setSummaryText("Amount : 500");
-//                    notiStyle.bigPicture(remote_picture);
-//                    notification.setStyle(notiStyle);
-
-                Intent intent = new Intent(FCMService.this, VoiceCallActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                intent.putExtra("Phone", num);
-                PendingIntent pendingIntent = PendingIntent.getActivity(FCMService.this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
-                notification.setContentIntent(pendingIntent);
-                NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                nm.notify(55, notification.build());
-            }
-        }).start();
-    }
-
-
-
-
-    private void showNotification(String name, String address, int notification_id)
-    {
-        Intent contentIntent = new Intent(this, VoiceCallActivity.class);
-        Intent answerIntent = new Intent(this, VoiceCallActivity.class);
-        answerIntent.putExtra("notificationID", notification_id);
-        answerIntent.putExtra("FromCallIntent","Answer");
-        Intent declineIntent = new Intent(this, DeclineCallReceiver.class);
-        declineIntent.putExtra("notificationID", notification_id);
-        declineIntent.putExtra("FromCallIntent","Decline");
-
-        PendingIntent contentPendingIntent = PendingIntent.getActivity(this, 0, contentIntent, PendingIntent.FLAG_CANCEL_CURRENT);
-        PendingIntent answerPendingIntent = PendingIntent.getActivity(this, 0, answerIntent, PendingIntent.FLAG_CANCEL_CURRENT);
-        PendingIntent declinePendingIntent = PendingIntent.getBroadcast(this, 0, declineIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        Notification notification = new NotificationCompat.Builder(this, getResources().getString(R.string.call_channel_id))
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.atroads_logo))
-                .setContentTitle(name)
-//                .setContentText(address)
-                .setColor(Color.YELLOW)
-                .setContentIntent(contentPendingIntent)
-                .setAutoCancel(true)
-//                .setOngoing(true)
-                .addAction(R.drawable.receive_call_icon, "ANSWER", answerPendingIntent)
-                .addAction(R.drawable.end_call_icon, "DECLINE", declinePendingIntent)
-                .setDefaults(Notification.DEFAULT_ALL)
-                .setCategory(NotificationCompat.CATEGORY_CALL)
-                .setPriority(NotificationCompat.PRIORITY_MAX)
-                .build();
-
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(notification_id, notification);
-    }
-
-
-
-    @Override
-    public void onIncomingCall(CallClient callClient, Call call) {
-        Log.i(TAG, "onIncomingCall: "+call);
-    }
-
 
     private void startCallService() {
 
 //        startService(new Intent(this, CallBgService.class).putExtra("Caller",Caller).putExtra("call", (Serializable) call));
-        startService(new Intent(this, CallBgService.class).putExtra("Caller","Sahasra"));
+       // startService(new Intent(this, CallBgService.class).putExtra("Caller","Sahasra"));
     }
 
 

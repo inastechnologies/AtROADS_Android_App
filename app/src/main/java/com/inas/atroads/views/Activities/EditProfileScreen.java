@@ -91,7 +91,7 @@ public class EditProfileScreen extends AppCompatActivity
         SetViewsFromLayout();
         isNetworkAvailable(EditProfileScreen.this);
         GetSharedPrefs();
-        CallGetUserInfoAPI();
+       // CallGetUserInfoAPI();
 
     }
 
@@ -109,9 +109,6 @@ public class EditProfileScreen extends AppCompatActivity
             @Override
             public void onClick(View v) {
               // onBackPressed();
-                Intent intent = new Intent(EditProfileScreen.this, HomeMapsActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
                 finish();
             }
         });
@@ -648,9 +645,6 @@ public class EditProfileScreen extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(EditProfileScreen.this, HomeMapsActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
         finish();
 
     }

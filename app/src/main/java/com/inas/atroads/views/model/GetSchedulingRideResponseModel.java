@@ -70,6 +70,8 @@ public class GetSchedulingRideResponseModel {
         private String mToTime;
         @SerializedName("When_you_want_to_notify")
         private int mWhenYouWantToNotify;
+        @SerializedName("Date")
+        private String mDate;
 
         public String getFromTime() {
             return mFromTime;
@@ -121,6 +123,14 @@ public class GetSchedulingRideResponseModel {
 
         public int getWhenYouWantToNotify() {
             return mWhenYouWantToNotify;
+        }
+
+        public String getDate() {
+            return mDate;
+        }
+
+        public void setDate(String date) {
+            mDate = date;
         }
 
         public void setWhenYouWantToNotify(int whenYouWantToNotify) {

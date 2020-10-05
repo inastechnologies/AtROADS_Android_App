@@ -2,13 +2,11 @@ package com.inas.atroads.views.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.app.Dialog;
-import android.app.Notification;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -18,6 +16,8 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -31,10 +31,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.webkit.MimeTypeMap;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -43,22 +40,13 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
-import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -74,7 +62,6 @@ import com.google.android.libraries.places.api.model.AutocompleteSessionToken;
 import com.google.android.libraries.places.api.net.FetchPlaceRequest;
 import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -87,15 +74,10 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.inas.atroads.BuildConfig;
 import com.inas.atroads.R;
-import com.inas.atroads.services.APIConstants;
 import com.inas.atroads.services.AtroadsService;
 import com.inas.atroads.services.ServiceFactory;
 import com.inas.atroads.util.AtroadsConstant;
-import com.inas.atroads.util.Utilities;
 import com.inas.atroads.util.localData.BaseActivity;
-import com.inas.atroads.views.UI.CallActivity;
-import com.inas.atroads.views.UI.SchedulingRideScreen;
-import com.inas.atroads.views.UI.VoiceCallActivity;
 import com.inas.atroads.views.model.GetUserInfoRequestModel;
 import com.inas.atroads.views.model.GetUserInfoResponseModel;
 import com.inas.atroads.views.model.OnGoingRideRequestModel;
@@ -107,13 +89,9 @@ import com.inas.atroads.views.model.ScheduleRideNotifyResponseModel;
 import com.inas.atroads.views.model.UploadImageToFBStorage;
 import com.leinardi.android.speeddial.SpeedDialActionItem;
 import com.leinardi.android.speeddial.SpeedDialView;
-import com.sinch.android.rtc.calling.Call;
-import com.sinch.android.rtc.calling.CallClient;
-import com.sinch.android.rtc.calling.CallClientListener;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -130,7 +108,6 @@ import rx.schedulers.Schedulers;
 
 import static com.inas.atroads.util.Utilities.Base64ToBitmap;
 import static com.inas.atroads.util.Utilities.BitmapToBase64;
-import static com.inas.atroads.views.Activities.BillingDetailsActivity.CustomDialog;
 
 public class ChatActivity extends BaseActivity implements OnMapReadyCallback {
     private static final int RESULT_GALLERY = 1 ;
@@ -252,7 +229,6 @@ public class ChatActivity extends BaseActivity implements OnMapReadyCallback {
             }
         });
     }
-
 
     /**
      * SetFBReference
@@ -380,9 +356,6 @@ public class ChatActivity extends BaseActivity implements OnMapReadyCallback {
 
         }
     }
-
-
-
     /**
      * Floating action button Animation
      */
@@ -409,9 +382,15 @@ public class ChatActivity extends BaseActivity implements OnMapReadyCallback {
 
                     case R.id.fab_call:
 
-
-                        showProgressDialog();
-                        callingAPI();
+                        CustomDialogWithOneBtn(ChatActivity.this,"Request for CALL","You will get call from a number to connect with paired user!!", "Call Request",new Runnable() {
+                            @Override
+                            public void run() {
+                                showProgressDialog();
+                                callingAPI();
+                            }
+                        });
+                       // showProgressDialog();
+                        //callingAPI();
                        // Toast.makeText(ChatActivity.this, "fab_call", Toast.LENGTH_SHORT).show();
                        /* int OtherID = getIntent().getIntExtra("OtheruserId",0);
                         Intent intent = new Intent(ChatActivity.this, VoiceCallActivity.class);
@@ -1653,8 +1632,13 @@ public class ChatActivity extends BaseActivity implements OnMapReadyCallback {
                 break;
 
             case R.id.menu_call:
-                showProgressDialog();
-                callingAPI();
+                CustomDialogWithOneBtn(ChatActivity.this,"Request for CALL","You will get call from a number to connect with paired user!!", "Call Request",new Runnable() {
+                    @Override
+                    public void run() {
+                        showProgressDialog();
+                        callingAPI();
+                    }
+                });
                 //Toast.makeText(ChatActivity.this,"Call",Toast.LENGTH_SHORT).show();
                 break;
 
@@ -1704,7 +1688,7 @@ public class ChatActivity extends BaseActivity implements OnMapReadyCallback {
                         }
                         else if(mResponse.getStatus() == 1) {
                             hideProgressDialog();
-                            Toast.makeText(ChatActivity.this,mResponse.getMessage(),Toast.LENGTH_LONG).show();
+                            Toast.makeText(ChatActivity.this,"We are connecting for you!",Toast.LENGTH_LONG).show();
                         }
                     }
                 });
@@ -1717,5 +1701,30 @@ public class ChatActivity extends BaseActivity implements OnMapReadyCallback {
         requestModel.setUserId(UserId);
         requestModel.setuser_ride_id(UserRideId);
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
+    }
+
+
+    public void CustomDialogWithOneBtn(Context context, String Title, String Msg, String buttonNam1, Runnable runnable)
+    {
+        final Dialog dialog = new Dialog(context);
+        dialog.setContentView(R.layout.dialogwithonebtn);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+        TextView title = (TextView) dialog.findViewById(R.id.TitleTv);
+        title.setText(Title);
+        TextView msg = (TextView) dialog.findViewById(R.id.MsgTv);
+        msg.setText(Msg);
+        Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+        okBtn.setText(buttonNam1);
+        // if decline button is clicked, close the custom dialog
+        okBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                runnable.run();
+            }
+        });
+
     }
 }

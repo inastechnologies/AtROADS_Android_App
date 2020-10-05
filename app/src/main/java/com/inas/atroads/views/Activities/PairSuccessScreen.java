@@ -66,6 +66,7 @@ import com.inas.atroads.services.AtroadsService;
 import com.inas.atroads.services.CustomApplication;
 import com.inas.atroads.services.ServiceFactory;
 import com.inas.atroads.util.Utilities;
+import com.inas.atroads.util.localData.BaseActivity;
 import com.inas.atroads.util.localData.FetchURL;
 import com.inas.atroads.views.Interface.TaskLoadedCallback;
 import com.inas.atroads.views.UI.EnterUPIDetailsActivity;
@@ -82,6 +83,8 @@ import com.inas.atroads.views.model.OnGoingRideRequestModel;
 import com.inas.atroads.views.model.OnGoingRidesResponseModel;
 import com.inas.atroads.views.model.RouteSourceDestRequestModel;
 import com.inas.atroads.views.model.RouteSourceDestResponseModel;
+import com.inas.atroads.views.model.ScheduleRideNotifiyRequestModel;
+import com.inas.atroads.views.model.ScheduleRideNotifyResponseModel;
 import com.inas.atroads.views.model.StartRideForPairedUserRequestModel;
 import com.inas.atroads.views.model.StartRideForPairedUsersResponseModel;
 import com.squareup.picasso.Picasso;
@@ -99,7 +102,7 @@ import rx.schedulers.Schedulers;
 
 import static com.inas.atroads.util.Utilities.isNetworkAvailable;
 
-public class PairSuccessScreen extends AppCompatActivity implements OnMapReadyCallback,
+public class PairSuccessScreen extends BaseActivity implements OnMapReadyCallback,
         LocationListener, GoogleApiClient.ConnectionCallbacks, GoogleMap.OnMarkerClickListener,
         GoogleApiClient.OnConnectionFailedListener, NavigationView.OnNavigationItemSelectedListener,
         TaskLoadedCallback {
@@ -129,7 +132,7 @@ public class PairSuccessScreen extends AppCompatActivity implements OnMapReadyCa
     private Polyline currentPolyline;
     private String MypflPic;
     private String str_origin, str_dest;
-    private Button shareBtn, chatBtn;
+    private Button shareBtn, chatBtn,callBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -156,11 +159,27 @@ public class PairSuccessScreen extends AppCompatActivity implements OnMapReadyCa
             VehicleNoTv.setVisibility(View.VISIBLE);
             VehicleNoTv.setText("Your Auto Number is " + AutoNo);
         }
+
+        callBtn= findViewById(R.id.callBtn);
+        callBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CustomDialogWithOneBtn(PairSuccessScreen.this,"Request for CALL","You will get call from a number to connect with paired user!!", "Call Request",new Runnable() {
+                    @Override
+                    public void run() {
+                        showProgressDialog();
+                        callingAPI();
+                    }
+                });
+            }
+        });
+
 //        SetRideButton();
         CallOnGoingRideAPI();
         SetRideButton();
         RouteSourceDestDetailsAPI();
         setChatBtn();
+
 
 
     }
@@ -534,6 +553,13 @@ public class PairSuccessScreen extends AppCompatActivity implements OnMapReadyCa
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
 
+            case R.id.Covid_nav:
+                Intent covidIntent = new Intent(PairSuccessScreen.this, WebViewActivity.class);
+                covidIntent.putExtra("titile", "Covid 19");
+                covidIntent.putExtra("url", "www.atroads.com/covid19/");
+                startActivity(covidIntent);
+                break;
+
             case R.id.Emergency_nav:
                 Intent sosintent = new Intent(PairSuccessScreen.this, SOSActivity.class);
                 sosintent.putExtra("FROMACTIVITY", "HomeScreen");
@@ -570,9 +596,10 @@ public class PairSuccessScreen extends AppCompatActivity implements OnMapReadyCa
                 break;
 
             case R.id.howitworks_nav:
-                Intent hiwIntent = new Intent(PairSuccessScreen.this, HowtoWorksActivity.class);
-//                termsIntent.putExtra("Url", Constants.TermsAndConditionsURL);
-                startActivity(hiwIntent);
+                Intent workIntent = new Intent(PairSuccessScreen.this, WebViewActivity.class);
+                workIntent.putExtra("titile", "How It Work?");
+                workIntent.putExtra("url", "http://atroads.com/faq/");
+                startActivity(workIntent);
                 break;
 
 
@@ -583,20 +610,27 @@ public class PairSuccessScreen extends AppCompatActivity implements OnMapReadyCa
                 break;
 
             case R.id.terms_con_nav:
-                Intent feedIntent = new Intent(PairSuccessScreen.this, TermsConditionsActivity.class);
+                Intent feedIntent = new Intent(PairSuccessScreen.this, WebViewActivity.class);
+                feedIntent.putExtra("titile", "Terms & Condition");
+                feedIntent.putExtra("url", "http://atroads.com/terms-conditions/");
                 startActivity(feedIntent);
                 break;
 
             case R.id.privacy_policy_nav:
-                Intent Acintent = new Intent(PairSuccessScreen.this, PrivacyPolicyActivity.class);
+                Intent Acintent = new Intent(PairSuccessScreen.this, WebViewActivity.class);
+                Acintent.putExtra("titile", "Privacy Policy");
+                Acintent.putExtra("url", "http://atroads.com/privacy-policy/");
                 startActivity(Acintent);
                 break;
 
 
             case R.id.aboutus_nav:
-                Intent historyIntent = new Intent(PairSuccessScreen.this, AboutUsActivity.class);
-                startActivity(historyIntent);
+                Intent aboutIntent = new Intent(PairSuccessScreen.this, WebViewActivity.class);
+                aboutIntent.putExtra("titile", "About Us");
+                aboutIntent.putExtra("url", "http://atroads.com/ourself/");
+                startActivity(aboutIntent);
                 break;
+
 
             case R.id.Show_qr:
                 Intent qrIntent = new Intent(PairSuccessScreen.this, UploadQRActivity.class);
@@ -1210,5 +1244,60 @@ public class PairSuccessScreen extends AppCompatActivity implements OnMapReadyCa
     public void onBackPressed() {
         Intent i = new Intent(PairSuccessScreen.this, HomeMapsActivity.class);
         startActivity(i);
+    }
+
+    private void callingAPI(){
+
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("PairedUserPref", 0); // 0 - for private mode
+        UserRideId = pref.getInt("user_ride_id",0);
+
+        JsonObject object = callingObject();
+        AtroadsService service = ServiceFactory.createRetrofitService(PairSuccessScreen.this, AtroadsService.class);
+        mSubscription = service.callingApi(object)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<ScheduleRideNotifyResponseModel>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            ((HttpException) e).code();
+                            ((HttpException) e).message();
+                            ((HttpException) e).response().errorBody();
+                            try {
+                                ((HttpException) e).response().errorBody().string();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onNext(ScheduleRideNotifyResponseModel mResponse) {
+                        Log.i(TAG, "ScheduleRideNotifyResponseModel: "+mResponse);
+//                        Toast.makeText(YourBillScreen.this, mResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                        if(mResponse.getStatus() == 0) {
+                            hideProgressDialog();
+                            finish();
+                        }
+                        else if(mResponse.getStatus() == 1) {
+                            hideProgressDialog();
+                            Toast.makeText(PairSuccessScreen.this,"We are connecting for you!",Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+
+    }
+
+    private JsonObject callingObject()
+    {
+        ScheduleRideNotifiyRequestModel requestModel = new ScheduleRideNotifiyRequestModel();
+        requestModel.setUserId(UserId);
+        requestModel.setuser_ride_id(UserRideId);
+        return new Gson().toJsonTree(requestModel).getAsJsonObject();
     }
 }

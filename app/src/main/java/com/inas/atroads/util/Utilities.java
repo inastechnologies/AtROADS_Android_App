@@ -224,7 +224,7 @@ public class Utilities {
     public static String getCurrentDate()
     {
         Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
         return df.format(calendar.getTime());
 
     }

@@ -129,6 +129,7 @@
                         android:layout_marginBottom="8dp"
                         android:background="@android:color/transparent"
                         android:ems="10"
+                        android:focusable="true"
                         android:hint="Drop Location"
                         android:inputType="textPersonName"
                         android:textSize="14sp"

@@ -599,8 +599,7 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 				Log.i(TAG, "PlaceAddress: " + place.getAddress());
 				Log.i(TAG, "PlaceAddressComponents(): " + place.getAddressComponents());
 				Log.i(TAG, "place Viewport: " + place.getViewport() + place.getAttributions());
-				if(FromEditText.equals("PinEditText"))
-				{
+				if(FromEditText.equals("PinEditText")) {
 					PinEditText.setText(place.getName());
 					PinlatLng = place.getLatLng();
 					Log.i(TAG, "onActivityResult:PinlatLng "+PinlatLng);
@@ -608,8 +607,7 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 					//                    {
 					//                        SetMarkerOnMap(PinlatLng.latitude,PinlatLng.longitude);
 					//                    }
-				}else if(FromEditText.equals("DropEditText"))
-				{
+				}else if(FromEditText.equals("DropEditText")) {
 					DropEditText.setText(place.getName());
 					DropLatLng = place.getLatLng();
 					Log.i(TAG, "onActivityResult:DropLatLng "+DropLatLng);
@@ -1109,7 +1107,7 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 							if(mProgressDialog!=null){
 								hideProgressDialog();
 							}
-							Log.i(TAG, "GetAddressFromLatLng: "+location.getLatitude());
+							//Log.i(TAG, "GetAddressFromLatLng: "+location.getLatitude());
 							// Logic to handle location object
 							String addressOfLocation = GetAddressFromLatLng(location.getLatitude(), location.getLongitude());
 							// PinEditText = findViewById(R.id.PinEditText);
@@ -1134,16 +1132,20 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 	private void SetMarkerOnMap(Double latitude,Double longitude,float color)
 	{
 		//Place location marker
-		LatLng latLng = new LatLng(latitude, longitude);
-		MarkerOptions markerOptions = new MarkerOptions();
-		markerOptions.position(latLng);
-		String addressOfLocation = GetAddressFromLatLng(latitude, longitude);
-		markerOptions.title(addressOfLocation+"");
-		markerOptions.icon(BitmapDescriptorFactory.defaultMarker(color));
-		mMap.addMarker(markerOptions);
-		//move map camera
-		mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-		mMap.animateCamera(CameraUpdateFactory.zoomTo(ZOOM_LEVEL));
+		try {
+			LatLng latLng = new LatLng(latitude, longitude);
+			MarkerOptions markerOptions = new MarkerOptions();
+			markerOptions.position(latLng);
+			String addressOfLocation = GetAddressFromLatLng(latitude, longitude);
+			markerOptions.title(addressOfLocation + "");
+			markerOptions.icon(BitmapDescriptorFactory.defaultMarker(color));
+			mMap.addMarker(markerOptions);
+			//move map camera
+			mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+			mMap.animateCamera(CameraUpdateFactory.zoomTo(ZOOM_LEVEL));
+		}catch (Exception e){
+			Toast.makeText(HomeMapsActivity.this, e.toString(), Toast.LENGTH_LONG).show();
+		}
 
 	}
 	/****************************END OF SetMarkerOnMap**************************/
@@ -1166,18 +1168,20 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 		Geocoder geocoder = CustomApplication.geoCoder;
 		try {
 			addresses = geocoder.getFromLocation(latitude, longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
-			address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
-			String city = addresses.get(0).getLocality();
-			String state = addresses.get(0).getAdminArea();
-			String country = addresses.get(0).getCountryName();
-			String postalCode = addresses.get(0).getPostalCode();
-			String knownName = addresses.get(0).getFeatureName(); // Only if available else return NULL
-		} catch (IOException e) {
+			if(addresses.size()>0) {
+				address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+				// Only if available else return NULL
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		Log.i(TAG, "GetAddressFromLatLng: "+address);
 
-		return address;
+		if(address!=null){
+			return address;
+		}else {
+			return "";
+		}
 	}
 
 
@@ -1297,6 +1301,14 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 	public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 		switch (menuItem.getItemId()) {
 
+
+			case R.id.Covid_nav:
+				Intent covidIntent = new Intent(HomeMapsActivity.this, WebViewActivity.class);
+				covidIntent.putExtra("titile", "Covid 19");
+				covidIntent.putExtra("url", "www.atroads.com/covid19/");
+				startActivity(covidIntent);
+				break;
+
 			case R.id.Emergency_nav:
 				Intent sosintent = new Intent(HomeMapsActivity.this, SOSActivity.class);
 				sosintent.putExtra("FROMACTIVITY", "HomeScreen");
@@ -1340,9 +1352,10 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 				break;
 
 			case R.id.howitworks_nav:
-				Intent hiwIntent = new Intent(HomeMapsActivity.this, HowtoWorksActivity.class);
-				//                termsIntent.putExtra("Url", Constants.TermsAndConditionsURL);
-				startActivity(hiwIntent);
+				Intent workIntent = new Intent(HomeMapsActivity.this, WebViewActivity.class);
+				workIntent.putExtra("titile", "How It Work?");
+				workIntent.putExtra("url", "http://atroads.com/faq/");
+				startActivity(workIntent);
 				break;
 
 			case R.id.Show_qr:
@@ -1358,19 +1371,25 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 				break;
 
 			case R.id.terms_con_nav:
-				Intent feedIntent = new Intent(HomeMapsActivity.this, TermsConditionsActivity.class);
+				Intent feedIntent = new Intent(HomeMapsActivity.this, WebViewActivity.class);
+				feedIntent.putExtra("titile", "Terms & Condition");
+				feedIntent.putExtra("url", "http://atroads.com/terms-conditions/");
 				startActivity(feedIntent);
 				break;
 
 			case R.id.privacy_policy_nav:
-				Intent Acintent = new Intent(HomeMapsActivity.this, PrivacyPolicyActivity.class);
+				Intent Acintent = new Intent(HomeMapsActivity.this, WebViewActivity.class);
+				Acintent.putExtra("titile", "Privacy Policy");
+				Acintent.putExtra("url", "http://atroads.com/privacy-policy/");
 				startActivity(Acintent);
 				break;
 
 
 			case R.id.aboutus_nav:
-				Intent historyIntent = new Intent(HomeMapsActivity.this, AboutUsActivity.class);
-				startActivity(historyIntent);
+				Intent aboutIntent = new Intent(HomeMapsActivity.this, WebViewActivity.class);
+				aboutIntent.putExtra("titile", "About Us");
+				aboutIntent.putExtra("url", "http://atroads.com/ourself/");
+				startActivity(aboutIntent);
 				break;
 
 

@@ -26,6 +26,7 @@ import com.inas.atroads.R;
 import com.inas.atroads.services.APIConstants;
 import com.inas.atroads.services.AtroadsService;
 import com.inas.atroads.services.ServiceFactory;
+import com.inas.atroads.util.localData.BaseActivity;
 import com.inas.atroads.views.Activities.BillingDetailsActivity;
 import com.inas.atroads.views.Activities.HomeMapsActivity;
 import com.inas.atroads.views.model.DeletePairRequestModel;
@@ -53,7 +54,7 @@ import static com.inas.atroads.util.Utilities.Base64ToBitmap;
 import static com.inas.atroads.util.Utilities.BitmapToBase64;
 import static com.inas.atroads.views.Activities.BillingDetailsActivity.CustomDialog;
 
-public class UploadQRActivity extends AppCompatActivity {
+public class UploadQRActivity extends BaseActivity {
     private static final int RESULT_GALLERY = 1;
     private static final String TAG = "UploadQRActivity";
     private static final String DEFAULT = "N/A";
@@ -188,6 +189,7 @@ public class UploadQRActivity extends AppCompatActivity {
                             end = end > encodedImage.length() ? encodedImage.length() : end;
                             Log.v("PflImageBase64", encodedImage.substring(start, end));
                         }
+                        showProgressDialog();
                         CallUploadQRAPI();
                         // CallEditUserInfoAPI();
                     } catch (FileNotFoundException e) {
@@ -235,14 +237,15 @@ public class UploadQRActivity extends AppCompatActivity {
                     @Override
                     public void onNext(UploadQRResponseModel mResponse) {
                         Log.i(TAG, "UploadQRResponseModel: "+mResponse);
+                        hideProgressDialog();
 //                        Toast.makeText(YourBillScreen.this, mResponse.getMessage(), Toast.LENGTH_SHORT).show();
                         if(mResponse.getStatus() == 0)
                         {
-
+                            qrIV.setAlpha(1.0f);
                         }
                         else if(mResponse.getStatus() == 1)
                         {
-                            qrIV.setAlpha(1.0f);
+                           // qrIV.setAlpha(1.0f);
                             CustomDialog(UploadQRActivity.this, "Success!", mResponse.getMessage(), "Ok", new Runnable() {
                                 @Override
                                 public void run() {

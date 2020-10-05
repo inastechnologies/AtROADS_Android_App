@@ -11,6 +11,8 @@ import android.util.Log;
 import com.inas.atroads.R;
 import com.inas.atroads.services.MyServiceToCheckIsAppClosed;
 import com.inas.atroads.views.Activities.HomeMapsActivity;
+import com.inas.atroads.views.Activities.StartUpActivity;
+
 import static com.inas.atroads.util.Utilities.isNetworkAvailable;
 
 public class SpalshScreen extends AppCompatActivity
@@ -40,9 +42,18 @@ public class SpalshScreen extends AppCompatActivity
                 user_id = pref.getInt("user_id", 0);
                 Log.i("user_id:", String.valueOf(user_id));
                 if(user_id == 0) {
-                    Intent i = new Intent(SpalshScreen.this, MobileNumberRegisterScreen.class);
-                    startActivity(i);
-                    finish();
+
+                    boolean landFlag = pref.getBoolean("isStartUp",false);
+
+                    if(landFlag) {
+                        Intent i = new Intent(SpalshScreen.this, MobileNumberRegisterScreen.class);
+                        startActivity(i);
+                        finish();
+                    }else{
+                        Intent i = new Intent(SpalshScreen.this, StartUpActivity.class);
+                        startActivity(i);
+                        finish();
+                    }
                 } else {
                     Intent i = new Intent(SpalshScreen.this, HomeMapsActivity.class);
                     startActivity(i);
@@ -50,7 +61,7 @@ public class SpalshScreen extends AppCompatActivity
                 }
 
             }
-        },2000);
+        },1000);
         Log.i(TAG, "onCreate: End Of MoveToRegister");
     }
 
