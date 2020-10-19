@@ -27,6 +27,7 @@ import android.location.Address;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
@@ -34,6 +35,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -120,7 +122,7 @@ public class PairSuccessScreen extends BaseActivity implements OnMapReadyCallbac
     String Username, Email, Mobile;
     int UserId;
     CircleImageView profilePicInSideBar;
-    private TextView UserNameTv, MobileNoTv, EmailTv, VehicleNoTv;
+    private TextView UserNameTv, MobileNoTv, EmailTv, VehicleNoTv,auto_number,tv_ride,pairUserName;
     private AppBarConfiguration mAppBarConfiguration;
     private Button rideButton;
     private String RideStatus;
@@ -132,7 +134,9 @@ public class PairSuccessScreen extends BaseActivity implements OnMapReadyCallbac
     private Polyline currentPolyline;
     private String MypflPic;
     private String str_origin, str_dest;
-    private Button shareBtn, chatBtn,callBtn;
+    private Button emergency_Btn,callBtn;
+    LinearLayout lin_shareLoc,lin_endride,lin_chat,lin_call;
+    ImageView iv_ride;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,11 +157,13 @@ public class PairSuccessScreen extends BaseActivity implements OnMapReadyCallbac
         UserRideId = getIntent().getIntExtra("UserRideId", 0);
         AutoNo = getIntent().getStringExtra("AutoNo");
         VehicleNoTv = findViewById(R.id.VehicleNoTv);
+        auto_number = findViewById(R.id.auto_number);
         if (AutoNo.equals("")) {
             VehicleNoTv.setVisibility(View.INVISIBLE);
         } else {
-            VehicleNoTv.setVisibility(View.VISIBLE);
+            VehicleNoTv.setVisibility(View.INVISIBLE);
             VehicleNoTv.setText("Your Auto Number is " + AutoNo);
+            auto_number.setText("" + AutoNo);
         }
 
         callBtn= findViewById(R.id.callBtn);
@@ -174,20 +180,39 @@ public class PairSuccessScreen extends BaseActivity implements OnMapReadyCallbac
             }
         });
 
+        lin_call= findViewById(R.id.lin_call);
+        lin_call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CustomDialogWithOneBtn(PairSuccessScreen.this,"Request for CALL","You will get call from a number to connect with paired user!!", "Call Request",new Runnable() {
+                    @Override
+                    public void run() {
+                        showProgressDialog();
+                        callingAPI();
+                    }
+                });
+            }
+        });
+        pairUserName = findViewById(R.id.pairUserName);
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("PairedUserTwoPref", 0); // 0 - for private mode
+        String pairedUserName = pref.getString("userTwoName", "");
+
+        String sourceString = "Ride with- "+"<b>" + pairedUserName + "</b> ";
+        pairUserName.setText(Html.fromHtml(sourceString));
+        //pairUserName.setText("Ride with- "+pairedUserName);
+
+
+
 //        SetRideButton();
         CallOnGoingRideAPI();
         SetRideButton();
         RouteSourceDestDetailsAPI();
         setChatBtn();
-
-
-
     }
 
-
     private void setChatBtn() {
-        chatBtn = findViewById(R.id.chatBtn);
-        chatBtn.setOnClickListener(new View.OnClickListener() {
+        lin_chat = findViewById(R.id.lin_chat);
+        lin_chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -197,10 +222,20 @@ public class PairSuccessScreen extends BaseActivity implements OnMapReadyCallbac
     }
 
     private void SetShareBtn(String userSourceAddress, String userDestAddress) {
-        shareBtn = findViewById(R.id.shareBtn);
-        shareBtn.setOnClickListener(new View.OnClickListener() {
+        emergency_Btn = findViewById(R.id.emergency_Btn);
+        emergency_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent sosintent = new Intent(PairSuccessScreen.this, SOSActivity.class);
+                sosintent.putExtra("FROMACTIVITY", "HomeScreen");
+                startActivity(sosintent);
+            }
+        });
+
+        lin_shareLoc= findViewById(R.id.lin_shareLoc);
+        lin_shareLoc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
                 sharingIntent.setType("text/plain");
                 String content = "This is My Auto Number: " + AutoNo + "\n" + "Source: " + userSourceAddress + "\n" + "Dest: " + userDestAddress;
@@ -401,19 +436,23 @@ public class PairSuccessScreen extends BaseActivity implements OnMapReadyCallbac
     /**********************************START OF SET RIDE BUTTON************************/
     private void SetRideButton()
     {
-        rideButton = findViewById(R.id.rideButton);
-        rideButton.setTextColor(Color.WHITE);
+        lin_endride = findViewById(R.id.lin_endride);
+        tv_ride= findViewById(R.id.tv_ride);
+        iv_ride= findViewById(R.id.iv_ride);
+        //rideButton.setTextColor(Color.WHITE);
         if(RideStatus.equals("StartRide"))
         {
-           rideButton.setText("Start Ride");
+            tv_ride.setText("Start Ride");
+            iv_ride.setImageResource(R.drawable.yourride);
         }else {
-            rideButton.setText("End Ride");
-            rideButton.setBackgroundResource(R.drawable.round_rect_red);
+            tv_ride.setText("End Ride");
+            iv_ride.setImageResource(R.drawable.ic_close_black_24dp);
+            //rideButton.setBackgroundResource(R.drawable.round_rect_red);
         }
-        rideButton.setOnClickListener(new View.OnClickListener() {
+        lin_endride.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(rideButton.getText().toString().equals("Start Ride"))
+                if(tv_ride.getText().toString().equals("Start Ride"))
                 {
                     StartRideForPairedUserAPI(AutoNo);
                 }else {
@@ -906,8 +945,10 @@ public class PairSuccessScreen extends BaseActivity implements OnMapReadyCallbac
                         {
                             UserId = mRespone.getResult().get(0).getUserId();
                             UserRideId = mRespone.getResult().get(0).getUserRideId();
-                            rideButton.setText("End Ride");
-                            rideButton.setBackgroundResource(R.drawable.round_rect_red);
+                            tv_ride.setText("End Ride");
+                            iv_ride.setImageResource(R.drawable.ic_close_black_24dp);
+                            //rideButton.setText("End Ride");
+                           // rideButton.setBackgroundResource(R.drawable.round_rect_red);
                             //rideButton.setBackgroundColor(Color.RED);
                             RideStatus = "RideStarted";
                             CustomDialogWithOneBtn(PairSuccessScreen.this,"Success",mRespone.getMessage(),"Ok", new Runnable() {

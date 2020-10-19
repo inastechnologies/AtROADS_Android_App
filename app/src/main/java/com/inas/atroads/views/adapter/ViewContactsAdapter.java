@@ -33,8 +33,6 @@ import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-import static org.webrtc.ContextUtils.getApplicationContext;
-
 public class ViewContactsAdapter  extends RecyclerView.Adapter<ViewContactsAdapter.MyViewHolder>
 {
     private static final String TAG = ViewContactsAdapter.class.getSimpleName();

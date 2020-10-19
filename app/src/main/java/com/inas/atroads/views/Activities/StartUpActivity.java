@@ -13,8 +13,8 @@ import com.inas.atroads.views.adapter.StartUpVPAdapter;
 public class StartUpActivity extends BaseActivity {
 
     ViewPager viewpager_view;
-    int images[] = {R.drawable.auto_ride, R.drawable.upi_onboarding_pic5};
-    String text[] = {"Ride With Us!", "We care for your security!"};
+    int images[] = {R.drawable.intro_1,R.drawable.auto_ride, R.drawable.upi_onboarding_pic5};
+    String text[] = {"","Ride With Us!", "We care for your security!"};
     StartUpVPAdapter myCustomPagerAdapter;
 
     @Override

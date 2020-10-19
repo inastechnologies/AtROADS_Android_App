@@ -52,30 +52,206 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/shareBtn"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:id="@+id/emergency_Btn"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_marginEnd="16dp"
-            android:background="@drawable/shareicon"
+            android:visibility="visible"
+            android:background="@drawable/emergency"
             app:layout_constraintBottom_toBottomOf="@+id/include9"
             app:layout_constraintEnd_toEndOf="@+id/include9"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/callBtn"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginEnd="50dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="36dp"
             android:background="@drawable/white_call"
             app:layout_constraintBottom_toBottomOf="@+id/include9"
-            app:layout_constraintEnd_toEndOf="@+id/shareBtn"
+            app:layout_constraintEnd_toEndOf="@+id/emergency_Btn"
             app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:orientation="vertical"
+            android:background="@color/white"
+            tools:ignore="MissingConstraints">
+
+            <TextView
+                android:id="@+id/pairUserName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="16dp"
+                android:textColor="@color/black"
+                android:textSize="14dp"
+                android:text=""/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp"
+                android:layout_gravity="center"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+
+                    android:textSize="14dp"
+                    android:text="Your Auto Number is "/>
+            <TextView
+                android:id="@+id/auto_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:text=""/>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:background="#eaeaea"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:weightSum="4">
+
+                <LinearLayout
+                    android:id="@+id/lin_call"
+                    android:layout_width="0dp"
+                    android:layout_weight=".99"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_call_yellow_24dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Call"
+                        android:textSize="12dp"
+                        android:textColor="@color/colorPrimary"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".01"
+                    android:background="#eaeaea"/>
+
+                <LinearLayout
+                    android:id="@+id/lin_chat"
+                    android:layout_width="0dp"
+                    android:layout_weight=".99"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/upi_ic_support_hamburgar"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chat"
+                        android:textSize="12dp"
+                        android:textColor="@color/colorPrimary"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".01"
+                    android:background="#eaeaea"/>
+
+                <LinearLayout
+                    android:id="@+id/lin_endride"
+                    android:layout_width="0dp"
+                    android:layout_weight=".99"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:id="@+id/iv_ride"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_close_black_24dp"/>
+                    <TextView
+                        android:id="@+id/tv_ride"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="End Ride"
+                        android:textSize="12dp"
+                        android:textColor="@color/colorPrimary"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".01"
+                    android:background="#eaeaea"/>
+
+                <LinearLayout
+                    android:id="@+id/lin_shareLoc"
+                    android:layout_width="0dp"
+                    android:layout_weight=".99"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_share_yellow_24dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Share"
+                        android:textSize="12dp"
+                        android:textColor="@color/colorPrimary"/>
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@color/white"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">

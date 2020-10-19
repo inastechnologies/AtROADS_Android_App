@@ -96,7 +96,6 @@ public interface AtroadsService
     @POST(APIConstants.help)
     Observable<HelpResponseModel> HelpResponse(@Body JsonObject data);
 
-
     @POST(APIConstants.get_details_of_ride)
     Observable<GetDetailsOfRideResponseModel> GetDetailsOfRideResponse(@Body JsonObject data);
 

@@ -190,7 +190,7 @@ public class PairActivity extends BaseActivity implements OnMapReadyCallback,
             public void run() {
                 FindPairAPI();
             }
-        },10000);
+        },20000);
     }
 
     /**************************END OF ONCREATE************************/

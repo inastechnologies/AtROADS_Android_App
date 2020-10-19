@@ -21,9 +21,6 @@ import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.inas.atroads.R;
 import com.inas.atroads.views.Activities.HomeMapsActivity;
-import com.sinch.android.rtc.calling.Call;
-import com.sinch.android.rtc.calling.CallClient;
-import com.sinch.android.rtc.calling.CallClientListener;
 
 public class FCMService extends FirebaseMessagingService{
     String TAG="FCMService";
@@ -35,7 +32,7 @@ public class FCMService extends FirebaseMessagingService{
     private Bitmap remote_picture;
     private String CallerName = "";
     public static final String CALL_ID = "CALL_ID";
-    private Call IncomingCallFromOtherUser;
+   // private Call IncomingCallFromOtherUser;
 
 
     @Override

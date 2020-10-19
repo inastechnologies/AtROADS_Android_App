@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -92,6 +93,7 @@ import com.leinardi.android.speeddial.SpeedDialView;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -376,7 +378,7 @@ public class ChatActivity extends BaseActivity implements OnMapReadyCallback {
 
                     case R.id.fab_add:
                         SelectImageDialog();
-                       // Toast.makeText(ChatActivity.this, "fab_add", Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(ChatActivity.this, "fab_add", Toast.LENGTH_SHORT).show();
 
                         break;
 
@@ -389,17 +391,6 @@ public class ChatActivity extends BaseActivity implements OnMapReadyCallback {
                                 callingAPI();
                             }
                         });
-                       // showProgressDialog();
-                        //callingAPI();
-                       // Toast.makeText(ChatActivity.this, "fab_call", Toast.LENGTH_SHORT).show();
-                       /* int OtherID = getIntent().getIntExtra("OtheruserId",0);
-                        Intent intent = new Intent(ChatActivity.this, VoiceCallActivity.class);
-                        intent.putExtra("ReciverName",UserDetails.chatWith);
-//                        intent.putExtra("username",UserDetails.username);
-                        intent.putExtra("username",Thisusername);
-                        intent.putExtra("UserId",UserId);
-                        intent.putExtra("OtheruserId",OtherID);
-                        startActivity(intent);*/
                         break;
                 }
                 return false;
@@ -463,13 +454,21 @@ public class ChatActivity extends BaseActivity implements OnMapReadyCallback {
      * openCameraIntent
      */
     private void openCameraIntent() {
-        Intent pictureIntent = new Intent(
+
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        try {
+            startActivityForResult(takePictureIntent, REQUEST_CAPTURE_IMAGE);
+        } catch (ActivityNotFoundException e) {
+            Log.d("exception", e.toString());
+            // display error state to the user
+        }
+       /* Intent pictureIntent = new Intent(
                 MediaStore.ACTION_IMAGE_CAPTURE
         );
         if (pictureIntent.resolveActivity(this.getPackageManager()) != null) {
             startActivityForResult(pictureIntent,
                     REQUEST_CAPTURE_IMAGE);
-        }
+        }*/
     }
 
 
@@ -479,28 +478,6 @@ public class ChatActivity extends BaseActivity implements OnMapReadyCallback {
     private void OpenGallery() {
         Intent galleryIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(galleryIntent, RESULT_GALLERY);
-    }
-
-    /**
-     * @param context
-     * @param uri
-     * @return
-     */
-    public static String getPath(Context context, Uri uri) {
-        String result = null;
-        String[] proj = {MediaStore.Images.Media.DATA};
-        Cursor cursor = context.getContentResolver().query(uri, proj, null, null, null);
-        if (cursor != null) {
-            if (cursor.moveToFirst()) {
-                int column_index = cursor.getColumnIndexOrThrow(proj[0]);
-                result = cursor.getString(column_index);
-            }
-            cursor.close();
-        }
-        if (result == null) {
-            result = "Not found";
-        }
-        return result;
     }
 
     public String getRealPathFromURIForGallery(Context context,Uri uri) {
@@ -570,25 +547,49 @@ public class ChatActivity extends BaseActivity implements OnMapReadyCallback {
                             end = end > encodedImage.length() ? encodedImage.length() : end;
                             Log.v("PflImageBase64Gallery", encodedImage.substring(start, end));
                         }
-                        uploadFile(PflImageUri,FrontFileName,String.valueOf(UserId));
+                        uploadFile(PflImageUri,String.valueOf(UserId));
 //                        uploadFile(PflImageUri);
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
                 }
-                break;
 
             case REQUEST_CAPTURE_IMAGE:
                 if (resultCode == RESULT_OK) {
                     if (data != null && data.getExtras() != null) {
+
                         PflImageUri = data.getData();
-//                        Log.i("PflImageUri", String.valueOf(PflImageUri));
-//                        String ProfileImagePath = getRealPathFromURIForGallery(ChatActivity.this, PflImageUri);
-//                        Log.d("PflImagePath", ProfileImagePath);
-//                        String filename = ProfileImagePath.substring(ProfileImagePath.lastIndexOf("/") + 1);
-//                        // uploadTv.setText(filename+"");
-//                        String FrontFileName = ProfileImagePath.substring(ProfileImagePath.lastIndexOf("/") + 1);
-//                        Log.i("PflFileName", FrontFileName);
+                       // Log.i("PflImageUri", String.valueOf(PflImageUri));
+                        //String ProfileImagePath = getRealPathFromURIForGallery(ChatActivity.this, PflImageUri);
+                       // Log.d("PflImagePath", ProfileImagePath);
+                      //  String filename = ProfileImagePath.substring(ProfileImagePath.lastIndexOf("/") + 1);
+                        // uploadTv.setText(filename+"");
+                        //String FrontFileName = ProfileImagePath.substring(ProfileImagePath.lastIndexOf("/") + 1);
+                       // Log.i("PflFileName", FrontFileName);
+                       /* final InputStream imageStream;
+
+                            Bitmap imageBitmap = (Bitmap) data.getExtras().get("data");
+                            String encodedImage = encodeImage(imageBitmap);
+                            SelectedImgBitmap = imageBitmap;
+                            PflImageBase64 = BitmapToBase64(imageBitmap);
+                            int maxLogSize = 1000;
+                            for (int i = 0; i <= encodedImage.length() / maxLogSize; i++) {
+                                int start = i * maxLogSize;
+                                int end = (i + 1) * maxLogSize;
+                                end = end > encodedImage.length() ? encodedImage.length() : end;
+                                //Log.v("PflImageBase64Camera", encodedImage.substring(start, end));
+                            }*/
+                        try {
+                            Bitmap photo = (Bitmap) data.getExtras().get("data");
+                            UploadCamImg(photo);
+                            //uploadFile(PflImageUri,String.valueOf(UserId));
+//                        uploadFile(PflImageUri);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        //imageView.setImageBitmap(imageBitmap);
+
+                       /* PflImageUri = data.getData();
                         Bitmap imageBitmap = (Bitmap) data.getExtras().get("data");
                         String encodedImage = encodeImage(imageBitmap);
                         SelectedImgBitmap = imageBitmap;
@@ -600,37 +601,33 @@ public class ChatActivity extends BaseActivity implements OnMapReadyCallback {
                             end = end > encodedImage.length() ? encodedImage.length() : end;
                             Log.v("PflImageBase64Camera", encodedImage.substring(start, end));
                         }
-
-                        // uploadCameraImg(data.getData(),String.valueOf(UserId));
-
                         Bitmap photo = (Bitmap) data.getExtras().get("data");
-                        UploadCamImg(photo);
-                        // uploadFile(PflImageUri,"CamImg",String.valueOf(UserId));
-
-//                        uploadFile(PflImageUri);
+                        UploadCamImg(photo);*/
                     }
                 }
-                case 101:
-                    Location = getIntent().getStringExtra("CurrentLocation");
-                    latitude = getIntent().getDoubleExtra("latitude",0.0);
-                    longitude = getIntent().getDoubleExtra("longitude",0.0);
-                    Log.i(TAG, "onCreate: Location"+Location);
-                    Log.i(TAG, "onCreate: latitude"+latitude);
-                    Log.i(TAG, "onCreate: longitude"+longitude);
-                    Map<String, String> map = new HashMap<String, String>();
-                    map.put("message", latitude+"-"+longitude);
-//            map.put("user", UserDetails.username);
-                    map.put("user", Thisusername);
-                    map.put("msg_type","3");
-                    reference1.push().setValue(map);
-                    reference2.push().setValue(map);
-                    if(FROMACTIVITY.equals("SelectCurrentLocationActivity"))
-                    {
-                        // addMessageBox("You \n" + Location, 3);
-                    }
-                    else {
+                break;
 
-                    }
+            case 101:
+                Location = getIntent().getStringExtra("CurrentLocation");
+                latitude = getIntent().getDoubleExtra("latitude",0.0);
+                longitude = getIntent().getDoubleExtra("longitude",0.0);
+                Log.i(TAG, "onCreate: Location"+Location);
+                Log.i(TAG, "onCreate: latitude"+latitude);
+                Log.i(TAG, "onCreate: longitude"+longitude);
+                Map<String, String> map = new HashMap<String, String>();
+                map.put("message", latitude+"-"+longitude);
+//            map.put("user", UserDetails.username);
+                map.put("user", Thisusername);
+                map.put("msg_type","3");
+                reference1.push().setValue(map);
+                reference2.push().setValue(map);
+                if(FROMACTIVITY.equals("SelectCurrentLocationActivity"))
+                {
+                    // addMessageBox("You \n" + Location, 3);
+                }
+                else {
+
+                }
         }
     }
 
@@ -640,20 +637,24 @@ public class ChatActivity extends BaseActivity implements OnMapReadyCallback {
         progressDialog.setTitle("Uploading");
         progressDialog.show();
 
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        photo.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        photo.compress(Bitmap.CompressFormat.JPEG, 0, bytes);
+        String path = MediaStore.Images.Media.insertImage(getContentResolver(), photo, "Title", null);
+        Uri f= Uri.parse(path);
+       // ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        //photo.compress(Bitmap.CompressFormat.PNG, 100, stream);
 
-        byte[] b = stream.toByteArray();
+       // byte[] b = stream.toByteArray();
         //  StorageReference filepath = storageReference.child(AtroadsConstant.STORAGE_PATH_UPLOADS + System.currentTimeMillis() + ".jpg");
 
         StorageReference storageReference =FirebaseStorage.getInstance().getReference().child(AtroadsConstant.STORAGE_PATH_UPLOADS + System.currentTimeMillis() + ".jpg");
         //StorageReference filePath = FirebaseStorage.getInstance().getReference().child("profile_images").child(userID);
-        storageReference.putBytes(b).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+        storageReference.putFile(f).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 progressDialog.dismiss();
                 Uri downloadUri = taskSnapshot.getUploadSessionUri();
-                Toast.makeText(ChatActivity.this, "uploaded"+downloadUri, Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(ChatActivity.this, "uploaded"+downloadUri, Toast.LENGTH_SHORT).show();
 
                 Log.i(TAG, "onSuccess: "+ taskSnapshot.getStorage().getDownloadUrl());
                 Task<Uri> urlTask = taskSnapshot.getStorage().getDownloadUrl();
@@ -704,10 +705,9 @@ public class ChatActivity extends BaseActivity implements OnMapReadyCallback {
     /**
      *
      * @param filePath
-     * @param FileName
      * @param s
      */
-    private void uploadFile(Uri filePath, String FileName, String s) {
+    private void uploadFile(Uri filePath, String s) {
         //checking if file is available
         if (filePath != null) {
             //displaying progress dialog while image is uploading
@@ -783,8 +783,7 @@ public class ChatActivity extends BaseActivity implements OnMapReadyCallback {
         }
     }
 
-    private void GetDownloadURL(Uri file)
-    {
+    private void GetDownloadURL(Uri file) {
         UploadTask uploadTask;
         final StorageReference ref = storageReference.child("images/mountains.jpg");
         uploadTask = ref.putFile(file);
@@ -795,7 +794,7 @@ public class ChatActivity extends BaseActivity implements OnMapReadyCallback {
                 if (!task.isSuccessful()) {
                     throw task.getException();
                 }
-                Log.i(TAG, "then: DownloadURL"+ ref.getDownloadUrl());
+                Log.i(TAG, "then: DownloadURL" + ref.getDownloadUrl());
                 // Continue with the task to get the download URL
                 return ref.getDownloadUrl();
             }
@@ -804,7 +803,7 @@ public class ChatActivity extends BaseActivity implements OnMapReadyCallback {
             public void onComplete(@NonNull Task<Uri> task) {
                 if (task.isSuccessful()) {
                     Uri downloadUri = task.getResult();
-                    Log.i(TAG, "onComplete: "+downloadUri);
+                    Log.i(TAG, "onComplete: " + downloadUri);
                 } else {
                     // Handle failures
                     // ...
@@ -813,152 +812,6 @@ public class ChatActivity extends BaseActivity implements OnMapReadyCallback {
         });
 
     }
-
-
-    public void uploadCameraImg(Uri ImageUri, String s)
-    {
-//        progressDialog.setMessage("Posting to blog...");
-//
-//            progressDialog.show();
-        StorageReference filepath = storageReference.child(AtroadsConstant.STORAGE_PATH_UPLOADS + System.currentTimeMillis() + ".jpg");
-
-//            filepath.putFile(ImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//                @Override
-//                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//                    Uri downloadUri = taskSnapshot.getUploadSessionUri();
-//                    Log.i(TAG, "onSuccess: downloadUri"+downloadUri);
-////                    DatabaseReference newPost = mDatabase.push();
-////                    newPost.child("title").setValue(title_val);
-////                    newPost.child("desc").setValue(desc_val);
-////                    newPost.child("image").setValue(downloadUrl.toString());
-//                    //creating the upload object to store uploaded image details
-//                    UploadImageToFBStorage upload = new UploadImageToFBStorage("FileName", taskSnapshot.getUploadSessionUri().toString(), s);
-//
-//                    //adding an upload to firebase database
-//                    String uploadId = mDatabase.push().getKey();
-//                    mDatabase.child(uploadId).setValue(upload);
-//
-////                    progressDialog.dismiss();
-//                }
-//            });
-
-
-        //adding the file to reference
-        filepath.putFile(ImageUri)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        //dismissing the progress dialog
-                        //    progressDialog.dismiss();
-
-                        //displaying success toast
-                        Toast.makeText(getApplicationContext(), "File Uploaded ", Toast.LENGTH_LONG).show();
-
-                        //creating the upload object to store uploaded image details
-                        UploadImageToFBStorage upload = new UploadImageToFBStorage("FileName", taskSnapshot.getUploadSessionUri().toString(),s);
-
-                        //adding an upload to firebase database
-                        String uploadId = mDatabase.push().getKey();
-                        mDatabase.child(uploadId).setValue(upload);
-
-                        Log.i(TAG, "onSuccess: "+ taskSnapshot.getStorage().getDownloadUrl());
-                        Task<Uri> urlTask = taskSnapshot.getStorage().getDownloadUrl();
-                        while (!urlTask.isSuccessful());
-                        Uri downloadUrl = urlTask.getResult();
-                        Log.i(TAG, "onSuccess: downloadUrl"+downloadUrl);
-                        //Adding image message
-                        Map<String, String> map = new HashMap<String, String>();
-                        map.put("message",String.valueOf(downloadUrl));
-//                        map.put("user", UserDetails.username);
-                        map.put("user", Thisusername);
-                        map.put("msg_type","5");
-                        reference1.push().setValue(map);
-                        reference2.push().setValue(map);
-
-                        GetDownloadURL(filePath);
-
-                        Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                RetrieveFile();
-                            }
-                        },10000);
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-                        progressDialog.dismiss();
-                        Toast.makeText(getApplicationContext(), exception.getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                })
-                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                        //displaying the upload progress
-                        double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
-                        progressDialog.setMessage("Uploaded " + ((int) progress) + "%...");
-
-
-                    }
-                });
-    }
-
-    public void encodeBitmapAndSaveToFirebase(Bitmap bitmap) {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
-        String imageEncoded = Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
-        DatabaseReference ref = FirebaseDatabase.getInstance()
-                .getReference(AtroadsConstant.STORAGE_PATH_UPLOADS)
-                .child(AtroadsConstant.STORAGE_PATH_UPLOADS + System.currentTimeMillis() + "." + getFileExtension(filePath));
-        ref.setValue(imageEncoded);
-
-//        //creating the upload object to store uploaded image details
-//        UploadImageToFBStorage upload = new UploadImageToFBStorage("FileName", taskSnapshot.getUploadSessionUri().toString(),s);
-//
-//        //adding an upload to firebase database
-//        String uploadId = mDatabase.push().getKey();
-//        mDatabase.child(uploadId).setValue(upload);
-
-    }
-
-    private void uploadFile(Uri mImageUri)
-    {
-        if (mImageUri != null) {
-            StorageReference fileReference = storageReference.child(System.currentTimeMillis()
-                    + "." + getFileExtension(mImageUri));
-
-            fileReference.putFile(mImageUri).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-                @Override
-                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                    if (!task.isSuccessful()) {
-                        throw task.getException();
-                    }
-                    Log.i(TAG, "then: fileReference.getDownloadUrl();"+fileReference.getDownloadUrl());
-                    // Continue with the task to get the download URL
-                    //change made here
-                    return fileReference.getDownloadUrl();
-                }
-            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-                @Override
-                public void onComplete(@NonNull Task<Uri> task) {
-                    if (task.isSuccessful()) {
-                        Uri downloadUri = task.getResult();
-                        System.out.println("Upload success: " + downloadUri);
-                    } else {
-                        // Handle failures
-                        // ...
-                    }
-                }
-            });
-
-        } else {
-            Toast.makeText(this, "No file selected", Toast.LENGTH_SHORT).show();
-        }
-
-    }
-
 
     private void RetrieveFile()
     {
@@ -1078,22 +931,7 @@ public class ChatActivity extends BaseActivity implements OnMapReadyCallback {
         }
         else if(type == 3)
         {
-//            MapView mapView = new MapView(this);
-//            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-//            lp.setMargins(180, 10, 10, 10);
-//            mapView.setLayoutParams(lp);
-//            mapView.setBackgroundResource(R.drawable.rounded_corner2);
-//            mapView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    Intent i = new Intent(ChatActivity.this,SelectCurrentLocationActivity.class);
-//                    startActivity(i);
-//                }
-//            });
-//            layout.addView(mapView);
-//            messageArea.setText("");
             ImageView button = new ImageView(ChatActivity.this);
-//            button.setText("Show Location");
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             lp.setMargins(10, 10, 10, 10);
             lp.gravity = Gravity.RIGHT;
@@ -1114,37 +952,6 @@ public class ChatActivity extends BaseActivity implements OnMapReadyCallback {
             });
             layout.addView(button);
             messageArea.setText("");
-
-//            LinearLayout dynamicContent = (LinearLayout) findViewById(R.id.locationLLayout);
-//            // assuming your Wizard content is in content_wizard.xml
-//            View wizardView = getLayoutInflater()
-//                    .inflate(R.layout.show_location_layout_left, dynamicContent, false);
-//            TextView locationTv = wizardView.findViewById(R.id.locationTv);
-//            locationTv.setText(Location+"");
-//            Button showLocationBtn = wizardView.findViewById(R.id.showLocationBtn);
-//            showLocationBtn.setText("Show Location");
-//            showLocationBtn.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    Intent i = new Intent(ChatActivity.this,SelectCurrentLocationActivity.class);
-//                    startActivity(i);
-//                }
-//            });
-//            //mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.locationMap);
-////            mapFragment = new MapFragment();
-////            mapFragment.getMapAsync(this);
-//            layout.addView(wizardView);
-// add the inflated View to the layout
-            //dynamicContent.addView(wizardView);
-
-//            TextView textView = new TextView(ChatActivity.this);
-//            textView.setText(message);
-//            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-//            lp.setMargins(10, 10, 180, 10);
-//            textView.setLayoutParams(lp);
-//            textView.setBackgroundResource(R.drawable.rounded_corner2);
-//            layout.addView(textView);
-//            messageArea.setText("");
         }
         else if(type == 4) {
             ImageView button = new ImageView(ChatActivity.this);
@@ -1171,23 +978,6 @@ public class ChatActivity extends BaseActivity implements OnMapReadyCallback {
             });
             layout.addView(button);
             messageArea.setText("");
-
-//
-//// create map
-//            MapView mapView = new MapView(this);
-//            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-//            lp.setMargins(180, 10, 10, 10);
-//            mapView.setLayoutParams(lp);
-//            mapView.setBackgroundResource(R.drawable.rounded_corner2);
-//            mapView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    Intent i = new Intent(ChatActivity.this,SelectCurrentLocationActivity.class);
-//                    startActivity(i);
-//                }
-//            });
-//            layout.addView(mapView);
-//            messageArea.setText("");
         }
         else if(type == 5) {
             ImageView imageView = new ImageView(ChatActivity.this);

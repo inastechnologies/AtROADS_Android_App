@@ -61,7 +61,7 @@ public class StartUpVPAdapter extends PagerAdapter {
         tv_slogan.setText(text[position]);
 
         Button btn_get_started= itemView.findViewById(R.id.btn_get_started);
-        if(position==1){
+        if(position==2){
             btn_get_started.setVisibility(View.VISIBLE);
         }else{
             btn_get_started.setVisibility(View.GONE);
