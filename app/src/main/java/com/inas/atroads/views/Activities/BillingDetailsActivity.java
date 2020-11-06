@@ -36,6 +36,8 @@ import com.inas.atroads.views.UI.UploadQRActivity;
 import com.inas.atroads.views.UI.YourBillScreen;
 import com.inas.atroads.views.model.DeletePairRequestModel;
 import com.inas.atroads.views.model.DeletePairResponseModel;
+import com.inas.atroads.views.model.EndRideRequestModel;
+import com.inas.atroads.views.model.EndRideResponseModel;
 import com.inas.atroads.views.model.ManualCalculationRequestModel;
 import com.inas.atroads.views.model.ManualCalculationResponseModel;
 import com.inas.atroads.views.model.MeterCalculationResponeModel;
@@ -75,6 +77,7 @@ public class BillingDetailsActivity extends AppCompatActivity implements PaytmPa
     Dialog QRDialog;
     int IdToGetYourBill;
     private Double AmountToBePaid;
+    double distance_travell,payAmount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -252,53 +255,8 @@ public class BillingDetailsActivity extends AppCompatActivity implements PaytmPa
         payNowbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(MOPType.equals("Cash"))
-                {
-                    CustomDialog(BillingDetailsActivity.this, "Ride Completed!", "Thank You for using Atroads.", "Ok", new Runnable() {
-                        @Override
-                        public void run() {
-                            Intent i = new Intent(BillingDetailsActivity.this, HomeMapsActivity.class);
-                            i.putExtra("IdToGetYourBill",idToGetYourBill);
-                            i.putExtra("payableAmount",amountToBePaid);
-                            i.putExtra("UserRideId",UserRideId);
-                            startActivity(i);
 
-                        }
-                    });
-//                    Intent i = new Intent(BillingDetailsActivity.this, YourBillScreen.class);
-
-//                    payNowbtn.setText("Submit");
-//                    if(FareType.equals("Meter"))
-//                    {
-//
-//                    }
-//                    else{
-//                        //CallDeletePairAPI();
-//                    }
-//                    CustomDialog(BillingDetailsActivity.this, "Ride Completed!", "Thank You for using Atroads.", "Ok", new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            Intent i = new Intent(BillingDetailsActivity.this, HomeMapsActivity.class);
-////                            i.putExtra("payableAmount",payableAmount.getText().toString());
-//                            startActivity(i);
-//                        }
-//                    });
-//                    payNowbtn.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View v) {
-//
-//                        }
-//                    });
-                }
-                else  if(MOPType.equals("UPI Payment")){
-                    SetQRDialog();
-//                    Intent i = new Intent(BillingDetailsActivity.this, UPIPaymentScreen.class);
-//                    startActivity(i);
-//                    finish();
-                }
-                else {
-                    PayWithPaytm();
-                }
+                callPayNowApi(amountToBePaid,idToGetYourBill);
             }
         });
     }
@@ -616,6 +574,8 @@ public class BillingDetailsActivity extends AppCompatActivity implements PaytmPa
                             payableAmount.setText(": "+mResponse.getResult().get(0).getPayableAmount());
                             AmountToBePaid = mResponse.getResult().get(0).getPayableAmount();
                             distance.setText(": "+mResponse.getResult().get(0).getDistance());
+                            payAmount=mResponse.getResult().get(0).getPayableAmount();
+                            distance_travell= mResponse.getResult().get(0).getDistance();
                             IdToGetYourBill = mResponse.getResult().get(0).getIdToGetYourBill();
                             UserRideId = mResponse.getResult().get(0).getUserRideId();
                             SetPayNowBtn(AmountToBePaid,IdToGetYourBill);
@@ -926,5 +886,90 @@ public class BillingDetailsActivity extends AppCompatActivity implements PaytmPa
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         finish();
+    }
+
+    /*
+     * callPayNow
+     * */
+    private void callPayNowApi(Double amountToBePaid, int idToGetYourBill){
+
+        JsonObject object = EndRideObject();
+        AtroadsService service = ServiceFactory.createRetrofitService(this, AtroadsService.class);
+        mSubscription = service.endPayNow(object)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<EndRideResponseModel>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            ((HttpException) e).code();
+                            ((HttpException) e).message();
+                            ((HttpException) e).response().errorBody();
+                            try {
+                                ((HttpException) e).response().errorBody().string();
+                                Log.i(TAG, "onError: "+  ((HttpException) e).response().errorBody().string());
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onNext(EndRideResponseModel mResponse) {
+                        Log.i(TAG, "EndRideResponseModel: "+mResponse);
+
+                        Toast.makeText(BillingDetailsActivity.this, mResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                        if(mResponse.getStatus() == 0)
+                        {
+                            //Toast.makeText(PairSuccessScreen.this, mResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                        else if(mResponse.getStatus() == 1)
+                        {
+
+                            if(MOPType.equals("Cash"))
+                            {
+                                CustomDialog(BillingDetailsActivity.this, "Ride Completed!", "Thank You for using Atroads.", "Ok", new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        CustomDialog(BillingDetailsActivity.this, "Dear User", "You have travelled the distance of "+""+distance_travell+  "Kms \nThe total billing of yours is Rs"+payAmount+"\n\n\nYour total bill is discounted from ATROADS.\n\n\n" +
+                                                        "\n" +
+                                                        "Thanks for using ATROADS."
+                                                , "Ok", new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        Intent i = new Intent(BillingDetailsActivity.this, HomeMapsActivity.class);
+                                                        i.putExtra("IdToGetYourBill",idToGetYourBill);
+                                                        i.putExtra("payableAmount",amountToBePaid);
+                                                        i.putExtra("UserRideId",UserRideId);
+                                                        startActivity(i);
+                                                        finish();
+
+                                                    }
+                                                });
+                                    }
+                                });
+                            }
+                            else if(MOPType.equals("UPI Payment")){
+                                SetQRDialog();
+                            }
+                            else {
+                                PayWithPaytm();
+                            }
+                        }
+                    }
+                });
+    }
+    private JsonObject EndRideObject()
+    {
+        EndRideRequestModel requestModel = new EndRideRequestModel();
+        requestModel.setUserId(UserId);
+        requestModel.setUserRideId(UserRideId);
+        // requestModel.setEnd_lat_long(newcurrentlatLngStr);
+        return new Gson().toJsonTree(requestModel).getAsJsonObject();
     }
 }

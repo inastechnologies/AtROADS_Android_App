@@ -51,6 +51,8 @@ public class GetDetailsOfRideResponseModel {
         private String mSource;
         @SerializedName("user_ride_id")
         private int user_ride_id;
+        @SerializedName("end_time")
+        private String mend_time;
 
         public String getAutoNumber() {
             return mAutoNumber;
@@ -90,6 +92,14 @@ public class GetDetailsOfRideResponseModel {
 
         public void setUser_ride_id(int user_ride_id) {
             this.user_ride_id = user_ride_id;
+        }
+
+        public String getend_time() {
+            return mend_time;
+        }
+
+        public void setend_time(String end_time) {
+            this.mend_time = end_time;
         }
     }
 

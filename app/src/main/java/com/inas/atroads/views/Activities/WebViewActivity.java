@@ -4,6 +4,8 @@ import android.graphics.Bitmap;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ProgressBar;
 
@@ -47,10 +49,18 @@ public class WebViewActivity extends BaseActivity {
         webview_data.getSettings().setAppCacheEnabled(false);
         webview_data.getSettings().setLoadWithOverviewMode(true);
         webview_data.getSettings().setUseWideViewPort(true);
-
+        webview_data.getSettings().setDomStorageEnabled(true);
+        webview_data.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+        //webview_data.getSettings().setPluginState(WebSettings.PluginState.ON);
         webview_data.clearCache(true);
         webview_data.getSettings().setAppCacheEnabled(false);
+        webview_data.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+        webview_data.getSettings().setAllowFileAccess(true);
         webview_data.setWebViewClient(new WebViewClient());
+        webview_data.setWebChromeClient(new WebChromeClient() {
+        });
+        //webView.setWebViewClient(new MyWebViewClient());
+        //webView.setWebChromeClient(new WebChromeClient());
         showProgressDialog();
         webview_data.loadUrl(url);
     }

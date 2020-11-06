@@ -61,11 +61,21 @@ public class StartUpVPAdapter extends PagerAdapter {
         tv_slogan.setText(text[position]);
 
         Button btn_get_started= itemView.findViewById(R.id.btn_get_started);
+        ImageView forward = itemView.findViewById(R.id.forward);
         if(position==2){
             btn_get_started.setVisibility(View.VISIBLE);
+            forward.setVisibility(View.GONE);
         }else{
             btn_get_started.setVisibility(View.GONE);
+            forward.setVisibility(View.GONE);
         }
+
+        forward.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
         btn_get_started.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

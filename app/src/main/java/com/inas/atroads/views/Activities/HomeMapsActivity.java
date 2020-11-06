@@ -794,12 +794,16 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 				try {
 					LatLng PinLatLong = getLocationFromAddress(HomeMapsActivity.this,PinEditText.getText().toString());
 					LatLng DropLatLong = getLocationFromAddress(HomeMapsActivity.this,DropEditText.getText().toString());
-					showProgressDialog();
-					GetRideDetailsAPI(PinEditText.getText().toString(), DropEditText.getText().toString(),PinLatLong,DropLatLong);
-				}
-				catch (Exception e)
-				{
 
+					if(PinLatLong.equals("null") || PinLatLong.equals(null) || DropLatLong.equals("null") || DropLatLong.equals(null)){
+						Toast.makeText(HomeMapsActivity.this,"Not able to fetch location, Please try again!",Toast.LENGTH_LONG).show();
+					}else {
+						showProgressDialog();
+						GetRideDetailsAPI(PinEditText.getText().toString(), DropEditText.getText().toString(), PinLatLong, DropLatLong);
+					}
+				}
+				catch (Exception e) {
+					Toast.makeText(HomeMapsActivity.this,"Not able to fetch location, Please try again!",Toast.LENGTH_LONG).show();
 				}
 				//GetRideDetailsAPI(currentLocationstart, currentLocationdrop,PinLatLong,DropLatLong);
 
@@ -1305,7 +1309,7 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 			case R.id.Covid_nav:
 				Intent covidIntent = new Intent(HomeMapsActivity.this, WebViewActivity.class);
 				covidIntent.putExtra("titile", "Covid 19");
-				covidIntent.putExtra("url", "www.atroads.com/covid19/");
+				covidIntent.putExtra("url", "http://atroads.com/covid-19/");
 				startActivity(covidIntent);
 				break;
 
@@ -2202,8 +2206,6 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 	}
 
 	/**********************************END OF PROGRESS DIALOG*************************/
-
-
 	@Override
 	public void onBackPressed() {
 		//        super.onBackPressed();
@@ -2235,7 +2237,6 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 				else{
 					try {
 						JSONObject obj = new JSONObject(s);
-
 						if(!obj.has(user)){
 							//                            Toast.makeText(HomeMapsActivity.this, "user not found", Toast.LENGTH_LONG).show();
 						}
@@ -2377,7 +2378,7 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 					@Override
 					public void onNext(PairedUserDetailsResponseModel mResponse) {
 						Log.i(TAG, "PairedUserDetailsResponseModel: "+mResponse);
-						//                        Toast.makeText(HomeMapsActivity.this, mResponse.getMessage(), Toast.LENGTH_SHORT).show();
+						Toast.makeText(HomeMapsActivity.this, mResponse.getMessage(), Toast.LENGTH_SHORT).show();
 						if(mResponse.getStatus() == 1)
 						{
 							user_ride_id = mResponse.getResult().get(0).getUser_ride_id();

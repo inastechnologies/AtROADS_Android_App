@@ -37,6 +37,7 @@
         android:requestLegacyExternalStorage="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
+        android:hardwareAccelerated="true"
         android:usesCleartextTraffic="true">
         <activity android:name=".views.Activities.WebViewActivity"></activity>
         <activity android:name=".views.Activities.StartUpActivity" />

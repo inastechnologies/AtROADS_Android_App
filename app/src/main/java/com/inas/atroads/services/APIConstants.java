@@ -50,6 +50,8 @@ public interface APIConstants {
 
     String end_ride = BASE_URL + "end_ride";
 
+    String end_pay = BASE_URL + "paynow";
+
     String find_pair = BASE_URL + "find_pair";
 
     String get_user_info = BASE_URL + "get_user_info";

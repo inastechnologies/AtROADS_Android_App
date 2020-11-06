@@ -79,6 +79,8 @@ import com.inas.atroads.views.UI.SchedulingRideScreen;
 import com.inas.atroads.views.UI.UploadQRActivity;
 import com.inas.atroads.views.model.EndRideRequestModel;
 import com.inas.atroads.views.model.EndRideResponseModel;
+import com.inas.atroads.views.model.GetDetailsOfRideRequestModel;
+import com.inas.atroads.views.model.GetDetailsOfRideResponseModel;
 import com.inas.atroads.views.model.GetUserInfoRequestModel;
 import com.inas.atroads.views.model.GetUserInfoResponseModel;
 import com.inas.atroads.views.model.OnGoingRideRequestModel;
@@ -94,6 +96,8 @@ import com.squareup.picasso.Picasso;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.adapter.rxjava.HttpException;
@@ -137,6 +141,8 @@ public class PairSuccessScreen extends BaseActivity implements OnMapReadyCallbac
     private Button emergency_Btn,callBtn;
     LinearLayout lin_shareLoc,lin_endride,lin_chat,lin_call;
     ImageView iv_ride;
+
+    private Timer myTimer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -208,6 +214,15 @@ public class PairSuccessScreen extends BaseActivity implements OnMapReadyCallbac
         SetRideButton();
         RouteSourceDestDetailsAPI();
         setChatBtn();
+
+        myTimer = new Timer();
+        myTimer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                CallDetailsOfRideAPI();
+            }
+
+        }, 0, 2000);
     }
 
     private void setChatBtn() {
@@ -328,12 +343,15 @@ public class PairSuccessScreen extends BaseActivity implements OnMapReadyCallbac
                     public void onSuccess(Location location) {
                         // Got last known location. In some rare situations this can be null.
                         if (location != null) {
+
                             // Logic to handle location object
                             String addressOfLocation = GetAddressFromLatLng(location.getLatitude(), location.getLongitude());
                             CurrentLatitude = location.getLatitude();
                             CurrentLongitude = location.getLongitude();
 //                            Bitmap bitmap = Utilities.DrawableToBitmap(PairSuccessScreen.this,R.drawable.person_30px);
 //                            SetMarkerOnMap(location.getLatitude(),location.getLongitude(),bitmap);
+                        }else{
+                            GetLastKnownLocation();
                         }
                     }
                 });
@@ -454,11 +472,16 @@ public class PairSuccessScreen extends BaseActivity implements OnMapReadyCallbac
             public void onClick(View v) {
                 if(tv_ride.getText().toString().equals("Start Ride"))
                 {
+                    showProgressDialog();
                     StartRideForPairedUserAPI(AutoNo);
                 }else {
                     DialogWithTwoButtons(PairSuccessScreen.this, "Attention!!", getString(R.string.AreYouSureToEnd), getString(R.string.Yes), new Runnable() {
                         @Override
                         public void run() {
+                            if(myTimer != null) {
+                                myTimer.cancel();
+                                myTimer = null;
+                            }
                             CallEndRideAPI();
                         }
                     }, getString(R.string.No), new Runnable() {
@@ -595,7 +618,7 @@ public class PairSuccessScreen extends BaseActivity implements OnMapReadyCallbac
             case R.id.Covid_nav:
                 Intent covidIntent = new Intent(PairSuccessScreen.this, WebViewActivity.class);
                 covidIntent.putExtra("titile", "Covid 19");
-                covidIntent.putExtra("url", "www.atroads.com/covid19/");
+                covidIntent.putExtra("url", "http://atroads.com/covid-19/");
                 startActivity(covidIntent);
                 break;
 
@@ -879,6 +902,7 @@ public class PairSuccessScreen extends BaseActivity implements OnMapReadyCallbac
                             i.putExtra("AutoNumber",mResponse.getResult().get(0).getAutoNumber());
                             i.putExtra("FareType",mResponse.getResult().get(0).getType());
                             startActivity(i);
+                            finish();
                         }
                     }
                 });
@@ -925,6 +949,7 @@ public class PairSuccessScreen extends BaseActivity implements OnMapReadyCallbac
                     @Override
                     public void onError(Throwable e) {
                         if (e instanceof HttpException) {
+                            hideProgressDialog();
                             ((HttpException) e).code();
                             ((HttpException) e).message();
                             ((HttpException) e).response().errorBody();
@@ -939,6 +964,7 @@ public class PairSuccessScreen extends BaseActivity implements OnMapReadyCallbac
 
                     @Override
                     public void onNext(StartRideForPairedUsersResponseModel mRespone) {
+                        hideProgressDialog();
                         Log.i(TAG, "StartRideForPairedUsersResponseModel: "+mRespone);
                         Toast.makeText(PairSuccessScreen.this, "Ride Started", Toast.LENGTH_SHORT).show();
                         if(mRespone.getStatus() == 1)
@@ -1285,6 +1311,7 @@ public class PairSuccessScreen extends BaseActivity implements OnMapReadyCallbac
     public void onBackPressed() {
         Intent i = new Intent(PairSuccessScreen.this, HomeMapsActivity.class);
         startActivity(i);
+        finish();
     }
 
     private void callingAPI(){
@@ -1339,6 +1366,88 @@ public class PairSuccessScreen extends BaseActivity implements OnMapReadyCallbac
         ScheduleRideNotifiyRequestModel requestModel = new ScheduleRideNotifiyRequestModel();
         requestModel.setUserId(UserId);
         requestModel.setuser_ride_id(UserRideId);
+        return new Gson().toJsonTree(requestModel).getAsJsonObject();
+    }
+
+    private void CallDetailsOfRideAPI(){
+
+        JsonObject object = GetDetailsOfRideObject();
+        AtroadsService service = ServiceFactory.createRetrofitService(this, AtroadsService.class);
+        mSubscription = service.GetDetailsOfRideResponse(object)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<GetDetailsOfRideResponseModel>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            ((HttpException) e).code();
+                            ((HttpException) e).message();
+                            ((HttpException) e).response().errorBody();
+                            try {
+                                ((HttpException) e).response().errorBody().string();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onNext(GetDetailsOfRideResponseModel mResponse) {
+
+                        if(mResponse.getStatus() == 0)
+                        {
+                            Toast.makeText(PairSuccessScreen.this, mResponse.getMessage(), Toast.LENGTH_SHORT).show();
+
+                        }
+                        else if(mResponse.getStatus() == 1)
+                        {
+                            if(mResponse.getResult().size() == 0)
+                            {
+                                /*Intent i = new Intent(PairSuccessScreen.this,BillingDetailsActivity.class);
+                                i.putExtra("UserId",UserId);
+                                i.putExtra("UserRideId",UserRideId);
+                                i.putExtra("AutoNumber",mResponse.getResult().get(0).getAutoNumber());
+                                i.putExtra("FareType",mResponse.getResult().get(0).getType());
+                                startActivity(i);*/
+
+                                if(myTimer != null) {
+                                    myTimer.cancel();
+                                    myTimer = null;
+                                }
+
+                                CallEndRideAPI();
+                            }
+                            else {
+                                if(!mResponse.getResult().get(0).getend_time().equals("") ||
+                                        !mResponse.getResult().get(0).getend_time().equals(null)){
+
+                                    if(myTimer != null) {
+                                        myTimer.cancel();
+                                        myTimer = null;
+                                    }
+                                    CallEndRideAPI();
+
+                                }
+
+                            }
+
+
+                        }
+                    }
+                });
+
+    }
+
+
+    private JsonObject GetDetailsOfRideObject()
+    {
+        GetDetailsOfRideRequestModel requestModel = new GetDetailsOfRideRequestModel();
+        requestModel.setUserRideId(UserRideId);
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
     }
 }

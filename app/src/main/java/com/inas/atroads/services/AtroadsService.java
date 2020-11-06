@@ -71,6 +71,10 @@ public interface AtroadsService
     @POST(APIConstants.end_ride)
     Observable<EndRideResponseModel> EndRideResponse(@Body JsonObject data);
 
+    // end_pay
+    @POST(APIConstants.end_pay)
+    Observable<EndRideResponseModel> endPayNow(@Body JsonObject data);
+
 
     // find_pair
     /*0- you are at farthest distance
