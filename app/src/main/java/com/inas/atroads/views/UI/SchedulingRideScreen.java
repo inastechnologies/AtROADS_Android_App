@@ -40,6 +40,8 @@ import com.inas.atroads.util.localData.FetchURL;
 import com.inas.atroads.views.Activities.HomeMapsActivity;
 import com.inas.atroads.views.model.*;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
@@ -400,6 +402,16 @@ public class SchedulingRideScreen extends BaseActivity implements GoogleApiClien
                         Log.i(TAG, "AddressComponentsResponse: "+mResponse.getResults().get(0).getFormattedAddress());
                         String formattedAddress = mResponse.getResults().get(0).getFormattedAddress();
                         Log.i(TAG, "onNext: "+formattedAddress);
+
+                        if(mResponse.getStatus().equals("OK")) {
+                            if (FromEditText.equals("HomeEditText")) {
+                                home_edit.setText(formattedAddress);
+                            }else if(FromEditText.equals("WorkEditText")) {
+                                work_edit.setText(formattedAddress);
+                            }else if(FromEditText.equals("AnotherEditText")) {
+                                another_edit.setText(formattedAddress);
+                            }
+                        }
                     }
                 });
     }
@@ -440,17 +452,75 @@ public class SchedulingRideScreen extends BaseActivity implements GoogleApiClien
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(home_edit.length()==0) {
+                if (home_edit.length() == 0) {
                     home_edit.setError("Please enter home location");
-                }
-                else if(work_edit.length()==0) {
+                } else if (work_edit.length() == 0) {
                     work_edit.setError("Please enter work location");
+                } else {
+
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
+
+                    String inTime = from_timer.getText().toString();
+                    String outTime = end_timer.getText().toString();
+
+                    if (inTime.compareTo(outTime) < 0) {
+                        // Do your staff
+                        //Log.i("app", "Date1 is before Date2");
+                        showProgressDialog();
+                        CallSchedulingRideAPI();
+                    } else {
+                        Log.i("app", "Date1 is after Date2");
+                        Toast.makeText(SchedulingRideScreen.this, "Please enter correct time", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+
+                /*String pattern = "HH:mm";
+                SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+                try {
+                    Date date1 = sdf.parse(inTime);
+                    Date date2 = sdf.parse(outTime);
+
+                       *//* if(date1.compareTo(date2)== -1){
+                            Log.d("Return","intime should be greater that outtime ");
+
+                        }else*//* if(date2.compareTo(date1) == 1){
+                            Log.d("Return","Perfect Time");
+
+                        }else{
+                            Log.d("Return","intime should be greater that outtime");
+
+                        }
+                    // Outputs -1 as date1 is before date2
+                    System.out.println("1-"+date1.compareTo(date2));
+
+                    // Outputs 1 as date1 is after date1
+                    System.out.println("2-"+date2.compareTo(date1));
+
+                    date2 = sdf.parse("19:28");
+                    // Outputs 0 as the dates are now equal
+                    System.out.println("3-"+date1.compareTo(date2));
+
+                } catch (ParseException e){
+                    // Exception handling goes here
+                }*/
+
+
+              /*  String inTime= from_timer.getText().toString();
+                String outTime= end_timer.getText().toString();
+
+                if (inTime .compareTo(outTime) > 0) {
+                    // Do your staff
+                    Log.d("Return","outTime should be greater that intime ");
                 }
-                else
+                else {
+                    Log.d("Return","intime should be greater that outtime ");
+                }*/
+                /*else
                 {
                     showProgressDialog();
 //                    Toast.makeText(SchedulingRideScreen.this,"submitted",Toast.LENGTH_SHORT).show();
                     CallSchedulingRideAPI();
+                }*/
                 }
             }
         });
@@ -474,7 +544,7 @@ public class SchedulingRideScreen extends BaseActivity implements GoogleApiClien
 //                        end_timer.setText(String.format("%02d:%02d",hour,min)+am_pm);
                         end_timer.setText(String.format("%02d:%02d",hour,min));
                     }
-                },current_hour,current_min,false);
+                },current_hour,current_min,true);
                 timePickerDialog.show();
             }
         });
@@ -498,7 +568,7 @@ public class SchedulingRideScreen extends BaseActivity implements GoogleApiClien
 
                         from_timer.setText(String.format("%02d:%02d",hour,min));
                     }
-                },current_hour,current_min,false);
+                },current_hour,current_min,true);
                 timePickerDialog.show();
             }
         });
@@ -563,6 +633,7 @@ public class SchedulingRideScreen extends BaseActivity implements GoogleApiClien
      */
     private JsonObject SchedulingRideObject()
     {
+        GetSharedPrefs();
         SchedulingRideRequestModel requestModel = new SchedulingRideRequestModel();
         requestModel.setUserId(UserId);
         requestModel.setFromTime(from_timer.getText().toString());
@@ -625,6 +696,7 @@ public class SchedulingRideScreen extends BaseActivity implements GoogleApiClien
                         if(mResponse.getStatus() == 0)
                         {
                             hideProgressDialog();
+                            Toast.makeText(SchedulingRideScreen.this, mResponse.getMessage(),Toast.LENGTH_LONG).show();
                             finish();
                         }
                         else if(mResponse.getStatus() == 1)

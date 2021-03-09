@@ -24,7 +24,7 @@
         android:gravity="center"
         android:layout_gravity="center"
         android:layout_marginTop="25dp"
-        android:text="Need Some Help?"
+        android:text="Want to hear from you!"
         app:layout_constraintTop_toBottomOf="@+id/include5"
         tools:ignore="MissingConstraints"></TextView>
 

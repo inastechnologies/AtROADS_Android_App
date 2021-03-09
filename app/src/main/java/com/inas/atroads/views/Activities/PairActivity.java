@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Criteria;
@@ -61,6 +62,7 @@ import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.inas.atroads.R;
+import com.inas.atroads.services.APIConstants;
 import com.inas.atroads.services.CustomApplication;
 import com.inas.atroads.services.ServiceFactory;
 import com.inas.atroads.services.AtroadsService;
@@ -75,10 +77,14 @@ import com.inas.atroads.views.model.CancelRideDetailsRequestModel;
 import com.inas.atroads.views.model.CancelRideDetailsResponseModel;
 import com.inas.atroads.views.model.DeletePairRequestModel;
 import com.inas.atroads.views.model.DeletePairResponseModel;
+import com.inas.atroads.views.model.EditUserInfoRequestModel;
+import com.inas.atroads.views.model.EditUserInfoResponseModel;
 import com.inas.atroads.views.model.FindPairRequestModel;
 import com.inas.atroads.views.model.FindPairResponseModel;
 import com.inas.atroads.views.model.GetDetailsOfRideRequestModel;
 import com.inas.atroads.views.model.GetDetailsOfRideResponseModel;
+import com.inas.atroads.views.model.GetUserInfoRequestModel;
+import com.inas.atroads.views.model.GetUserInfoResponseModel;
 import com.inas.atroads.views.model.PairedUserDetailsRequestModel;
 import com.inas.atroads.views.model.PairedUserDetailsResponseModel;
 import com.inas.atroads.views.model.SuggestionsListModel;
@@ -573,18 +579,8 @@ public class PairActivity extends BaseActivity implements OnMapReadyCallback,
                     @Override
                     public void onNext(FindPairResponseModel mResponse) {
                         Log.i(TAG, "FindPairResponse: "+mResponse);
-
-                        // Toast.makeText(PairActivity.this, mResponse.getMessage(), Toast.LENGTH_SHORT).show();
                         if(mResponse.getStatus() == 0)
                         {
-//                            if(mResponse.getMessage().equals("Unable to find a pair\nPlease try again"))
-//                            {
-////                                if()
-//                            }
-//                            else {
-//
-//                            }
-
                             CustomDialog(PairActivity.this, getString(R.string.Sorry),getString(R.string.UnableToFindPairMsg),
                                     getString(R.string.Change), getString(R.string.Continue), new Runnable() {
                                         @Override
@@ -683,6 +679,20 @@ public class PairActivity extends BaseActivity implements OnMapReadyCallback,
                                  */
                                 CheckRideInitializer(ride_initiater_id,userOneId,userTwoId,mResponse);
                             }
+
+                        }else if(mResponse.getStatus() == 2){
+                            DialogWithTwoButtons(PairActivity.this, getString(R.string.AcceptOtherGender), getString(R.string.TravelWithOtherGender), getString(R.string.Yes), new Runnable() {
+                                @Override
+                                public void run() {
+                                    CallGetUserInfoAPI();
+                                }
+                            }, getString(R.string.No), new Runnable() {
+                                @Override
+                                public void run() {
+                                    //CallGetUserInfoAPI();
+                                }
+                            });
+
 
                         }
                     }
@@ -1568,4 +1578,199 @@ public class PairActivity extends BaseActivity implements OnMapReadyCallback,
     public void setSuggestionsListModelList(List<SuggestionsListModel> suggestionsListModelList) {
         this.suggestionsListModelList = suggestionsListModelList;
     }
+
+
+    public static void DialogWithTwoButtons(Context context, String Title, String Msg, String ButtonName, final Runnable runnable,String secondButtonName, final Runnable secondRunnable)
+    {
+        final Dialog dialog = new Dialog(context);
+        dialog.setContentView(R.layout.dialog_with_2buttons);
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.show();
+        TextView title = (TextView) dialog.findViewById(R.id.TimeTv);
+        title.setText(Title);
+        if(title.getText().toString().equals(""))
+        {
+            title.setBackgroundColor(Color.WHITE);
+        }
+        TextView msg = (TextView) dialog.findViewById(R.id.DescTv);
+        msg.setText(Msg);
+        Button okBtn = (Button) dialog.findViewById(R.id.okBtn);
+        okBtn.setText(ButtonName);
+        // if ok button is clicked, close the custom dialog
+        okBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                runnable.run();
+
+            }
+        });
+
+        Button cancelBtn = (Button) dialog.findViewById(R.id.cancelBtn);
+        cancelBtn.setText(secondButtonName);
+        // if decline button is clicked, close the custom dialog
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                secondRunnable.run();
+            }
+        });
+    }
+
+    /*
+     * CallEditUserInfoAPI
+     * */
+    private void CallEditUserInfoAPI(String ProfilePic,String name,String email,String selectedRadio){
+
+        JsonObject object = EditUserInfoObject(ProfilePic, name, email, selectedRadio);
+        AtroadsService service = ServiceFactory.createRetrofitService(this, AtroadsService.class);
+        mSubscription = service.EditUserInfoResponse(object)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<EditUserInfoResponseModel>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            ((HttpException) e).code();
+                            ((HttpException) e).message();
+                            ((HttpException) e).response().errorBody();
+                            try {
+                                ((HttpException) e).response().errorBody().string();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onNext(EditUserInfoResponseModel mResponse) {
+                        Log.i(TAG, "EditUserInfoResponseModel: "+mResponse);
+
+                        // Toast.makeText(PairActivity.this, mResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                        if(mResponse.getStatus() == 0)
+                        {
+                            Toast.makeText(PairActivity.this, mResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                        else if(mResponse.getStatus() == 1)
+                        {
+                            Toast.makeText(PairActivity.this, mResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                            finish();
+                            //  LoadImageFromUrl(EditProfileScreen.this, APIConstants.IMAGE_URL+pflPic,profile_image);
+                        }
+                    }
+                });
+
+    }
+
+
+    private JsonObject EditUserInfoObject(String ProfilePic,String name,String email,String selectedRadio)
+    {
+        EditUserInfoRequestModel requestModel = new EditUserInfoRequestModel();
+        requestModel.setUserId(UserId);
+        requestModel.setProfilePic(ProfilePic);
+        requestModel.setName(name);
+        requestModel.setEmailId(email);
+        requestModel.setAcceptingOtherGender(selectedRadio);
+        return new Gson().toJsonTree(requestModel).getAsJsonObject();
+    }
+
+    private JsonObject GetUserInfoObject()
+    {
+        GetUserInfoRequestModel requestModel = new GetUserInfoRequestModel();
+        requestModel.setUserId(UserId);
+        return new Gson().toJsonTree(requestModel).getAsJsonObject();
+    }
+    private void CallGetUserInfoAPI(){
+
+        JsonObject object = GetUserInfoObject();
+        AtroadsService service = ServiceFactory.createRetrofitService(this, AtroadsService.class);
+        mSubscription = service.GetUserInfoResponse(object)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<GetUserInfoResponseModel>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            ((HttpException) e).code();
+                            ((HttpException) e).message();
+                            ((HttpException) e).response().errorBody();
+                            try {
+                                ((HttpException) e).response().errorBody().string();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onNext(GetUserInfoResponseModel mResponse) {
+                        Log.i(TAG, "GetUserInfoResponse: "+mResponse);
+
+                        // Toast.makeText(PairActivity.this, mResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                        if(mResponse.getStatus() == 0)
+                        {
+                            Toast.makeText(PairActivity.this, mResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                        else if(mResponse.getStatus() == 1)
+                        {
+                            String username = mResponse.getResult().get(0).getName();
+                            String mobileNo = mResponse.getResult().get(0).getMobileNumber();
+                            String emailId = mResponse.getResult().get(0).getEmailId();
+                            String pflPic = mResponse.getResult().get(0).getProfilePic();
+                            String refferalCode= mResponse.getResult().get(0).getreferralcode();
+                            int coins= mResponse.getResult().get(0).getCoins();
+                            SharedPreferences pref = getApplicationContext().getSharedPreferences("RegPref", 0); // 0 - for private mode
+                            SharedPreferences.Editor editor = pref.edit();
+                            editor.putInt("coins", coins);
+                            editor.putString("refferalCode", refferalCode);
+                            editor.commit();
+                            Log.i(TAG, "pflpic url: "+ APIConstants.IMAGE_URL+pflPic);
+                            String accepting_other_gender = mResponse.getResult().get(0).getAcceptingOtherGender();
+
+                            SharedPreferences pref1 = getApplicationContext().getSharedPreferences("USERnMAE", 0); // 0 - for private mode
+                            SharedPreferences.Editor editor1 = pref1.edit();
+                            editor1.putString("USER_HEAD_NAME", username);
+                            editor1.commit();
+
+
+                            SharedPreferences prefq = getApplicationContext().getSharedPreferences("USERnMAE", 0); // 0 - for private mode
+                            String headNmae = prefq.getString("USER_HEAD_NAME","");
+
+                            if(headNmae.equals("")){
+                                toolbar.setTitle("Hey ");
+                            }else {
+                                toolbar.setTitle("Hey " + headNmae+" !");
+                            }
+                            if(accepting_other_gender.equals(""))
+                            {
+                                DialogWithTwoButtons(PairActivity.this, getString(R.string.AcceptOtherGender), getString(R.string.TravelWithOtherGender), getString(R.string.Yes), new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        CallEditUserInfoAPI(pflPic,username,emailId,"yes");
+                                    }
+                                }, getString(R.string.No), new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        CallEditUserInfoAPI(pflPic,username,emailId,"no");
+                                    }
+                                });
+                            }
+                            Log.i(TAG, "onNext: "+username + "->"+mobileNo+"=>"+Email);
+                        }
+                    }
+                });
+
+    }
+
 }

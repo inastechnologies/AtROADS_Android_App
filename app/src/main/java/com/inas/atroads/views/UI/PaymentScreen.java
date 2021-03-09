@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +22,7 @@ import com.inas.atroads.views.Activities.HomeMapsActivity;
 public class PaymentScreen extends AppCompatActivity {
     private static final String TAG = "PaymentScreen" ;
     TextView payableAmountTv;
+    EditText payableAmounted;
     private int IdToGetYourBill,UserRideId;
     private Button payBtn;
     String UPICODE;
@@ -34,14 +36,21 @@ public class PaymentScreen extends AppCompatActivity {
         toolbar.setTitle(getString(R.string.Payment));
         setSupportActionBar(toolbar);
         payableAmountTv = findViewById(R.id.payableAmountTv);
+        payableAmounted = findViewById(R.id.payableAmounted);
         payableAmount = getIntent().getDoubleExtra("PayableAmount",0.0);
         IdToGetYourBill = getIntent().getIntExtra("IdToGetYourBill",0);
         UserRideId = getIntent().getIntExtra("UserRideId",0);
-        Log.i(TAG, "onCreate: "+ IdToGetYourBill + "-->"+UserRideId+"-->"+payableAmount);
-        payableAmountTv.setText("Rs. "+payableAmount);
         UPICODE = getIntent().getStringExtra("UPICODE");
-//        String UPI = "upi://pay?pa="+UPIAddressET.getText().toString()+"&pn="+nameET.getText().toString()+"&cu=INR&mode=02&purpose=00&orgid=189999&sign=MEYCIQDB+O7tRFKR3SUqaRa0Aceso4JS0gFFoD0vOrlj9hXufwIhALS/PYxogO38MXe2/SPv3w76FLdzTJ0DC8amenw5jw46";
         SetPayBtn();
+
+        if(payableAmount.equals(0.0) || payableAmount.equals(null)){
+            payableAmounted.setVisibility(View.VISIBLE);
+            payableAmountTv.setVisibility(View.GONE);
+        }else{
+            payableAmounted.setVisibility(View.GONE);
+            payableAmountTv.setVisibility(View.VISIBLE);
+            payableAmountTv.setText("Rs. "+payableAmount);
+        }
 
 
     }
@@ -53,12 +62,44 @@ public class PaymentScreen extends AppCompatActivity {
         payBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-//                intent.setData(Uri.parse("upi://pay?pa=7026562080@upi&pn=SUSHMA%20GARELA&cu=INR&mode=02&purpose=00&orgid=189999&sign=MEUCIQD/VLGj1RKjIcISGrDOUdBD3Q/58qhfcrn5SKkVGooa+wIgVYgcYO/4KY4ve8OjEnK3z4CRTDmj16ResO4DmjGed2c="));
-//                intent.setData(Uri.parse("upi://pay?pa=7026562080@upi&pn=SUSHMA&cu=INR&mode=02&purpose=00&orgid=189999&sign=MEUCIQD/VLGj1RKjIcISGrDOUdBD3Q/58qhfcrn5SKkVGooa+wIgVYgcYO/4KY4ve8OjEnK3z4CRTDmj16ResO4DmjGed2c="));
+                UPICODE=UPICODE+"&am="+payableAmounted.getText().toString()+"&tn=";
+
+                Log.d("UPICODE-",UPICODE);
+/*
+                Uri uri = Uri.parse("upi://pay").buildUpon()
+                        .appendQueryParameter("pa", upiId)
+                        .appendQueryParameter("pn", name)
+                        .appendQueryParameter("tn", note)
+                        .appendQueryParameter("am", amount)
+                        .appendQueryParameter("cu", "INR")
+                        .build();
+
+
+                Intent upiPayIntent = new Intent(Intent.ACTION_VIEW);
+                upiPayIntent.setData(uri);
+
+                // will always show a dialog to user to choose an app
+                Intent chooser = Intent.createChooser(upiPayIntent, "Pay with");
+
+                // check if intent resolves
+                if(null != chooser.resolveActivity(getPackageManager())) {
+                    startActivityForResult(chooser, UPI_PAYMENT);
+                } else {
+                    Toast.makeText(this,"No UPI app found, please install one to continue",Toast.LENGTH_SHORT).show();
+                }*/
+
+              /*  Uri uri = Uri.parse("upi://pay").buildUpon()
+                        .appendQueryParameter("pa", "vkn2601@okicici")
+                        .appendQueryParameter("pn", "vijay%20naidu")
+                        .appendQueryParameter("tn", "")
+                        .appendQueryParameter("am", "10")
+                        .appendQueryParameter("cu", "INR")
+                        .build();*/
+
+                Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse(UPICODE));
                 Intent chooser = Intent.createChooser(intent, "Pay with...");
-                startActivityForResult(chooser, 1, null);
+                startActivityForResult(chooser, 1);
             }
         });
     }

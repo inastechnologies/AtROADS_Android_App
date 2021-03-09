@@ -8,7 +8,7 @@ public interface APIConstants {
     String BASE_URL = "http://13.235.235.58:5005/atroads/";
 
    // String IMAGE_URL = "http://18.138.154.234/ATROADS/";
-    String IMAGE_URL = "http://13.235.235.58/ATROADS/";
+    String IMAGE_URL = "http://13.235.235.58/ATROADS";
 
     //Login
     String LOGINPage = BASE_URL + "login";
@@ -63,6 +63,8 @@ public interface APIConstants {
     String upload_photo = BASE_URL + "upload_photo";
 
     String help = BASE_URL + "help";
+
+   String sendSMS = BASE_URL + "send_message";
 
     String get_details_of_ride = BASE_URL + "get_details_of_ride";
 
@@ -122,7 +124,7 @@ public interface APIConstants {
 
     String delete_request = BASE_URL + "delete_request";
 
-    String qrcode_upload = BASE_URL + "qrcode_upload";
+    String qrcode_upload = BASE_URL + "qrcode_uploads";
 
     String get_scheduling_ride = BASE_URL + "get_scheduling_ride";
 
@@ -132,6 +134,9 @@ public interface APIConstants {
 
     // Edit Emergency Contacts
     String edit_emergency_contacts = BASE_URL + "edit_emergency_contacts";
+
+    // Edit Emergency Contacts
+    String delete_emergency_contacts = BASE_URL + "remove_emergency_contacts";
 
     //Add Emergency Contacts
     String emergency_contacts = BASE_URL + "emergency_contacts";

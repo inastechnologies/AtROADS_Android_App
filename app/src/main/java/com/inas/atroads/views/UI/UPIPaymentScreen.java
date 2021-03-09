@@ -23,9 +23,7 @@ import com.google.zxing.integration.android.IntentResult;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.inas.atroads.R;
 import com.inas.atroads.views.Activities.HomeMapsActivity;
-import com.shreyaspatil.EasyUpiPayment.EasyUpiPayment;
-import com.shreyaspatil.EasyUpiPayment.listener.PaymentStatusListener;
-import com.shreyaspatil.EasyUpiPayment.model.TransactionDetails;
+
 
 public class UPIPaymentScreen extends AppCompatActivity {
     private static final String TAG = "UPIPaymentScreen" + "";
@@ -124,10 +122,21 @@ public class UPIPaymentScreen extends AppCompatActivity {
             {
                 IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
                 String UPCScanned = scanResult.getContents();
-                Toast.makeText(this, ""+UPCScanned, Toast.LENGTH_SHORT).show();
-                Log.i(TAG, "onActivityResult: "+UPCScanned);
+                String ScannedQRDetails="",newStr="";
+                if (UPCScanned.contains("upi://pay?pa")) {
+                    String appendStr = "&cu=INR";
+                    //mode=02&purpose=00&orgid=189999&sign=MEUCIQD/VLGj1RKjIcISGrDOUdBD3Q/58qhfcrn5SKkVGooa+wIgVYgcYO/4KY4ve8OjEnK3z4CRTDmj16ResO4DmjGed2c=";
+                    if (UPCScanned.contains("aid")) {
+                        newStr = UPCScanned.substring(0, UPCScanned.indexOf("&aid="));
+                        ScannedQRDetails = newStr + appendStr;
+                    } else {
+                        ScannedQRDetails = UPCScanned;
+                    }
+                }
+
                 Intent i = new Intent(UPIPaymentScreen.this,PaymentScreen.class);
-                i.putExtra("UPICODE",UPCScanned);
+                i.putExtra("PayableAmount", 0.0);
+                i.putExtra("UPICODE",ScannedQRDetails);
                 startActivity(i);
             }
         }

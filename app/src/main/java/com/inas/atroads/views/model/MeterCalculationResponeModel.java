@@ -52,6 +52,17 @@ public class MeterCalculationResponeModel {
         private int mUserRideId;
         @SerializedName("id")
         private int IdToGetYourBill;
+        @SerializedName("distance")
+        private Double mDistance;
+
+        public Double getDistance() {
+            return mDistance;
+        }
+
+        public void setDistance(Double distance) {
+            mDistance = distance;
+        }
+
 
         public String getAutoNumber() {
             return mAutoNumber;

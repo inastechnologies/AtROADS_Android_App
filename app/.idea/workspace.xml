@@ -11,47 +11,96 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4992d4a4-0fd7-4355-a457-1a383d56e656" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_tasks_17_0_2_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_sendbird_sdk_sendbird_android_sdk_3_0_149_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_conscrypt_conscrypt_android_2_2_1_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/auto_ride.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/ic_arrow_forward_black_24dp.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/intro_1.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_annotation_annotation_1_2_0_rc01_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_5_0_beta02_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_ktx_1_5_0_beta02_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_material_material_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_1_4_30_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_common_1_4_30_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/model/DeleteEmergContRequestModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/model/PayloadModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/model/SMSRequestModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/drawable-v24/round_rect_black_button_bg.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/auto_ride.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/flag.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/ic_file_upload_black_24dp.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/intro_1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/intro_3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/upi_on_boarding_bg_four.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/upi_on_boarding_bg_two.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/menu/qr_screen.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle___razorpay_android_3_8_10__jar.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_annotation_annotation_1_2_0_alpha01_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_coordinatorlayout_coordinatorlayout_1_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_coordinatorlayout_coordinatorlayout_1_0_0_aar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_5_0_alpha04_aar.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_ktx_1_5_0_alpha04_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_ads_identifier_17_0_0_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_base_17_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_base_17_2_1_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_basement_17_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_basement_17_2_1_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_base_17_3_0_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_impl_17_3_0_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_sdk_api_17_3_0_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_tasks_17_0_0_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_libraries_places_places_2_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_libraries_places_places_2_4_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_iid_20_1_5_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_transition_transition_1_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_transition_transition_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_versionedparcelable_versionedparcelable_1_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_versionedparcelable_versionedparcelable_1_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_viewpager2_viewpager2_1_0_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_gratusik_AGIKSwipeButton_1_0_1_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_stfalcon_swipeable_button_0_1_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_material_material_1_1_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_sendbird_sdk_sendbird_android_sdk_3_0_149_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_shreyaspatil_EasyUpiPayment_2_1_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_conscrypt_conscrypt_android_2_2_1_aar.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_1_4_0_jar.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_common_1_4_0_jar.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proguard-rules.pro" beforeDir="false" afterPath="$PROJECT_DIR$/proguard-rules.pro" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/debug/res/values/google_maps_api.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/debug/res/values/google_maps_api.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/release/app-dev-release.apk" beforeDir="false" afterPath="$PROJECT_DIR$/dev/release/app-dev-release.apk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/release/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/dev/release/output.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/inas/atroads/notifications/FCMService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/inas/atroads/notifications/FCMService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/inas/atroads/services/APIConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/inas/atroads/services/APIConstants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/inas/atroads/services/AtroadsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/inas/atroads/services/AtroadsService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/BillingDetailsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/BillingDetailsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/ChatActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/ChatActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/EditProfileScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/EditProfileScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HelpActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HelpActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/PairActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/PairActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/PairSuccessScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/PairSuccessScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/ReferEarnActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/ReferEarnActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/StartUpActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/StartUpActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/WebViewActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/WebViewActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/GetUserDetailsScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/GetUserDetailsScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/MobileNumberRegisterScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/MobileNumberRegisterScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/OtpActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/OtpActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/PaymentScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/PaymentScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/SOSActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/SOSActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/SchedulingRideScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/SchedulingRideScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/SpalshScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/SpalshScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UPIPaymentScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UPIPaymentScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/adapter/StartUpVPAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/adapter/StartUpVPAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/model/GetDetailsOfRideResponseModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/model/GetDetailsOfRideResponseModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/auto_ride.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/intro_1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/adapter/ViewContactsAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/adapter/ViewContactsAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/model/GetUserDetailsRequestModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/model/GetUserDetailsRequestModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/model/MeterCalculationResponeModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/model/MeterCalculationResponeModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/auto_ride.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/ic_date_range_black_24dp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/drawable/ic_date_range_black_24dp.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/intro_1.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/round_rect_for_otp_screen.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/drawable/round_rect_for_otp_screen.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/upi_onboarding_pic5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_chat.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_chat.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_edit_profile_screen.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_edit_profile_screen.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_get_user_details_screen.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_get_user_details_screen.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_help.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_help.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_home_maps.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_home_maps.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_mobile_number_register_screen.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_mobile_number_register_screen.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_otp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_otp.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_payment_screen.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_payment_screen.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_s_o_s.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_s_o_s.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_scheduling_ride_screen.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_scheduling_ride_screen.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_start_up.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_start_up.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_startup_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_startup_item.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_upload_q_r.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_upload_q_r.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/adapter_view_contacts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/adapter_view_contacts.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/menu/activity_main_drawer.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/menu/activity_main_drawer.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/navigation/mobile_navigation.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/navigation/mobile_navigation.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/release/res/values/google_maps_api.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/release/res/values/google_maps_api.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -62,6 +111,7 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="34449356e5c7" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -79,112 +129,76 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/PairSuccessScreen.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2351">
-              <caret line="1103" column="69" selection-start-line="1103" selection-start-column="69" selection-end-line="1103" selection-end-column="69" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/BillingDetailsActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="12937">
-              <caret line="821" column="11" selection-start-line="821" selection-start-column="11" selection-end-line="821" selection-end-column="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/PairActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1615">
-              <caret line="189" column="31" selection-start-line="189" selection-start-column="31" selection-end-line="189" selection-end-column="31" />
+            <state relative-caret-position="978">
+              <caret line="916" column="37" selection-start-line="916" selection-start-column="37" selection-end-line="916" selection-end-column="37" />
               <folding>
-                <element signature="e#7832#7833#0" expanded="true" />
+                <element signature="e#3841#3842#0" expanded="true" />
+                <element signature="e#3888#3889#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java">
+        <entry file="file://$PROJECT_DIR$/../build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34629">
-              <caret line="2207" column="87" selection-start-line="2207" selection-start-column="87" selection-end-line="2207" selection-end-column="87" />
-              <folding>
-                <element signature="e#24493#24494#0" expanded="true" />
-                <element signature="e#24532#24533#0" expanded="true" />
-                <element signature="e#79609#79610#0" expanded="true" />
-                <element signature="e#79628#79629#0" expanded="true" />
-              </folding>
-            </state>
+            <state relative-caret-position="-284" />
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/services/AtroadsService.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1666">
-              <caret line="105" column="37" selection-start-line="105" selection-start-column="37" selection-end-line="105" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/services/APIConstants.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1190">
-              <caret line="70" column="11" selection-start-line="70" selection-start-column="11" selection-end-line="70" selection-end-column="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.appcompat/appcompat/1.1.0/9865019bbd2d95e41dede3d8ebf964aa93f97766/appcompat-1.1.0-sources.jar!/androidx/appcompat/app/AppCompatActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="47" selection-start-line="47" selection-end-line="47" />
+            <state relative-caret-position="340">
+              <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>rideButton</find>
-      <find>shareBtn</find>
-      <find>REQUEST_CAPTURE_IMAGE</find>
-      <find>filePro</find>
-      <find>FirebaseStorage</find>
-      <find>GetDownloadURL</find>
-      <find>SharedPreferences</find>
-      <find>lin_call</find>
-      <find>callBtn</find>
-      <find>callingAPI</find>
-      <find>calling</find>
-      <find>sin</find>
-      <find>get_details</find>
-      <find>Pin_autocomplete_fragment</find>
-      <find>PinEditText</find>
-      <find>AutocompleteSupportFragment</find>
-      <find>Places.initialize</find>
-      <find>places:places</find>
-      <find>onbac</find>
-      <find>BillingDetailsActivity</find>
-      <find>startActivity</find>
-      <find>distanceTv</find>
-      <find>distance</find>
-      <find>Intent</find>
-      <find>covid</find>
+      <find>share</find>
+      <find>sos_msg</find>
+      <find>initGAPIClient</find>
+      <find>timePickerDialog</find>
+      <find>MobileEt</find>
+      <find>UserId</find>
+      <find>PflImageUri</find>
+      <find>PflImageBase64</find>
+      <find>qrIV</find>
+      <find>parseActivityResult</find>
+      <find>RESULT_CANCELED</find>
+      <find>embedded</find>
+      <find>IntentIntegrator</find>
+      <find>intent</find>
+      <find>MESSAGING_EVENT</find>
+      <find>payNowbtn</find>
+      <find>end</find>
+      <find>FCM_Payload</find>
       <find>ridenowBtn</find>
-      <find>paynow</find>
-      <find>CallEndRideAPI</find>
-      <find>find_pair</find>
-      <find>GetLastKnownLocation</find>
+      <find>selectedGender</find>
+      <find>RegisterStatus</find>
+      <find>btn_view_contacts</find>
+      <find>finish</find>
+      <find>contactsList</find>
+      <find>pflPicFromDB</find>
+      <find>mp</find>
+      <find>mp.stop</find>
+      <find>btn_sos</find>
+      <find>pflPic</find>
+      <find>totalfare</find>
     </findStrings>
   </component>
   <component name="GenerateSignedApkSettings">
@@ -202,61 +216,64 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/res/layout/activity_start_up.xml" />
-        <option value="$PROJECT_DIR$/src/main/res/drawable/upi_ic_faq_hamburger.xml" />
-        <option value="$PROJECT_DIR$/src/main/res/layout/activity_refer_earn.xml" />
-        <option value="$PROJECT_DIR$/src/main/res/layout/nav_header_gmaps_screen.xml" />
-        <option value="$PROJECT_DIR$/src/main/res/layout/activity_web_view.xml" />
-        <option value="$PROJECT_DIR$/src/main/res/layout/activity_spalsh_screen.xml" />
-        <option value="$PROJECT_DIR$/src/main/res/layout/activity_s_o_s.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/SOSActivity.java" />
-        <option value="$PROJECT_DIR$/build/generated/res/google-services/dev/debug/values/values.xml" />
-        <option value="$PROJECT_DIR$/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/src/main/res/layout/activity_scheduling_ride_screen.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/model/SchedulingRideRequestModel.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/util/Utilities.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/model/GetSchedulingRideResponseModel.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/SchedulingRideScreen.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/EditProfileScreen.java" />
-        <option value="$PROJECT_DIR$/src/main/res/menu/activity_main_drawer.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java" />
-        <option value="$PROJECT_DIR$/src/main/res/layout/activity_upload_q_r.xml" />
-        <option value="$PROJECT_DIR$/src/main/res/layout/activity_mobile_number_register_screen.xml" />
-        <option value="$PROJECT_DIR$/src/main/res/layout/popup.xml" />
-        <option value="$PROJECT_DIR$/src/main/res/drawable/radio_flat_regular.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/VoiceCallActivity.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/SinchService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/BaseActivity.java" />
-        <option value="$PROJECT_DIR$/src/main/res/navigation/mobile_navigation.xml" />
-        <option value="$PROJECT_DIR$/src/main/res/layout/dialog_with_imageview.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/ChatActivity.java" />
-        <option value="$PROJECT_DIR$/src/main/res/layout/activity_pair_success_screen.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/notifications/FCMService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/adapter/ViewContactsAdapter.java" />
-        <option value="$PROJECT_DIR$/proguard-rules.pro" />
-        <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/SpalshScreen.java" />
+        <option value="$PROJECT_DIR$/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/activity_payment_screen.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/navigation/mobile_navigation.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/model/MeterCalculationResponeModel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/model/SMSRequestModel.java" />
         <option value="$PROJECT_DIR$/src/main/res/layout/activity_home_maps.xml" />
-        <option value="$PROJECT_DIR$/src/debug/res/values/google_maps_api.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/model/GetDetailsOfRideResponseModel.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/StartUpActivity.java" />
-        <option value="$PROJECT_DIR$/src/main/res/layout/activity_startup_item.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/adapter/StartUpVPAdapter.java" />
-        <option value="$PROJECT_DIR$/build.gradle" />
-        <option value="$PROJECT_DIR$/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/WebViewActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/PairActivity.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/services/APIConstants.java" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/activity_show_q_r.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/model/DeleteEmergencyRequestModel.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/services/AtroadsService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/BillingDetailsActivity.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/model/DeleteEmergContRequestModel.java" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/adapter_view_contacts.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/drawable-v24/round_rect_black_button_bg.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/ReferEarnActivity.java" />
+        <option value="$PROJECT_DIR$/src/main/res/drawable/round_rect_for_otp_screen.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/activity_otp.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/OtpActivity.java" />
+        <option value="$PROJECT_DIR$/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/MobileNumberRegisterScreen.java" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/activity_edit_profile_screen.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/activity_get_user_details_screen.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/model/GetUserDetailsRequestModel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/GetUserDetailsScreen.java" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/activity_upload_q_r.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/SchedulingRideScreen.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/SpalshScreen.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UPIPaymentScreen.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/PaymentScreen.java" />
+        <option value="$PROJECT_DIR$/src/main/res/drawable/ic_date_range_black_24dp.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/activity_scheduling_ride_screen.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/activity_startup_item.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/activity_start_up.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/adapter/StartUpVPAdapter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/StartUpActivity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/model/PayloadModel.java" />
+        <option value="$PROJECT_DIR$/src/main/res/menu/activity_main_drawer.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/activity_help.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HelpActivity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/notifications/FCMService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/PairSuccessScreen.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/BillingDetailsActivity.java" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/activity_s_o_s.xml" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/activity_mobile_number_register_screen.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/adapter/ViewContactsAdapter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/services/APIConstants.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/EditProfileScreen.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/SOSActivity.java" />
+        <option value="$PROJECT_DIR$/build.gradle" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="-12" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-11" />
     <option name="width" value="1938" />
-    <option name="height" value="1029" />
+    <option name="height" value="1031" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -266,19 +283,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="AndroidView">
-        <subPane>
-          <expand>
-            <path>
-              <item name="app" type="1abcf292:AndroidViewProjectNode" />
-              <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -295,28 +299,103 @@
               <item name="app" type="b2602c69:ProjectViewProjectNode" />
               <item name="AtROADS_Android_App" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="libs" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AtROADS_Android_App" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="release" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AtROADS_Android_App" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="release" type="462c0819:PsiDirectoryNode" />
+              <item name="res" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AtROADS_Android_App" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="release" type="462c0819:PsiDirectoryNode" />
+              <item name="res" type="462c0819:PsiDirectoryNode" />
+              <item name="values" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="AndroidView">
+        <subPane>
+          <expand>
+            <path>
+              <item name="app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+            </path>
+            <path>
+              <item name="app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+            </path>
+            <path>
+              <item name="app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="atroads" type="cbb59c9e:AndroidPsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="atroads" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="atroads" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="Activities" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="atroads" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="UI" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="AnalyzeApkAction.lastApkPath" value="$PROJECT_DIR$/dev/release/app-dev-release.apk" />
-    <property name="DEBUGGABLE_DEVICE" value="samsung-sm_m205f-3401f9cc7c0b2681" />
+    <property name="DEBUGGABLE_DEVICE" value="xiaomi-mi_a3-34449356e5c7" />
     <property name="DEBUGGABLE_PROCESS" value="com.inas.atroads" />
     <property name="DEBUGGER_ID" value="Auto" />
     <property name="ExportApk.ApkPath" value="D:\AndroidProject\Atroads\AtROADS_Android_App\app" />
-    <property name="ExportApk.BuildVariants" value="devDebug" />
+    <property name="ExportApk.BuildVariants" value="devRelease" />
     <property name="ExportApk.SignV1" value="true" />
     <property name="ExportApk.SignV2" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SHOW_ALL_PROCESSES" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/res/drawable" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/dev/debug/app-dev-debug.apk" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/res/drawable" />
     <property name="not.eligible.for.single.variant.sync" value="true" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
@@ -325,13 +404,15 @@
       <recent name="com.inas.atroads.views.Activities" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.inas.atroads.views.model" />
       <recent name="com.inas.atroads.views.adapter" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\AndroidProject\Atroads\AtROADS_Android_App\app\src\main\res\drawable" />
+      <recent name="D:\AndroidProject\Atroads\AtROADS_Android_App\app\src\main\res\drawable-v24" />
+      <recent name="D:\AndroidProject\Atroads\AtROADS_Android_App\app\src\release\res\values" />
+      <recent name="D:\AndroidProject\Atroads\AtROADS_Android_App\app\src\main\res\menu" />
       <recent name="D:\AndroidProject\Atroads\AtROADS_Android_App\app\src\main\res" />
-      <recent name="D:\AndroidProject\Atroads\AtROADS_Android_App\app\src\main\res\raw" />
-      <recent name="D:\AndroidProject\Atroads\AtROADS_Android_App\app\src\main\res\layout" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -479,10 +560,47 @@
     </task>
     <servers />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="0" width="1292" height="686" extended-state="0" />
-    <editor active="true" />
+    <frame x="-7" y="0" width="1292" height="687" extended-state="0" />
     <layout>
+      <window_info id="Captures" order="0" sideWeight="0.50784314" side_tool="true" weight="0.23133117" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.49215686" visible="true" weight="0.23133117" />
+      <window_info id="Structure" order="2" sideWeight="0.5053476" side_tool="true" weight="0.23133117" />
+      <window_info id="Favorites" order="3" sideWeight="0.5053476" side_tool="true" weight="0.23133117" />
+      <window_info id="Build Variants" order="4" side_tool="true" />
+      <window_info id="Image Layers" order="5" />
+      <window_info id="Designer" order="6" />
+      <window_info id="Resources Explorer" order="7" sideWeight="0.4973262" weight="0.32954547" />
+      <window_info id="Capture Tool" order="8" />
+      <window_info anchor="bottom" id="Run" order="0" weight="0.32792792" />
+      <window_info anchor="bottom" id="Logcat" order="1" sideWeight="0.4935065" visible="true" weight="0.054054055" />
+      <window_info anchor="bottom" id="TODO" order="2" weight="0.32792792" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3837838" />
+      <window_info anchor="bottom" id="Terminal" order="4" weight="0.32792792" />
+      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.5064935" side_tool="true" weight="0.3327338" />
+      <window_info anchor="bottom" id="Version Control" order="6" weight="0.21981981" />
+      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.4935065" weight="0.18378378" />
+      <window_info anchor="bottom" id="Android Profiler" order="8" weight="0.22882883" />
+      <window_info anchor="bottom" id="Find" order="9" sideWeight="0.49594155" weight="0.3794964" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.20323741" />
+      <window_info anchor="right" id="Capture Analysis" order="0" />
+      <window_info anchor="right" id="Gradle" order="1" />
+      <window_info anchor="right" id="Theme Preview" order="2" />
+      <window_info anchor="right" id="Preview" order="3" weight="0.3060065" />
+      <window_info anchor="right" id="Palette&#9;" order="4" />
+      <window_info anchor="right" id="Hierarchy" order="5" weight="0.32954547" />
+      <window_info anchor="right" id="Device File Explorer" order="6" side_tool="true" weight="0.32954547" />
+    </layout>
+    <layout-to-restore>
       <window_info id="Captures" order="0" sideWeight="0.50784314" side_tool="true" weight="0.23133117" />
       <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49215686" visible="true" weight="0.23133117" />
       <window_info id="Structure" order="2" sideWeight="0.5053476" side_tool="true" weight="0.23133117" />
@@ -492,17 +610,17 @@
       <window_info id="Designer" order="6" />
       <window_info id="Resources Explorer" order="7" sideWeight="0.4973262" weight="0.32954547" />
       <window_info id="Capture Tool" order="8" />
-      <window_info anchor="bottom" id="Messages" weight="0.20397112" />
-      <window_info anchor="bottom" id="Run" order="0" />
-      <window_info anchor="bottom" id="Logcat" order="1" sideWeight="0.49756494" weight="0.6480144" />
-      <window_info anchor="bottom" id="TODO" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.54873645" />
-      <window_info anchor="bottom" id="Terminal" order="4" />
-      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.5024351" side_tool="true" weight="0.71841156" />
+      <window_info anchor="bottom" id="Run" order="0" weight="0.32851985" />
+      <window_info active="true" anchor="bottom" id="Logcat" order="1" sideWeight="0.4943182" visible="true" weight="0.054054055" />
+      <window_info anchor="bottom" id="TODO" order="2" weight="0.32851985" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.6133093" />
+      <window_info anchor="bottom" id="Terminal" order="4" weight="0.32851985" />
+      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.5064935" side_tool="true" weight="0.49820143" />
       <window_info anchor="bottom" id="Version Control" order="6" weight="0.2202166" />
-      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49837664" weight="0.24187726" />
-      <window_info anchor="bottom" id="Android Profiler" order="8" show_stripe_button="false" weight="0.32851985" />
-      <window_info anchor="bottom" id="Find" order="9" weight="0.38086644" />
+      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.4935065" weight="0.32194245" />
+      <window_info anchor="bottom" id="Android Profiler" order="8" weight="0.32851985" />
+      <window_info anchor="bottom" id="Find" order="9" sideWeight="0.49594155" weight="0.3794964" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.20323741" />
       <window_info anchor="right" id="Capture Analysis" order="0" />
       <window_info anchor="right" id="Gradle" order="1" />
       <window_info anchor="right" id="Theme Preview" order="2" />
@@ -510,134 +628,116 @@
       <window_info anchor="right" id="Palette&#9;" order="4" />
       <window_info anchor="right" id="Hierarchy" order="5" weight="0.32954547" />
       <window_info anchor="right" id="Device File Explorer" order="6" side_tool="true" weight="0.32954547" />
-    </layout>
+    </layout-to-restore>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
-          <line>301</line>
+          <line>333</line>
           <properties />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
-          <line>302</line>
+          <line>334</line>
           <properties />
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
-          <line>303</line>
+          <line>335</line>
           <properties />
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
-          <line>434</line>
+          <line>466</line>
           <properties />
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
-          <line>437</line>
+          <line>469</line>
           <properties />
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
-          <line>436</line>
+          <line>468</line>
           <properties />
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
-          <line>438</line>
+          <line>470</line>
           <properties />
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
-          <line>441</line>
+          <line>473</line>
           <properties />
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
-          <line>442</line>
+          <line>474</line>
           <properties />
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/SOSActivity.java</url>
-          <line>114</line>
+          <line>122</line>
           <properties />
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/SOSActivity.java</url>
-          <line>115</line>
+          <line>123</line>
           <properties />
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/SOSActivity.java</url>
-          <line>485</line>
-          <properties />
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/SOSActivity.java</url>
-          <line>487</line>
+          <line>502</line>
           <properties />
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/ChatActivity.java</url>
-          <line>558</line>
+          <line>553</line>
           <properties />
           <option name="timeStamp" value="38" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/ChatActivity.java</url>
-          <line>569</line>
+          <line>564</line>
           <properties />
           <option name="timeStamp" value="39" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/ChatActivity.java</url>
-          <line>568</line>
+          <line>563</line>
           <properties />
           <option name="timeStamp" value="40" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/ChatActivity.java</url>
-          <line>566</line>
+          <line>561</line>
           <properties />
           <option name="timeStamp" value="41" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/ChatActivity.java</url>
-          <line>981</line>
-          <properties />
-          <option name="timeStamp" value="43" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/ChatActivity.java</url>
-          <line>982</line>
-          <properties />
-          <option name="timeStamp" value="44" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/ChatActivity.java</url>
-          <line>999</line>
+          <line>998</line>
           <properties />
           <option name="timeStamp" value="46" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/ChatActivity.java</url>
-          <line>1000</line>
+          <line>999</line>
           <properties />
           <option name="timeStamp" value="47" />
         </line-breakpoint>
@@ -661,63 +761,45 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/PairSuccessScreen.java</url>
-          <line>181</line>
+          <line>184</line>
           <properties />
           <option name="timeStamp" value="51" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/PairSuccessScreen.java</url>
-          <line>182</line>
+          <line>185</line>
           <properties />
           <option name="timeStamp" value="52" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
-          <line>572</line>
+          <line>614</line>
           <properties />
           <option name="timeStamp" value="53" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
-          <line>575</line>
+          <line>617</line>
           <properties />
           <option name="timeStamp" value="54" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
-          <line>578</line>
+          <line>620</line>
           <properties />
           <option name="timeStamp" value="55" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
-          <line>577</line>
+          <line>619</line>
           <properties />
           <option name="timeStamp" value="56" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
-          <line>576</line>
+          <line>618</line>
           <properties />
           <option name="timeStamp" value="57" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/PairSuccessScreen.java</url>
-          <line>221</line>
-          <properties />
-          <option name="timeStamp" value="58" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/PairSuccessScreen.java</url>
-          <line>1373</line>
-          <properties />
-          <option name="timeStamp" value="60" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/PairSuccessScreen.java</url>
-          <line>1374</line>
-          <properties />
-          <option name="timeStamp" value="61" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/WebViewActivity.java</url>
@@ -751,467 +833,1295 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
-          <line>769</line>
+          <line>811</line>
           <properties />
           <option name="timeStamp" value="67" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
-          <line>773</line>
+          <line>815</line>
           <properties />
           <option name="timeStamp" value="68" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
-          <line>776</line>
+          <line>818</line>
           <properties />
           <option name="timeStamp" value="69" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
-          <line>779</line>
+          <line>821</line>
           <properties />
           <option name="timeStamp" value="70" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
-          <line>780</line>
+          <line>822</line>
           <properties />
           <option name="timeStamp" value="71" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
-          <line>794</line>
+          <line>836</line>
           <properties />
           <option name="timeStamp" value="72" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
-          <line>795</line>
+          <line>837</line>
           <properties />
           <option name="timeStamp" value="73" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
-          <line>803</line>
+          <line>845</line>
           <properties />
           <option name="timeStamp" value="74" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
-          <line>804</line>
+          <line>846</line>
           <properties />
           <option name="timeStamp" value="75" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
-          <line>1618</line>
+          <line>1671</line>
           <properties />
           <option name="timeStamp" value="76" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
-          <line>1617</line>
+          <line>1670</line>
           <properties />
           <option name="timeStamp" value="77" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
-          <line>1642</line>
+          <line>1695</line>
           <properties />
           <option name="timeStamp" value="78" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
-          <line>1635</line>
+          <line>1688</line>
           <properties />
           <option name="timeStamp" value="79" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
-          <line>1636</line>
+          <line>1689</line>
           <properties />
           <option name="timeStamp" value="80" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
-          <line>1628</line>
+          <line>1681</line>
           <properties />
           <option name="timeStamp" value="81" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
-          <line>1630</line>
+          <line>1683</line>
           <properties />
           <option name="timeStamp" value="82" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
-          <line>1631</line>
+          <line>1684</line>
           <properties />
           <option name="timeStamp" value="83" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
-          <line>1619</line>
+          <line>1672</line>
           <properties />
           <option name="timeStamp" value="84" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
-          <line>1624</line>
+          <line>1677</line>
           <properties />
           <option name="timeStamp" value="86" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
-          <line>1626</line>
+          <line>1679</line>
           <properties />
           <option name="timeStamp" value="87" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
-          <line>1627</line>
+          <line>1680</line>
           <properties />
           <option name="timeStamp" value="88" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
-          <line>1621</line>
+          <line>1674</line>
           <properties />
           <option name="timeStamp" value="89" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
-          <line>1620</line>
+          <line>1673</line>
           <properties />
           <option name="timeStamp" value="90" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
-          <line>801</line>
+          <line>843</line>
           <properties />
           <option name="timeStamp" value="91" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
-          <line>800</line>
+          <line>842</line>
           <properties />
           <option name="timeStamp" value="92" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
-          <line>1835</line>
+          <line>1888</line>
           <properties />
           <option name="timeStamp" value="93" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
-          <line>1853</line>
+          <line>1906</line>
           <properties />
           <option name="timeStamp" value="94" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
-          <line>1854</line>
+          <line>1907</line>
           <properties />
           <option name="timeStamp" value="95" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
-          <line>1837</line>
+          <line>1890</line>
           <properties />
           <option name="timeStamp" value="96" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
-          <line>1869</line>
+          <line>1922</line>
           <properties />
           <option name="timeStamp" value="97" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/PairSuccessScreen.java</url>
+          <line>427</line>
+          <properties />
+          <option name="timeStamp" value="98" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/PairSuccessScreen.java</url>
+          <line>415</line>
+          <properties />
+          <option name="timeStamp" value="99" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/PairSuccessScreen.java</url>
+          <line>417</line>
+          <properties />
+          <option name="timeStamp" value="100" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/PairSuccessScreen.java</url>
+          <line>418</line>
+          <properties />
+          <option name="timeStamp" value="101" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/PairSuccessScreen.java</url>
+          <line>1139</line>
+          <properties />
+          <option name="timeStamp" value="102" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/PairSuccessScreen.java</url>
+          <line>1140</line>
+          <properties />
+          <option name="timeStamp" value="103" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/ChatActivity.java</url>
+          <line>199</line>
+          <properties />
+          <option name="timeStamp" value="106" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/ChatActivity.java</url>
+          <line>193</line>
+          <properties />
+          <option name="timeStamp" value="107" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/ChatActivity.java</url>
+          <line>196</line>
+          <properties />
+          <option name="timeStamp" value="108" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/BillingDetailsActivity.java</url>
+          <line>954</line>
+          <properties />
+          <option name="timeStamp" value="112" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/BillingDetailsActivity.java</url>
+          <line>957</line>
+          <properties />
+          <option name="timeStamp" value="113" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/BillingDetailsActivity.java</url>
+          <line>963</line>
+          <properties />
+          <option name="timeStamp" value="115" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/BillingDetailsActivity.java</url>
+          <line>965</line>
+          <properties />
+          <option name="timeStamp" value="116" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/BillingDetailsActivity.java</url>
+          <line>967</line>
+          <properties />
+          <option name="timeStamp" value="117" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/BillingDetailsActivity.java</url>
+          <line>964</line>
+          <properties />
+          <option name="timeStamp" value="118" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/BillingDetailsActivity.java</url>
+          <line>959</line>
+          <properties />
+          <option name="timeStamp" value="119" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/BillingDetailsActivity.java</url>
+          <line>960</line>
+          <properties />
+          <option name="timeStamp" value="120" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/BillingDetailsActivity.java</url>
+          <line>577</line>
+          <properties />
+          <option name="timeStamp" value="121" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/BillingDetailsActivity.java</url>
+          <line>578</line>
+          <properties />
+          <option name="timeStamp" value="122" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/BillingDetailsActivity.java</url>
+          <line>579</line>
+          <properties />
+          <option name="timeStamp" value="123" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/PaymentScreen.java</url>
+          <line>37</line>
+          <properties />
+          <option name="timeStamp" value="124" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/PaymentScreen.java</url>
+          <line>38</line>
+          <properties />
+          <option name="timeStamp" value="125" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/PaymentScreen.java</url>
+          <line>39</line>
+          <properties />
+          <option name="timeStamp" value="126" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/PaymentScreen.java</url>
+          <line>40</line>
+          <properties />
+          <option name="timeStamp" value="127" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/PaymentScreen.java</url>
+          <line>41</line>
+          <properties />
+          <option name="timeStamp" value="128" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/PaymentScreen.java</url>
+          <line>42</line>
+          <properties />
+          <option name="timeStamp" value="130" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/PaymentScreen.java</url>
+          <line>45</line>
+          <properties />
+          <option name="timeStamp" value="131" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/PaymentScreen.java</url>
+          <line>48</line>
+          <properties />
+          <option name="timeStamp" value="132" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/PaymentScreen.java</url>
+          <line>49</line>
+          <properties />
+          <option name="timeStamp" value="133" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/SOSActivity.java</url>
+          <line>630</line>
+          <properties />
+          <option name="timeStamp" value="136" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/SOSActivity.java</url>
+          <line>632</line>
+          <properties />
+          <option name="timeStamp" value="137" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/SOSActivity.java</url>
+          <line>634</line>
+          <properties />
+          <option name="timeStamp" value="138" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/SOSActivity.java</url>
+          <line>638</line>
+          <properties />
+          <option name="timeStamp" value="139" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/SOSActivity.java</url>
+          <line>640</line>
+          <properties />
+          <option name="timeStamp" value="141" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/SOSActivity.java</url>
+          <line>639</line>
+          <properties />
+          <option name="timeStamp" value="142" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/SOSActivity.java</url>
+          <line>641</line>
+          <properties />
+          <option name="timeStamp" value="143" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/SOSActivity.java</url>
+          <line>645</line>
+          <properties />
+          <option name="timeStamp" value="144" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/SOSActivity.java</url>
+          <line>646</line>
+          <properties />
+          <option name="timeStamp" value="145" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/SOSActivity.java</url>
+          <line>652</line>
+          <properties />
+          <option name="timeStamp" value="146" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
+          <line>2312</line>
+          <properties />
+          <option name="timeStamp" value="147" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/adapter/ViewContactsAdapter.java</url>
+          <line>106</line>
+          <properties />
+          <option name="timeStamp" value="148" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/adapter/ViewContactsAdapter.java</url>
+          <line>107</line>
+          <properties />
+          <option name="timeStamp" value="149" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/adapter/ViewContactsAdapter.java</url>
+          <line>360</line>
+          <properties />
+          <option name="timeStamp" value="153" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/adapter/ViewContactsAdapter.java</url>
+          <line>361</line>
+          <properties />
+          <option name="timeStamp" value="154" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/adapter/ViewContactsAdapter.java</url>
+          <line>378</line>
+          <properties />
+          <option name="timeStamp" value="155" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/adapter/ViewContactsAdapter.java</url>
+          <line>386</line>
+          <properties />
+          <option name="timeStamp" value="156" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/adapter/ViewContactsAdapter.java</url>
+          <line>344</line>
+          <properties />
+          <option name="timeStamp" value="157" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/adapter/ViewContactsAdapter.java</url>
+          <line>345</line>
+          <properties />
+          <option name="timeStamp" value="158" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/adapter/ViewContactsAdapter.java</url>
+          <line>346</line>
+          <properties />
+          <option name="timeStamp" value="159" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/adapter/ViewContactsAdapter.java</url>
+          <line>347</line>
+          <properties />
+          <option name="timeStamp" value="160" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/adapter/ViewContactsAdapter.java</url>
+          <line>349</line>
+          <properties />
+          <option name="timeStamp" value="161" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/SchedulingRideScreen.java</url>
+          <line>636</line>
+          <properties />
+          <option name="timeStamp" value="162" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/SchedulingRideScreen.java</url>
+          <line>637</line>
+          <properties />
+          <option name="timeStamp" value="163" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/SchedulingRideScreen.java</url>
+          <line>646</line>
+          <properties />
+          <option name="timeStamp" value="164" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/SchedulingRideScreen.java</url>
+          <line>647</line>
+          <properties />
+          <option name="timeStamp" value="165" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/SchedulingRideScreen.java</url>
+          <line>649</line>
+          <properties />
+          <option name="timeStamp" value="166" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/SchedulingRideScreen.java</url>
+          <line>650</line>
+          <properties />
+          <option name="timeStamp" value="167" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/SchedulingRideScreen.java</url>
+          <line>652</line>
+          <properties />
+          <option name="timeStamp" value="168" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/SchedulingRideScreen.java</url>
+          <line>639</line>
+          <properties />
+          <option name="timeStamp" value="169" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java</url>
+          <line>232</line>
+          <properties />
+          <option name="timeStamp" value="172" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java</url>
+          <line>195</line>
+          <properties />
+          <option name="timeStamp" value="173" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java</url>
+          <line>194</line>
+          <properties />
+          <option name="timeStamp" value="174" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java</url>
+          <line>192</line>
+          <properties />
+          <option name="timeStamp" value="175" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java</url>
+          <line>191</line>
+          <properties />
+          <option name="timeStamp" value="176" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java</url>
+          <line>190</line>
+          <properties />
+          <option name="timeStamp" value="177" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java</url>
+          <line>189</line>
+          <properties />
+          <option name="timeStamp" value="178" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java</url>
+          <line>187</line>
+          <properties />
+          <option name="timeStamp" value="179" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java</url>
+          <line>307</line>
+          <properties />
+          <option name="timeStamp" value="183" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java</url>
+          <line>332</line>
+          <properties />
+          <option name="timeStamp" value="186" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java</url>
+          <line>334</line>
+          <properties />
+          <option name="timeStamp" value="187" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java</url>
+          <line>337</line>
+          <properties />
+          <option name="timeStamp" value="188" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java</url>
+          <line>336</line>
+          <properties />
+          <option name="timeStamp" value="189" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java</url>
+          <line>341</line>
+          <properties />
+          <option name="timeStamp" value="190" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java</url>
+          <line>317</line>
+          <properties />
+          <option name="timeStamp" value="191" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java</url>
+          <line>322</line>
+          <properties />
+          <option name="timeStamp" value="192" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java</url>
+          <line>324</line>
+          <properties />
+          <option name="timeStamp" value="193" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java</url>
+          <line>325</line>
+          <properties />
+          <option name="timeStamp" value="194" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java</url>
+          <line>468</line>
+          <properties />
+          <option name="timeStamp" value="196" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java</url>
+          <line>436</line>
+          <properties />
+          <option name="timeStamp" value="200" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java</url>
+          <line>437</line>
+          <properties />
+          <option name="timeStamp" value="201" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java</url>
+          <line>435</line>
+          <properties />
+          <option name="timeStamp" value="202" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java</url>
+          <line>433</line>
+          <properties />
+          <option name="timeStamp" value="203" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java</url>
+          <line>103</line>
+          <properties />
+          <option name="timeStamp" value="204" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java</url>
+          <line>477</line>
+          <properties />
+          <option name="timeStamp" value="205" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java</url>
+          <line>471</line>
+          <properties />
+          <option name="timeStamp" value="206" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java</url>
+          <line>248</line>
+          <properties />
+          <option name="timeStamp" value="208" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java</url>
+          <line>238</line>
+          <properties />
+          <option name="timeStamp" value="209" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java</url>
+          <line>239</line>
+          <properties />
+          <option name="timeStamp" value="210" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java</url>
+          <line>243</line>
+          <properties />
+          <option name="timeStamp" value="212" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java</url>
+          <line>245</line>
+          <properties />
+          <option name="timeStamp" value="213" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java</url>
+          <line>246</line>
+          <properties />
+          <option name="timeStamp" value="214" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java</url>
+          <line>253</line>
+          <properties />
+          <option name="timeStamp" value="215" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java</url>
+          <line>256</line>
+          <properties />
+          <option name="timeStamp" value="216" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java</url>
+          <line>261</line>
+          <properties />
+          <option name="timeStamp" value="217" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java</url>
+          <line>257</line>
+          <properties />
+          <option name="timeStamp" value="218" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java</url>
+          <line>264</line>
+          <properties />
+          <option name="timeStamp" value="219" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java</url>
+          <line>263</line>
+          <properties />
+          <option name="timeStamp" value="220" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java</url>
+          <line>250</line>
+          <properties />
+          <option name="timeStamp" value="221" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java</url>
+          <line>252</line>
+          <properties />
+          <option name="timeStamp" value="222" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/PaymentScreen.java</url>
+          <line>108</line>
+          <properties />
+          <option name="timeStamp" value="223" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/PaymentScreen.java</url>
+          <line>107</line>
+          <properties />
+          <option name="timeStamp" value="224" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/PaymentScreen.java</url>
+          <line>110</line>
+          <properties />
+          <option name="timeStamp" value="225" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/PaymentScreen.java</url>
+          <line>111</line>
+          <properties />
+          <option name="timeStamp" value="226" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/PaymentScreen.java</url>
+          <line>114</line>
+          <properties />
+          <option name="timeStamp" value="227" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/PaymentScreen.java</url>
+          <line>115</line>
+          <properties />
+          <option name="timeStamp" value="228" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/PaymentScreen.java</url>
+          <line>101</line>
+          <properties />
+          <option name="timeStamp" value="229" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/PaymentScreen.java</url>
+          <line>100</line>
+          <properties />
+          <option name="timeStamp" value="230" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/PaymentScreen.java</url>
+          <line>99</line>
+          <properties />
+          <option name="timeStamp" value="231" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/SchedulingRideScreen.java</url>
+          <line>510</line>
+          <properties />
+          <option name="timeStamp" value="232" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/SchedulingRideScreen.java</url>
+          <line>508</line>
+          <properties />
+          <option name="timeStamp" value="233" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/SchedulingRideScreen.java</url>
+          <line>515</line>
+          <properties />
+          <option name="timeStamp" value="234" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/PaymentScreen.java</url>
+          <line>98</line>
+          <properties />
+          <option name="timeStamp" value="235" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/PaymentScreen.java</url>
+          <line>55</line>
+          <properties />
+          <option name="timeStamp" value="236" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/notifications/FCMService.java</url>
+          <line>48</line>
+          <properties />
+          <option name="timeStamp" value="238" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/notifications/FCMService.java</url>
+          <line>46</line>
+          <properties />
+          <option name="timeStamp" value="239" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/notifications/FCMService.java</url>
+          <line>49</line>
+          <properties />
+          <option name="timeStamp" value="240" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/notifications/FCMService.java</url>
+          <line>65</line>
+          <properties />
+          <option name="timeStamp" value="241" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/notifications/FCMService.java</url>
+          <line>67</line>
+          <properties />
+          <option name="timeStamp" value="243" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/notifications/FCMService.java</url>
+          <line>66</line>
+          <properties />
+          <option name="timeStamp" value="244" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/adapter/StartUpVPAdapter.java</url>
+          <line>55</line>
+          <properties />
+          <option name="timeStamp" value="245" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/notifications/FCMService.java</url>
+          <line>50</line>
+          <properties />
+          <option name="timeStamp" value="249" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
+          <line>238</line>
+          <properties />
+          <option name="timeStamp" value="250" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
+          <line>239</line>
+          <properties />
+          <option name="timeStamp" value="251" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/notifications/FCMService.java</url>
+          <line>53</line>
+          <properties />
+          <option name="timeStamp" value="252" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/notifications/FCMService.java</url>
+          <line>69</line>
+          <properties />
+          <option name="timeStamp" value="254" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
+          <line>235</line>
+          <properties />
+          <option name="timeStamp" value="258" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
+          <line>253</line>
+          <properties />
+          <option name="timeStamp" value="265" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
+          <line>251</line>
+          <properties />
+          <option name="timeStamp" value="266" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java</url>
-          <line>440</line>
+          <line>472</line>
           <properties method="onClick" />
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/ChatActivity.java</url>
-          <line>998</line>
+          <line>997</line>
           <properties method="onClick" />
           <option name="timeStamp" value="45" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/PairSuccessScreen.java</url>
-          <line>1371</line>
-          <properties class="com.inas.atroads.views.Activities.PairSuccessScreen" method="CallDetailsOfRideAPI">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="59" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/ChatActivity.java</url>
+          <line>195</line>
+          <properties method="run" />
+          <option name="timeStamp" value="105" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/SOSActivity.java</url>
+          <line>626</line>
+          <properties class="com.inas.atroads.views.UI.SOSActivity" method="sendSMS" />
+          <option name="timeStamp" value="135" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/adapter/ViewContactsAdapter.java</url>
+          <line>338</line>
+          <properties class="com.inas.atroads.views.adapter.ViewContactsAdapter" method="callDeleteEmergencyContactsApi" />
+          <option name="timeStamp" value="150" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/adapter/ViewContactsAdapter.java</url>
+          <line>376</line>
+          <properties method="onNext" />
+          <option name="timeStamp" value="151" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/adapter/ViewContactsAdapter.java</url>
+          <line>358</line>
+          <properties method="onError" />
+          <option name="timeStamp" value="152" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java</url>
+          <line>302</line>
+          <properties class="com.inas.atroads.views.UI.UploadQRActivity" method="CallUploadQRAPI" />
+          <option name="timeStamp" value="171" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java</url>
+          <line>315</line>
+          <properties method="onError" />
+          <option name="timeStamp" value="184" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java</url>
+          <line>330</line>
+          <properties method="onNext" />
+          <option name="timeStamp" value="185" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java</url>
+          <line>311</line>
+          <properties method="onCompleted" />
+          <option name="timeStamp" value="195" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java</url>
+          <line>465</line>
+          <properties class="com.inas.atroads.views.UI.UploadQRActivity" method="LoadImageFromUrl" />
+          <option name="timeStamp" value="199" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/notifications/FCMService.java</url>
+          <line>45</line>
+          <properties class="com.inas.atroads.notifications.FCMService" method="onMessageReceived" />
+          <option name="timeStamp" value="253" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/notifications/FCMService.java</url>
+          <line>75</line>
+          <properties class="com.inas.atroads.notifications.FCMService" method="onNewToken" />
+          <option name="timeStamp" value="255" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/inas/atroads/notifications/FCMService.java</url>
+          <line>102</line>
+          <properties class="com.inas.atroads.notifications.FCMService" method="sendNotification" />
+          <option name="timeStamp" value="256" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>remoteMessage.getData()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>dataPayload.get(0)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>remoteMessage.getData().size()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>remoteMessage.getData().get(0)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>remoteMessage</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>remoteMessage.getData().get(i)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>remoteMessage.getFrom()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>getCurrentTime .compareTo(getTestTime)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>object</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/util/localData/BaseActivity.java">
+    <entry file="file://$PROJECT_DIR$/src/main/res/menu/qr_screen.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
+        <state relative-caret-position="85">
+          <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/EditProfileScreen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2839">
-          <caret line="262" column="17" selection-start-line="262" selection-start-column="17" selection-end-line="262" selection-end-column="17" />
-          <folding>
-            <element signature="e#12399#12400#0" expanded="true" />
-            <element signature="e#12444#12445#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/services/AppLifecycleListener.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/CaptureActivityPortrait.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/xml/provider_paths.xml">
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.journeyapps/zxing-android-embedded/4.1.0/7db56492456410aa9b60e97f3ca30fc8f2e1e946/zxing-android-embedded-4.1.0-sources.jar!/com/google/zxing/integration/android/IntentIntegrator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2358">
+          <caret line="54" column="40" selection-start-line="54" selection-start-column="40" selection-end-line="54" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_payment_screen.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="jar://$USER_HOME$/AppData/Local/Android/Sdk/platforms/android-29/android.jar!/android/graphics/Bitmap.class">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/util/localData/BaseActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="150" column="19" selection-start-line="150" selection-start-column="19" selection-end-line="150" selection-end-column="19" />
+        <state relative-caret-position="255">
+          <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/dialog_with_imageview.xml">
-      <provider editor-type-id="android-designer2" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/model/GetQRResponseModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="41" lean-forward="true" selection-start-line="16" selection-start-column="41" selection-end-line="16" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_chat.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="884">
-          <caret line="52" column="12" selection-start-line="52" selection-start-column="12" selection-end-line="52" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/ChatActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="1424" column="27" selection-start-line="1424" selection-start-column="27" selection-end-line="1424" selection-end-column="27" />
+        <state relative-caret-position="578">
+          <caret line="47" column="22" selection-start-line="47" selection-start-column="22" selection-end-line="47" selection-end-column="22" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#979#980#0" expanded="true" />
+            <element signature="e#1017#1018#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/UsersActivity.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/model/GetUserDetailsRequestModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="286" column="7" lean-forward="true" selection-start-line="286" selection-start-column="7" selection-end-line="286" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_pair_success_screen.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="54" column="42" selection-start-line="54" selection-start-column="29" selection-end-line="54" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/SOSActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="126" column="47" selection-start-line="126" selection-start-column="47" selection-end-line="126" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_pair.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/outputs/apk/dev/debug/app-dev-debug.apk">
-      <provider selected="true" editor-type-id="apk-viewer" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/notifications/FCMService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-765">
-          <caret line="33" column="45" selection-start-line="33" selection-start-column="45" selection-end-line="33" selection-end-column="45" />
+        <state relative-caret-position="561">
+          <caret line="49" column="5" selection-start-line="49" selection-start-column="5" selection-end-line="49" selection-end-column="5" />
           <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/adapter/ViewContactsAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="57" column="5" lean-forward="true" selection-start-line="57" selection-start-column="5" selection-end-line="57" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#974#975#0" expanded="true" />
+            <element signature="e#1014#1015#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/SpalshScreen.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="43" column="29" selection-start-line="43" selection-start-column="29" selection-end-line="43" selection-end-column="29" />
+        <state relative-caret-position="83">
+          <caret line="29" column="9" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/proguard-rules.pro">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="40" selection-start-line="22" selection-start-column="40" selection-end-line="22" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_paired_details_screen.xml">
-      <provider editor-type-id="android-designer2" />
+    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/edittxt_bg.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/PairedDetailsScreen.java">
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_scheduling_ride_screen.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1394">
-          <caret line="56" column="47" selection-start-line="56" selection-start-column="47" selection-end-line="56" selection-end-column="47" />
+        <state relative-caret-position="268">
+          <caret line="109" column="52" selection-start-line="109" selection-start-column="52" selection-end-line="109" selection-end-column="52" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bcff6e446703275d31249beec46a7d0d/places-2.2.0/jars/classes.jar!/com/google/android/libraries/places/widget/AutocompleteSupportFragment.class" />
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/app_bar_home_maps.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/ic_date_range_black_24dp.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="50" selection-start-line="6" selection-start-column="50" selection-end-line="6" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UPIPaymentScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1870">
+          <caret line="132" column="32" selection-start-line="132" selection-start-column="32" selection-end-line="132" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/ic_outline_access_time_24.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/PaymentScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="123" column="60" selection-start-line="123" selection-start-column="60" selection-end-line="123" selection-end-column="60" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_home_maps.xml">
       <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-366">
-          <caret line="106" column="20" selection-start-line="106" selection-start-column="20" selection-end-line="106" selection-end-column="20" />
+        <state relative-caret-position="368">
+          <caret line="327" column="76" selection-start-line="327" selection-start-column="50" selection-end-line="327" selection-end-column="76" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bcff6e446703275d31249beec46a7d0d/places-2.2.0/jars/classes.jar!/com/google/android/libraries/places/widget/model/AutocompleteActivityMode.class" />
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_your_bill_screen.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/YourBillScreen.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/UploadQRActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="62" column="42" selection-start-line="62" selection-start-column="42" selection-end-line="62" selection-end-column="42" />
+        <state relative-caret-position="3196">
+          <caret line="257" column="53" selection-start-line="257" selection-start-column="20" selection-end-line="257" selection-end-column="53" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#CustomDialogWithOneBtn#0;class#UploadQRActivity#0" />
+            <element signature="e#19417#19418#0" expanded="true" />
+            <element signature="e#19454#19455#0" expanded="true" />
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/AppData/Local/Android/Sdk/platforms/android-29/android.jar!/android/app/Activity.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="949" column="19" selection-start-line="949" selection-start-column="19" selection-end-line="949" selection-end-column="19" />
-          <folding>
-            <element signature="e#28062#28063#0" expanded="true" />
-            <element signature="e#28113#28114#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/intro_1.jpg" />
-    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/intro_1.jpeg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_start_up.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/debug/res/values/google_maps_api.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="23" column="128" selection-start-line="23" selection-start-column="128" selection-end-line="23" selection-end-column="128" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/StartUpActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="48" column="10" selection-start-line="48" selection-start-column="10" selection-end-line="48" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="235">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_startup_item.xml">
       <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="45" column="32" selection-start-line="45" selection-start-column="32" selection-end-line="45" selection-end-column="32" />
+        <state relative-caret-position="313">
+          <caret line="36" column="38" selection-start-line="36" selection-start-column="38" selection-end-line="36" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_start_up.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="38" lean-forward="true" selection-start-column="38" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/StartUpActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-139">
+          <caret line="52" column="13" lean-forward="true" selection-start-line="52" selection-start-column="13" selection-end-line="52" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/adapter/StartUpVPAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="66" column="16" selection-start-line="66" selection-start-column="16" selection-end-line="66" selection-end-column="16" />
+        <state relative-caret-position="357">
+          <caret line="67" column="13" lean-forward="true" selection-start-line="67" selection-start-column="13" selection-end-line="67" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/model/GetDetailsOfRideResponseModel.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/SchedulingRideScreen.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="101" column="32" selection-start-line="101" selection-start-column="32" selection-end-line="101" selection-end-column="32" />
+        <state relative-caret-position="11594">
+          <caret line="745" column="45" selection-start-line="745" selection-start-column="45" selection-end-line="745" selection-end-column="45" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dev/release/app-dev-release.apk">
-      <provider selected="true" editor-type-id="apk-viewer" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/model/ManualCalculationResponseModel.java">
+    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/39d89daac05f56ed32e91ea8385b5156/jetified-firebase-messaging-20.1.5/jars/classes.jar!/com/google/firebase/messaging/RemoteMessage.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="884">
-          <caret line="73" column="22" selection-start-line="73" selection-start-column="22" selection-end-line="73" selection-end-column="22" />
+        <state relative-caret-position="170">
+          <caret line="36" column="19" selection-start-line="36" selection-start-column="19" selection-end-line="36" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/AppData/Local/Android/Sdk/platforms/android-29/android.jar!/android/content/Intent.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="637" column="18" selection-start-line="637" selection-start-column="18" selection-end-line="637" selection-end-column="18" />
           <folding>
-            <element signature="e#1736#1737#0" expanded="true" />
-            <element signature="e#1781#1782#0" expanded="true" />
+            <element signature="e#35025#35026#0" expanded="true" />
+            <element signature="e#35076#35077#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_billing_details.xml">
-      <provider editor-type-id="android-designer2" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/model/PayloadModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="969">
-          <caret line="57" column="8" selection-start-line="57" selection-start-column="8" selection-end-line="57" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-392" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../settings.gradle">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="39" column="42" selection-start-line="39" selection-start-column="42" selection-end-line="39" selection-end-column="42" />
+        <state relative-caret-position="17">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1219,79 +2129,190 @@
       <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
-          <caret line="65" column="20" selection-start-line="65" selection-start-column="20" selection-end-line="65" selection-end-column="20" />
+          <caret line="42" column="34" lean-forward="true" selection-start-line="42" selection-start-column="34" selection-end-line="42" selection-end-column="34" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/WebViewActivity.java">
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_help.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="64" column="34" selection-start-line="64" selection-start-column="34" selection-end-line="64" selection-end-column="34" />
+        <state relative-caret-position="17">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/model/EndRideRequestModel.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HelpActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="26" lean-forward="true" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
+        <state relative-caret-position="93">
+          <caret line="142" column="13" selection-start-line="142" selection-start-column="13" selection-end-line="142" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../settings.gradle">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_billing_details.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="273" column="34" selection-start-line="273" selection-start-column="25" selection-end-line="273" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/model/EndRideResponseModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-40">
+          <caret line="47" column="32" selection-start-line="47" selection-start-column="32" selection-end-line="47" selection-end-column="32" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/PairSuccessScreen.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2351">
-          <caret line="1103" column="69" selection-start-line="1103" selection-start-column="69" selection-end-line="1103" selection-end-column="69" />
+        <state relative-caret-position="71">
+          <caret line="933" column="80" selection-start-line="933" selection-start-column="80" selection-end-line="933" selection-end-column="80" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/BillingDetailsActivity.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/notifications/FCMService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="12937">
-          <caret line="821" column="11" selection-start-line="821" selection-start-column="11" selection-end-line="821" selection-end-column="11" />
+        <state relative-caret-position="1280">
+          <caret line="116" column="43" selection-start-line="116" selection-start-column="43" selection-end-line="116" selection-end-column="43" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/PairActivity.java">
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_get_user_details_screen.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1615">
-          <caret line="189" column="31" selection-start-line="189" selection-start-column="31" selection-end-line="189" selection-end-column="31" />
-          <folding>
-            <element signature="e#7832#7833#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="119">
+          <caret line="104" column="8" selection-start-line="104" selection-start-column="8" selection-end-line="104" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java">
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_s_o_s.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34629">
-          <caret line="2207" column="87" selection-start-line="2207" selection-start-column="87" selection-end-line="2207" selection-end-column="87" />
-          <folding>
-            <element signature="e#24493#24494#0" expanded="true" />
-            <element signature="e#24532#24533#0" expanded="true" />
-            <element signature="e#79609#79610#0" expanded="true" />
-            <element signature="e#79628#79629#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="268">
+          <caret line="147" column="37" selection-start-line="147" selection-start-column="37" selection-end-line="147" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_mobile_number_register_screen.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="97" column="38" lean-forward="true" selection-start-line="97" selection-start-column="38" selection-end-line="97" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/ViewEmergencyContacts.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="173" lean-forward="true" selection-start-line="173" selection-end-line="173" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/adapter/ViewContactsAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="285" column="62" lean-forward="true" selection-start-line="285" selection-start-column="62" selection-end-line="285" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/profile.webp">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/EditProfileScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="394" column="63" lean-forward="true" selection-start-line="394" selection-start-column="42" selection-end-line="394" selection-end-column="63" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/services/AtroadsService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1666">
-          <caret line="105" column="37" selection-start-line="105" selection-start-column="37" selection-end-line="105" selection-end-column="37" />
+        <state relative-caret-position="110">
+          <caret line="156" column="30" lean-forward="true" selection-start-line="156" selection-start-column="30" selection-end-line="156" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/MobileNumberRegisterScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1317">
+          <caret line="79" column="55" selection-start-line="79" selection-start-column="55" selection-end-line="79" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/SOSActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3507">
+          <caret line="703" column="42" lean-forward="true" selection-start-line="703" selection-start-column="42" selection-end-line="703" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/GetUserDetailsScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="867">
+          <caret line="399" column="13" lean-forward="true" selection-start-line="399" selection-start-column="13" selection-end-line="399" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/UI/OtpActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="575" column="55" selection-start-line="575" selection-start-column="55" selection-end-line="575" selection-end-column="55" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/services/APIConstants.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1190">
-          <caret line="70" column="11" selection-start-line="70" selection-start-column="11" selection-end-line="70" selection-end-column="11" />
+        <state relative-caret-position="123">
+          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.appcompat/appcompat/1.1.0/9865019bbd2d95e41dede3d8ebf964aa93f97766/appcompat-1.1.0-sources.jar!/androidx/appcompat/app/AppCompatActivity.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/HomeMapsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="47" selection-start-line="47" selection-end-line="47" />
+        <state relative-caret-position="156">
+          <caret line="1629" column="35" selection-start-line="1629" selection-start-column="35" selection-end-line="1629" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#79854#79855#0" expanded="true" />
+            <element signature="e#79873#79874#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1581">
+          <caret line="9" column="35" lean-forward="true" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-manifest" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/inas/atroads/views/Activities/BillingDetailsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="978">
+          <caret line="916" column="37" selection-start-line="916" selection-start-column="37" selection-end-line="916" selection-end-column="37" />
+          <folding>
+            <element signature="e#3841#3842#0" expanded="true" />
+            <element signature="e#3888#3889#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-284" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
         </state>
       </provider>
     </entry>

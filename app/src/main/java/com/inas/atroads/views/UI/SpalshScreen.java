@@ -12,7 +12,6 @@ import com.inas.atroads.R;
 import com.inas.atroads.services.MyServiceToCheckIsAppClosed;
 import com.inas.atroads.views.Activities.HomeMapsActivity;
 import com.inas.atroads.views.Activities.StartUpActivity;
-import com.sendbird.android.SendBird;
 
 import static android.provider.UserDictionary.Words.APP_ID;
 import static com.inas.atroads.util.Utilities.isNetworkAvailable;
@@ -28,7 +27,7 @@ public class SpalshScreen extends AppCompatActivity
         setContentView(R.layout.activity_spalsh_screen);
         isNetworkAvailable(SpalshScreen.this);
 
-        SendBird.init("6CD9131B-E2D7-4F4B-AF9D-117518AC8E70", this);
+       // SendBird.init("6CD9131B-E2D7-4F4B-AF9D-117518AC8E70", this);
         MoveToRegister();
 
        // startService(new Intent(this, MyServiceToCheckIsAppClosed.class));

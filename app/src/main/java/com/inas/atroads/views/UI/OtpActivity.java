@@ -117,6 +117,8 @@ public class OtpActivity extends BaseActivity
             else {
                 CallResendOtp(mobileNumber);
             }
+        }else{
+
         }
     }
 

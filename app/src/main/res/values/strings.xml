@@ -197,7 +197,7 @@ This Website is not for use by any minors (defined as those who are not at least
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
+    <string name="menu_home">Atroads</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="menu_tools">Tools</string>
@@ -270,7 +270,8 @@ This Website is not for use by any minors (defined as those who are not at least
     <string name="Payment">Payment</string>
     <string name="OR">OR</string>
     <string name="ScanQR">Scan QR</string>
-    <string name="ShowQR">Show QR</string>
+    <string name="ShowQR">show QR</string>
+    <string name="ShowQR_menu">Scan-Show QR</string>
     <string name="ClickOnCallBtn">Click on call Button to Receive the call</string>
     <string name="Emergency">Emergency</string>
     <string name="Covid">Covid 19</string>

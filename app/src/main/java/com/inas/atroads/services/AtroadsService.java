@@ -100,6 +100,9 @@ public interface AtroadsService
     @POST(APIConstants.help)
     Observable<HelpResponseModel> HelpResponse(@Body JsonObject data);
 
+    @POST(APIConstants.sendSMS)
+    Observable<HelpResponseModel> SMSResponse(@Body JsonObject data);
+
     @POST(APIConstants.get_details_of_ride)
     Observable<GetDetailsOfRideResponseModel> GetDetailsOfRideResponse(@Body JsonObject data);
 
@@ -204,6 +207,10 @@ public interface AtroadsService
     // Edit Emergency Contacts
     @POST(APIConstants.edit_emergency_contacts)
     Observable<Res_EditEmergencyContact> editEmergencyContacts(@Body Req_EditEmergencyContact data);
+
+    // Delete Emergency Contacts
+    @POST(APIConstants.delete_emergency_contacts)
+    Observable<Res_EditEmergencyContact> deleteEmergencyContacts(@Body JsonObject data);
 
     // calling api
     @POST(APIConstants.calling_Api)

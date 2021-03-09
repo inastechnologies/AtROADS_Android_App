@@ -11,25 +11,25 @@ android {
         applicationId "com.inas.atroads"
         minSdkVersion 24
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        versionCode 6
+        versionName "1.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         resConfigs "en"
     }
     buildTypes {
         release {
             buildConfigField "String", "LOCAL_URL", '"http://18.138.154.234:5005/atroads/"'
-            shrinkResources true
-            minifyEnabled true
-            debuggable false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            //shrinkResources true
+            //minifyEnabled true
+           // debuggable false
+           // proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     flavorDimensions "default"
     productFlavors {
         dev {
             buildConfigField "String", "LOCAL_URL", '"http://18.138.154.234:5005/atroads/"'
-            applicationId = var
+            //applicationId = var
         }
     }
     compileOptions {
@@ -128,15 +128,15 @@ dependencies {
     implementation 'com.leinardi.android:speed-dial:3.1.1'
     implementation 'com.pixplicity.sharp:library:1.1.0'
     implementation 'com.skyfishjy.ripplebackground:library:1.0.1'
-    implementation(name: "razorpay-android-3.8.10", ext: 'aar')
-    implementation 'com.shreyaspatil:EasyUpiPayment:2.1'
-    implementation files('libs/razorpay-upi-intent-sdk.jar')
+   // implementation(name: "razorpay-android-3.8.10", ext: 'aar')
+   // implementation 'com.shreyaspatil:EasyUpiPayment:2.1'
+   // implementation files('libs/razorpay-upi-intent-sdk.jar')
     implementation 'com.journeyapps:zxing-android-embedded:4.1.0'
    // implementation(name: 'sinch-android-rtc', version: '+', ext: 'aar')
-    implementation 'com.github.gratusik:AGIKSwipeButton:1.0.1'
-    implementation 'com.github.stfalcon:swipeable-button:0.1.0'
+    //implementation 'com.github.gratusik:AGIKSwipeButton:1.0.1'
+ //   implementation 'com.github.stfalcon:swipeable-button:0.1.0'
     implementation 'com.google.firebase:firebase-crashlytics-ktx:17.2.1'
-    implementation 'com.sendbird.sdk:sendbird-android-sdk:3.0.149'
+    //implementation 'com.sendbird.sdk:sendbird-android-sdk:3.0.149'
 //    implementation 'org.osmdroid:osmdroid-android:6.1.8'
 ////    implementation 'org.osmdroid:osmdroid-geopackage:6.1.8'
 //    implementation 'org.osmdroid:osmdroid-mapsforge:6.1.8'

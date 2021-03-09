@@ -114,6 +114,7 @@ import com.inas.atroads.views.model.PairedDetailsRequestModel;
 import com.inas.atroads.views.model.PairedDetailsResponseModel;
 import com.inas.atroads.views.model.PairedUserDetailsRequestModel;
 import com.inas.atroads.views.model.PairedUserDetailsResponseModel;
+import com.inas.atroads.views.model.PayloadModel;
 import com.inas.atroads.views.model.SearchedPlaceDetails;
 import com.squareup.picasso.Picasso;
 
@@ -200,13 +201,24 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 	int PStatus = -1;
 	boolean isGPS;
 	Location mLocation;
+	Toolbar toolbar;
+	PayloadModel payloadModel;
 	/*****************************END OF DECLARATIONS**********************************/
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home_maps);
-		Toolbar toolbar = findViewById(R.id.toolbar);
+		toolbar = findViewById(R.id.toolbar);
+
+		SharedPreferences pref = getApplicationContext().getSharedPreferences("USERnMAE", 0); // 0 - for private mode
+		String headNmae = pref.getString("USER_HEAD_NAME","");
+
+		if(headNmae.equals("")){
+			toolbar.setTitle("Hey ");
+		}else {
+			toolbar.setTitle("Hey " + headNmae+" !");
+		}
 		setSupportActionBar(toolbar);
 		isNetworkAvailable(HomeMapsActivity.this);
 		WriteLog(TAG);
@@ -221,12 +233,32 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 		else {
 
 		}
+		//Bundle bundle=getIntent().getExtras();
+		//handleIntent(getIntent());
+
+		/*if(getIntent().getExtras() != null) {
+			 payloadModel = (PayloadModel) getIntent().getSerializableExtra("FCM_Payload");
+			Toast.makeText(this, payloadModel.getHome().toString(),Toast.LENGTH_LONG).show();
+		}*/
+		//payloadModel= getIntent().getExtras("FCM_Payload");
+
 		initGAPIClient();
 		AskPermission();
 		SetNavigationDrawer();
 		PairedUserDetailsAPI();
 	}
 
+	/*private void handleIntent(Intent intent) {
+		String user_id= intent.getStringExtra("home");
+		if(user_id!= null)
+			Log.d(TAG, user_id);
+	}
+
+	@Override
+	protected void onNewIntent(Intent intent) {
+		super.onNewIntent(intent);
+		handleIntent(intent);
+	}*/
 	/*****************************START OF INIT GAPICLIENT********************************/
 	/**
 	 * initGAPIClient()
@@ -450,7 +482,7 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 				AutoCompleteIntent();
 			}
 		});
-		//        GetSharedPrefs();
+
 		SetShareSpinner();
 		AutoLayoutClick();
 		car_lty.setOnClickListener(new View.OnClickListener() {
@@ -479,7 +511,17 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 		spinnerShare.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 			@Override
 			public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-				shareTxt = spinnerShare.getSelectedItem().toString();
+
+
+
+				if(spinnerShare.getSelectedItem().toString().equals("1")){
+					shareTxt = spinnerShare.getSelectedItem().toString();
+				}else{
+					spinnerShare.setSelection(0);
+					Toast.makeText(HomeMapsActivity.this,"Beacuse of covid19 to maintain social distancing we are not allowing to share with 2-3!",Toast.LENGTH_LONG).show();
+					return;
+				}
+
 				Log.i(TAG, "onItemSelected: "+shareTxt);
 			}
 
@@ -1207,13 +1249,8 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 	@Override
 	public void onMapReady(GoogleMap googleMap) {
 		mMap = googleMap;
-		//
-		//        // Add a marker in Sydney and move the camera
-		//        LatLng sydney = new LatLng(-34, 151);
-		//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-		//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
 		GetLastKnownLocation();
-		//mMap = googleMap;
 
 		try {
 			mMap.setMyLocationEnabled(true);
@@ -1529,6 +1566,21 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 							UserNameTv.setText(username);
 							MobileNoTv.setText(mobileNo);
 							String accepting_other_gender = mResponse.getResult().get(0).getAcceptingOtherGender();
+
+							SharedPreferences pref1 = getApplicationContext().getSharedPreferences("USERnMAE", 0); // 0 - for private mode
+							SharedPreferences.Editor editor1 = pref1.edit();
+							editor1.putString("USER_HEAD_NAME", username);
+							editor1.commit();
+
+
+							SharedPreferences prefq = getApplicationContext().getSharedPreferences("USERnMAE", 0); // 0 - for private mode
+							String headNmae = prefq.getString("USER_HEAD_NAME","");
+
+							if(headNmae.equals("")){
+								toolbar.setTitle("Hey ");
+							}else {
+								toolbar.setTitle("Hey " + headNmae+" !");
+							}
 							if(accepting_other_gender.equals(""))
 							{
 								DialogWithTwoButtons(HomeMapsActivity.this, getString(R.string.AcceptOtherGender), getString(R.string.TravelWithOtherGender), getString(R.string.Yes), new Runnable() {
@@ -1574,7 +1626,8 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 	 */
 	private void LoadImageFromUrl(Context context, String imageUrl, ImageView imageView)
 	{
-		Picasso.with(context).load(imageUrl).error(R.drawable.profile).into(imageView);
+		Picasso.with(context).load(imageUrl).error(R.drawable.profile)
+				.fit().centerCrop().into(imageView);
 	}
 
 	/********************************END OF GET USER INFO*******************************/
@@ -2125,31 +2178,7 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 
 	@Override
 	public void onLocationChanged(Location location) {
-		//        mLastLocation = location;
-		//        if (mCurrLocationMarker != null) {
-		//            mCurrLocationMarker.remove();
-		//        }
-		//        String addressOfLocation = GetAddressFromLatLng(location.getLatitude(), location.getLongitude());
-		//        Log.i(TAG, "onLocationChanged: "+addressOfLocation);
-		//        //Place current location marker
-		//        PinLatitude = location.getLatitude();
-		//        PinLongitude = location.getLongitude();
-		//        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-		//        MarkerOptions markerOptions = new MarkerOptions();
-		//        markerOptions.position(latLng);
-		//        markerOptions.title(addressOfLocation+"");
-		//        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
-		//        mMap.addMarker(markerOptions);
-		//
-		//        //move map camera
-		//        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-		//        mMap.animateCamera(CameraUpdateFactory.zoomTo(12));
-		//
-		//        PinEditText.setText(addressOfLocation+"");
-		//        //stop location updates
-		//        if (mGoogleApiClient != null) {
-		//            LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
-		//        }
+
 	}
 
 	@Override
@@ -2377,8 +2406,7 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 
 					@Override
 					public void onNext(PairedUserDetailsResponseModel mResponse) {
-						Log.i(TAG, "PairedUserDetailsResponseModel: "+mResponse);
-						Toast.makeText(HomeMapsActivity.this, mResponse.getMessage(), Toast.LENGTH_SHORT).show();
+
 						if(mResponse.getStatus() == 1)
 						{
 							user_ride_id = mResponse.getResult().get(0).getUser_ride_id();
@@ -2396,14 +2424,6 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 							editor.putInt("user_ride_id", user_ride_id);
 							editor.commit();
 							Log.i(TAG, "user_ride_id: "+user_ride_id);
-							//                           CustomDialogWithOneBtn(HomeMapsActivity.this, "Attention!", mResponse.getResult().get(0).getAttention()+"\n"
-							//                                   +mResponse.getResult().get(0).getSource()+"\n"+mResponse.getResult().get(0).getDestination()+"\n", "Ok", new Runnable() {
-							//                               @Override
-							//                               public void run() {
-							//                                  CallOnGoingRideAPI();
-							//                               }
-							//                           });
-							//
 							CustomDialogWithOneBtn(HomeMapsActivity.this,"Hey..! You are Already Paired", Attention + "\n" + "From: "+SourceAddress + "\n" + "To: "+DestAddress,"Continue", new Runnable() {
 								@Override
 								public void run() {

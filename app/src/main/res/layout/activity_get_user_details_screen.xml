@@ -37,7 +37,7 @@
     <EditText
         android:id="@+id/EmailET"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="45dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
@@ -45,26 +45,50 @@
         android:ems="10"
         android:gravity="center"
         android:hint="@string/EMAIL"
+        android:textSize="14dp"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/UserNameET" />
 
+
+
+
     <EditText
         android:id="@+id/UserNameET"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="45dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/action_gray_button"
         android:ems="10"
+        android:textSize="14dp"
         android:gravity="center"
         android:hint="@string/user_name"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+
+    <EditText
+        android:id="@+id/referalET"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:textSize="14dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/action_gray_button"
+        android:ems="10"
+
+        android:gravity="center"
+        android:hint="Referal Code(Optional)"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EmailET" />
 
     <RadioGroup
         android:id="@+id/radioUser"
@@ -76,7 +100,7 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/EmailET">
+        app:layout_constraintTop_toBottomOf="@+id/referalET">
 
         <RadioButton
             android:id="@+id/radioMale"

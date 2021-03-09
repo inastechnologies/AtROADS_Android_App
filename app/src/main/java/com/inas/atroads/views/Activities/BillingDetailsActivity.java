@@ -124,8 +124,7 @@ public class BillingDetailsActivity extends AppCompatActivity implements PaytmPa
         metertotalfare = findViewById(R.id.metertotalfare);
         meterLLayout = findViewById(R.id.meterLLayout);
         fareLLayout = findViewById(R.id.fareLLayout);
-        if(FareType.equals("Meter"))
-        {
+        if(FareType.equals("Meter")) {
             metertotalfare.setVisibility(View.VISIBLE);
             metertotalFareTv.setVisibility(View.VISIBLE);
             meterLLayout.setVisibility(View.VISIBLE);
@@ -322,17 +321,18 @@ public class BillingDetailsActivity extends AppCompatActivity implements PaytmPa
                 String ScannedQRDetails = "";
                 Toast.makeText(this, "" + UPCScanned, Toast.LENGTH_SHORT).show();
                 Log.i(TAG, "onActivityResult: " + UPCScanned);
-                String UPI = "upi://pay?pa=7026562080@upi&pn=SUSHMA%20GARELA&cu=INR&mode=02&purpose=00&orgid=189999&sign=MEUCIQD/VLGj1RKjIcISGrDOUdBD3Q/58qhfcrn5SKkVGooa+wIgVYgcYO/4KY4ve8OjEnK3z4CRTDmj16ResO4DmjGed2c=";
-                if(UPCScanned.contains("upi://pay?pa"))
-                {
-                    String appendStr = "&cu=INR&mode=02&purpose=00&orgid=189999&sign=MEUCIQD/VLGj1RKjIcISGrDOUdBD3Q/58qhfcrn5SKkVGooa+wIgVYgcYO/4KY4ve8OjEnK3z4CRTDmj16ResO4DmjGed2c=";
-                    if(UPCScanned.contains("aid"))
-                    {
-                        ScannedQRDetails = UPCScanned+appendStr;
-                    }
-                    else {
+                String newStr="";
+                if (UPCScanned.contains("upi://pay?pa")) {
+                    String appendStr = "&cu=INR";
+                    //mode=02&purpose=00&orgid=189999&sign=MEUCIQD/VLGj1RKjIcISGrDOUdBD3Q/58qhfcrn5SKkVGooa+wIgVYgcYO/4KY4ve8OjEnK3z4CRTDmj16ResO4DmjGed2c=";
+                    if (UPCScanned.contains("aid")) {
+                        newStr = UPCScanned.substring(0, UPCScanned.indexOf("&aid="));
+                        ScannedQRDetails = newStr + appendStr;
+                    } else {
                         ScannedQRDetails = UPCScanned;
                     }
+
+                    Log.i(TAG, "newStr "+newStr);
                     Intent i = new Intent(BillingDetailsActivity.this, PaymentScreen.class);
                     i.putExtra("PayableAmount",AmountToBePaid);
                     i.putExtra("UPICODE", ScannedQRDetails);
@@ -554,7 +554,7 @@ public class BillingDetailsActivity extends AppCompatActivity implements PaytmPa
                     @Override
                     public void onNext(ManualCalculationResponseModel mResponse) {
                         Log.i(TAG, "ManualCalculationResponseModel: "+mResponse);
-                        Toast.makeText(BillingDetailsActivity.this, mResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(BillingDetailsActivity.this, mResponse.getMessage(), Toast.LENGTH_SHORT).show();
                         if(mResponse.getStatus() == 0)
                         {
 
@@ -640,18 +640,14 @@ public class BillingDetailsActivity extends AppCompatActivity implements PaytmPa
                         {
                             //Toast.makeText(PairSuccessScreen.this, mResponse.getMessage(), Toast.LENGTH_SHORT).show();
                         }
-                        else if(mResponse.getStatus() == 1)
-                        {
+                        else if(mResponse.getStatus() == 1) {
                             ShowViews();
-//                            payableAmount.setVisibility(View.VISIBLE);
-//                            payableAmountTv.setVisibility(View.VISIBLE);
-//                            metertotalFareTv.setVisibility(View.VISIBLE);
-//                            mopTv.setVisibility(View.VISIBLE);
                             payableAmount.setText(""+mResponse.getResult().get(0).getPayableAmount());
                             IdToGetYourBill = mResponse.getResult().get(0).getIdToGetYourBill();
                             AmountToBePaid = mResponse.getResult().get(0).getPayableAmount();
                             UserRideId = mResponse.getResult().get(0).getUserRideId();
-//                            mopTv.setVisibility(View.VISIBLE);
+                            distance_travell= mResponse.getResult().get(0).getDistance();
+
                             okBtn.setVisibility(View.INVISIBLE);
                             SetPayNowBtn(AmountToBePaid, IdToGetYourBill);
                         }
@@ -665,8 +661,7 @@ public class BillingDetailsActivity extends AppCompatActivity implements PaytmPa
      *
      * @return
      */
-    private JsonObject MeterCalculationObject()
-    {
+    private JsonObject MeterCalculationObject() {
         MeterCalculationsRequestModel requestModel = new MeterCalculationsRequestModel();
         requestModel.setUserId(UserId);
         requestModel.setUserRideId(UserRideId);
@@ -842,6 +837,7 @@ public class BillingDetailsActivity extends AppCompatActivity implements PaytmPa
         okBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 dialog.dismiss();
                 runnable.run();
             }
@@ -905,6 +901,29 @@ public class BillingDetailsActivity extends AppCompatActivity implements PaytmPa
 
                     @Override
                     public void onError(Throwable e) {
+                        if(MOPType.equals("Cash"))
+                        {
+                            CustomDialog(BillingDetailsActivity.this, "Ride Completed!", "Thank You for using Atroads.", "Ok", new Runnable() {
+                                @Override
+                                public void run() {
+                                    CustomDialog(BillingDetailsActivity.this, "Dear User", "You have travelled the distance of "+""+distance_travell+  " Kms \nThe total billing of yours based on the 1 Km one Rupee is charged by the ATROADS is Rs"+distance_travell+"\n\n\nYour ATROADS bill charges has been discounted.\n\n\n" +
+                                                    "\n" +
+                                                    "Thank you for using ATROADS."
+                                            , "Ok", new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    Intent i = new Intent(BillingDetailsActivity.this, HomeMapsActivity.class);
+                                                    i.putExtra("IdToGetYourBill",idToGetYourBill);
+                                                    i.putExtra("payableAmount",amountToBePaid);
+                                                    i.putExtra("UserRideId",UserRideId);
+                                                    startActivity(i);
+                                                    finish();
+
+                                                }
+                                            });
+                                }
+                            });
+                        }
                         if (e instanceof HttpException) {
                             ((HttpException) e).code();
                             ((HttpException) e).message();
@@ -936,9 +955,9 @@ public class BillingDetailsActivity extends AppCompatActivity implements PaytmPa
                                 CustomDialog(BillingDetailsActivity.this, "Ride Completed!", "Thank You for using Atroads.", "Ok", new Runnable() {
                                     @Override
                                     public void run() {
-                                        CustomDialog(BillingDetailsActivity.this, "Dear User", "You have travelled the distance of "+""+distance_travell+  "Kms \nThe total billing of yours is Rs"+payAmount+"\n\n\nYour total bill is discounted from ATROADS.\n\n\n" +
+                                        CustomDialog(BillingDetailsActivity.this, "Dear User", "You have travelled the distance of "+""+distance_travell+  " Kms \nThe total billing of yours based on the 1 Km one Rupee is charged by the ATROADS is Rs"+distance_travell+"\n\n\nYour ATROADS bill charges has been discounted.\n\n\n" +
                                                         "\n" +
-                                                        "Thanks for using ATROADS."
+                                                        "Thank you for using ATROADS."
                                                 , "Ok", new Runnable() {
                                                     @Override
                                                     public void run() {

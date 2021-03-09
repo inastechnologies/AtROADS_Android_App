@@ -27,6 +27,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.gson.*;
 import com.inas.atroads.R;
 import com.inas.atroads.services.*;
+import com.inas.atroads.views.Activities.HomeMapsActivity;
+import com.inas.atroads.views.Activities.WebViewActivity;
 import com.inas.atroads.views.model.*;
 
 import org.json.JSONException;
@@ -49,6 +51,8 @@ public class MobileNumberRegisterScreen extends AppCompatActivity
     /******* Variable declarations*********/
     private EditText phoneNumberEditText;
     private Button GoBtn;
+    TextView tv_terms;
+    CheckBox check_terms;
     private ImageView googleplusImageView,facebookImageView;
     private String TAG = "MobileNumberRegisterScreen";
     private Subscription mSubscription;
@@ -70,12 +74,38 @@ public class MobileNumberRegisterScreen extends AppCompatActivity
      */
     private void SetViewsFromLayout()
     {
+
+        tv_terms= findViewById(R.id.tv_terms);
+        check_terms= findViewById(R.id.check_terms);
         phoneNumberEditText = findViewById(R.id.phoneNumberEditText);
         GoBtn = findViewById(R.id.GoBtn);
         GoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CallMobileRegisterApi();
+
+                if(phoneNumberEditText.getText().toString().equals("") || phoneNumberEditText.getText().toString().equals(null)){
+
+                    Toast.makeText(MobileNumberRegisterScreen.this, "Please enter valid Mobile Number",Toast.LENGTH_LONG).show();
+                    return;
+                }else {
+
+                    if(check_terms.isChecked()) {
+                        CallMobileRegisterApi();
+                    }else{
+                        Toast.makeText(MobileNumberRegisterScreen.this, "Please accept required Terms and Condition",Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                }
+            }
+        });
+
+        tv_terms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent feedIntent = new Intent(MobileNumberRegisterScreen.this, WebViewActivity.class);
+                feedIntent.putExtra("titile", "Terms & Condition");
+                feedIntent.putExtra("url", "http://atroads.com/terms-conditions/");
+                startActivity(feedIntent);
             }
         });
         googleplusImageView = findViewById(R.id.googleplusImageView);

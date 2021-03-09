@@ -36,6 +36,7 @@ import com.inas.atroads.R;
 import com.inas.atroads.services.APIConstants;
 import com.inas.atroads.services.AtroadsService;
 import com.inas.atroads.services.ServiceFactory;
+import com.inas.atroads.views.UI.SOSActivity;
 import com.inas.atroads.views.model.EditNameRequestModel;
 import com.inas.atroads.views.model.EditNameResponseModel;
 import com.inas.atroads.views.model.EditUserInfoRequestModel;
@@ -71,8 +72,9 @@ public class EditProfileScreen extends AppCompatActivity
     private static final String TAG = "EditProfileScreen";
     private static final String DEFAULT = "N/A" ;
     private Button editBtn,submitBtn;
-    private EditText NameEt,MobileEt,emailEt;
+    private EditText NameEt,emailEt;
     private ImageView profile_image,editIv;
+    TextView MobileEt;
     private Uri PflImageUri;
     //default profile img
     private String PflImageBase64 = "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";
@@ -114,6 +116,7 @@ public class EditProfileScreen extends AppCompatActivity
         });
         profile_image = findViewById(R.id.profile_image);
         NameEt = findViewById(R.id.NameEt);
+        NameEt.requestFocus();
         MobileEt = findViewById(R.id.MobileEt);
         emailEt = findViewById(R.id.emailEt);
         editIv = findViewById(R.id.editIv);
@@ -125,7 +128,12 @@ public class EditProfileScreen extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 //CallEditUserInfoAPI();
-                if(yesBtn.isChecked())
+                 if(!isValidEmail(emailEt.getText().toString())){
+
+                    Toast.makeText(EditProfileScreen.this, "Enter valid Email-id", Toast.LENGTH_SHORT).show();
+                    return;
+                 }
+                else if(yesBtn.isChecked())
                 {
                     Log.i(TAG, "onClick: "+yesBtn.getText().toString());
                     selectedRadio = "yes";
@@ -383,7 +391,9 @@ public class EditProfileScreen extends AppCompatActivity
      */
     private void LoadImageFromUrl(Context context, String imageUrl, ImageView imageView)
     {
-        Picasso.with(context).load(imageUrl).error(R.drawable.profile).into(imageView);
+        Picasso.with(context).load(imageUrl)
+                .error(R.drawable.profile).fit().centerInside().into(imageView);
+
     }
 
 
@@ -647,5 +657,9 @@ public class EditProfileScreen extends AppCompatActivity
     public void onBackPressed() {
         finish();
 
+    }
+
+    public final static boolean isValidEmail(CharSequence target) {
+        return !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
     }
 }

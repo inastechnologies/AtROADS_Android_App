@@ -63,7 +63,7 @@ public class GetUserDetailsScreen extends AppCompatActivity
 {
     private static final String DEFAULT = "N/A";
     private static final String TAG = "GetUserDetailsScreen";
-    private EditText UserNameET,EmailET;
+    private EditText UserNameET,EmailET,referalET;
     private RadioGroup radioUser;
     private Button SubmitBtn;
     private RadioButton radioMale,radioFemale,radioother;
@@ -92,6 +92,7 @@ public class GetUserDetailsScreen extends AppCompatActivity
     {
         UserNameET = findViewById(R.id.UserNameET);
         EmailET = findViewById(R.id.EmailET);
+        referalET= findViewById(R.id.referalET);
         radioUser = findViewById(R.id.radioUser);
         radioMale = findViewById(R.id.radioMale);
         radioFemale = findViewById(R.id.radioFemale);
@@ -318,6 +319,11 @@ public class GetUserDetailsScreen extends AppCompatActivity
         requestModel.setUserId(UserId);
         requestModel.setEmail_id(EmailET.getText().toString());
         requestModel.setGender(selectedGender);
+        if(referalET.getText().toString().equals("")) {
+            requestModel.setreferralCode(referalET.getText().toString());
+        }else{
+            requestModel.setreferralCode("");
+        }
         Log.i(TAG, "getUserDetailsObject:"+requestModel.toString());
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
     }

@@ -24,6 +24,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
@@ -36,6 +37,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -141,6 +143,7 @@ public class PairSuccessScreen extends BaseActivity implements OnMapReadyCallbac
     private Button emergency_Btn,callBtn;
     LinearLayout lin_shareLoc,lin_endride,lin_chat,lin_call;
     ImageView iv_ride;
+    SupportMapFragment mapFragment;
 
     private Timer myTimer;
 
@@ -149,7 +152,7 @@ public class PairSuccessScreen extends BaseActivity implements OnMapReadyCallbac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pair_success_screen);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+        mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
@@ -205,11 +208,7 @@ public class PairSuccessScreen extends BaseActivity implements OnMapReadyCallbac
 
         String sourceString = "Ride with- "+"<b>" + pairedUserName + "</b> ";
         pairUserName.setText(Html.fromHtml(sourceString));
-        //pairUserName.setText("Ride with- "+pairedUserName);
 
-
-
-//        SetRideButton();
         CallOnGoingRideAPI();
         SetRideButton();
         RouteSourceDestDetailsAPI();
@@ -273,23 +272,64 @@ public class PairSuccessScreen extends BaseActivity implements OnMapReadyCallbac
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+
         GetLastKnownLocation();
+
+        try {
+            mMap.setMyLocationEnabled(true);
+            mMap.getUiSettings().setMyLocationButtonEnabled(true);
+            mMap.setMyLocationEnabled(true);
+            View mapView = mapFragment.getView();
+            View locationButton = ((View) mapView.findViewById(Integer.parseInt("1")).getParent()).findViewById(Integer.parseInt("2"));
+            RelativeLayout.LayoutParams rlp = (RelativeLayout.LayoutParams) locationButton.getLayoutParams();
+            // position on right bottom
+            rlp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, 0);
+            rlp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
+            rlp.setMargins(0, 0, 50, 100);
+
+        }catch (Exception e)
+        {
+
+        }
+
+        //Initialize Google Play Services
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ContextCompat.checkSelfPermission(this,
                     Manifest.permission.ACCESS_FINE_LOCATION)
                     == PackageManager.PERMISSION_GRANTED) {
                 buildGoogleApiClient();
                 mMap.setMyLocationEnabled(true);
+            }
+        }
+        else {
+            buildGoogleApiClient();
+            mMap.setMyLocationEnabled(true);
+        }
+
+        mMap.setOnMarkerClickListener(this);
+       /* mMap = googleMap;
+        GetLastKnownLocation();
+
+        try {
+            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (ContextCompat.checkSelfPermission(this,
+                        Manifest.permission.ACCESS_FINE_LOCATION)
+                        == PackageManager.PERMISSION_GRANTED) {
+                    buildGoogleApiClient();
+                    mMap.setMyLocationEnabled(true);
+                    mMap.getUiSettings().setMapToolbarEnabled(true);
+                    mMap.getUiSettings().setZoomControlsEnabled(true);
+                }
+            } else {
+                buildGoogleApiClient();
+                mMap.setMyLocationEnabled(true);
                 mMap.getUiSettings().setMapToolbarEnabled(true);
                 mMap.getUiSettings().setZoomControlsEnabled(true);
             }
-        } else {
-            buildGoogleApiClient();
-            mMap.setMyLocationEnabled(true);
-            mMap.getUiSettings().setMapToolbarEnabled(true);
-            mMap.getUiSettings().setZoomControlsEnabled(true);
-        }
-        mMap.setOnMarkerClickListener(this);
+            mMap.setOnMarkerClickListener(this);
+        }catch (Exception e){
+
+        }*/
     }
 
     protected synchronized void buildGoogleApiClient() {
@@ -303,7 +343,7 @@ public class PairSuccessScreen extends BaseActivity implements OnMapReadyCallbac
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-        mLocationRequest = new LocationRequest();
+        /*mLocationRequest = new LocationRequest();
         mLocationRequest.setInterval(1000);
         mLocationRequest.setFastestInterval(1000);
         mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
@@ -311,7 +351,7 @@ public class PairSuccessScreen extends BaseActivity implements OnMapReadyCallbac
                 Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
             LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
-        }
+        }*/
     }
 
     @Override
@@ -327,16 +367,7 @@ public class PairSuccessScreen extends BaseActivity implements OnMapReadyCallbac
 
     /****************************START OF GetLastKnownLocation**************************/
     private void GetLastKnownLocation() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
+
         fusedLocationProviderClient.getLastLocation()
                 .addOnSuccessListener(this, new OnSuccessListener<Location>() {
                     @Override
@@ -348,8 +379,8 @@ public class PairSuccessScreen extends BaseActivity implements OnMapReadyCallbac
                             String addressOfLocation = GetAddressFromLatLng(location.getLatitude(), location.getLongitude());
                             CurrentLatitude = location.getLatitude();
                             CurrentLongitude = location.getLongitude();
-//                            Bitmap bitmap = Utilities.DrawableToBitmap(PairSuccessScreen.this,R.drawable.person_30px);
-//                            SetMarkerOnMap(location.getLatitude(),location.getLongitude(),bitmap);
+                           //Bitmap bitmap = Utilities.DrawableToBitmap(PairSuccessScreen.this,R.drawable.person_30px);
+                            SetMarkerOnMap(location.getLatitude(),location.getLongitude(),BitmapDescriptorFactory.HUE_MAGENTA);
                         }else{
                             GetLastKnownLocation();
                         }
@@ -378,20 +409,24 @@ public class PairSuccessScreen extends BaseActivity implements OnMapReadyCallbac
      * @param latitude
      * @param longitude
      */
-    private void SetMarkerOnMap(Double latitude,Double longitude,Bitmap bitmap)
+    private void SetMarkerOnMap(Double latitude,Double longitude,float color)
     {
         //Place location marker
-        LatLng latLng = new LatLng(latitude, longitude);
-        MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.position(latLng);
-        String addressOfLocation = GetAddressFromLatLng(latitude, longitude);
-        markerOptions.title(addressOfLocation+"").snippet(addressOfLocation).visible(true);
-        markerOptions.icon(BitmapDescriptorFactory.fromBitmap(bitmap));
-      //  markerOptions.icon(bitmapDescriptorFromVector(PairSuccessScreen.this,vectorResId));
-        mMap.addMarker(markerOptions);
-        //move map camera
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(ZOOM_LEVEL));
+        try {
+            LatLng latLng = new LatLng(latitude, longitude);
+            MarkerOptions markerOptions = new MarkerOptions();
+            markerOptions.position(latLng);
+            String addressOfLocation = GetAddressFromLatLng(latitude, longitude);
+            markerOptions.title(addressOfLocation + "").snippet(addressOfLocation).visible(true);
+            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(color));
+            //  markerOptions.icon(bitmapDescriptorFromVector(PairSuccessScreen.this,vectorResId));
+            mMap.addMarker(markerOptions);
+            //move map camera
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+            mMap.animateCamera(CameraUpdateFactory.zoomTo(ZOOM_LEVEL));
+        }catch(Exception e){
+            Toast.makeText(PairSuccessScreen.this, "toast"+e.toString(), Toast.LENGTH_LONG).show();
+        }
 
     }
     /****************************END OF SetMarkerOnMap**************************/
@@ -408,20 +443,30 @@ public class PairSuccessScreen extends BaseActivity implements OnMapReadyCallbac
     {
         List<Address> addresses;
         String address = "";
+
+        Geocoder geocoder = CustomApplication.geoCoder;
         try {
-            addresses = CustomApplication.geoCoder.getFromLocation(latitude, longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
-            address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
-            String city = addresses.get(0).getLocality();
-            String state = addresses.get(0).getAdminArea();
-            String country = addresses.get(0).getCountryName();
-            String postalCode = addresses.get(0).getPostalCode();
-            String knownName = addresses.get(0).getFeatureName(); // Only if available else return NULL
-        } catch (IOException e) {
+            addresses = geocoder.getFromLocation(latitude, longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+            if(addresses.size()>0) {
+                address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+                // Only if available else return NULL
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        Log.i(TAG, "GetAddressFromLatLng: "+address);
+       /* try {
+            addresses = CustomApplication.geoCoder.getFromLocation(latitude, longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+            address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
 
-        return address;
+        if(address!=null){
+            return address;
+        }else {
+            return "";
+        }
+        //return address;
     }
 
 
@@ -429,26 +474,17 @@ public class PairSuccessScreen extends BaseActivity implements OnMapReadyCallbac
 
     @Override
     public void onLocationChanged(Location location) {
-        mLastLocation = location;
-        if (mCurrLocationMarker != null) {
-            mCurrLocationMarker.remove();
-        }
-        //Place current location marker
-        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-//        MarkerOptions markerOptions = new MarkerOptions();
-//        markerOptions.position(latLng);
-//        markerOptions.title("Current Position");
-//        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.person_30px));
-//        mCurrLocationMarker = mMap.addMarker(markerOptions);
-//
-//        //move map camera
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-//        mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
+    /*    try {
+            mLastLocation = location;
+            if (mCurrLocationMarker != null) {
+                mCurrLocationMarker.remove();
+            }
+            if (mGoogleApiClient != null) {
+                LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
+            }
+        }catch(Exception e){
 
-        //stop location updates
-        if (mGoogleApiClient != null) {
-            LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
-        }
+        }*/
     }
 
     /**********************************START OF SET RIDE BUTTON************************/
@@ -894,8 +930,7 @@ public class PairSuccessScreen extends BaseActivity implements OnMapReadyCallbac
                         {
                             //Toast.makeText(PairSuccessScreen.this, mResponse.getMessage(), Toast.LENGTH_SHORT).show();
                         }
-                        else if(mResponse.getStatus() == 1)
-                        {
+                        else if(mResponse.getStatus() == 1) {
                             Intent i = new Intent(PairSuccessScreen.this,BillingDetailsActivity.class);
                             i.putExtra("UserId",UserId);
                             i.putExtra("UserRideId",UserRideId);
@@ -916,15 +951,9 @@ public class PairSuccessScreen extends BaseActivity implements OnMapReadyCallbac
      */
     private JsonObject EndRideObject()
     {
-//        LatLng currentLatLng = new LatLng(CurrentLatitude,CurrentLongitude);
-//        String cLatLng = String.valueOf(currentLatLng);
-//        String currentlatLngEndStr=cLatLng.replace("lat/lng:","");
-//        String newcurrentlatLngStr=currentlatLngEndStr.replaceAll("\\(","[")
-//                .replaceAll("\\)","]");
         EndRideRequestModel requestModel = new EndRideRequestModel();
         requestModel.setUserId(UserId);
         requestModel.setUserRideId(UserRideId);
-       // requestModel.setEnd_lat_long(newcurrentlatLngStr);
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
     }
 
@@ -1001,18 +1030,10 @@ public class PairSuccessScreen extends BaseActivity implements OnMapReadyCallbac
      * Json object of StartRideForPairedUserDetailsObject
      * @return
      */
-    private JsonObject StartRideForPairedUserDetailsObject(String AutoNo)
-    {
-        Log.i(TAG, "StartRideForPairedUserDetailsObject: "+UserRideId+"-->AutoNo: "+AutoNo);
-//        LatLng currentLatLng = new LatLng(CurrentLatitude,CurrentLongitude);
-//        String cLatLng = String.valueOf(currentLatLng);
-//        String currentlatLngStartStr=cLatLng.replace("lat/lng:","");
-//        String newcurrentlatLngStr=currentlatLngStartStr.replaceAll("\\(","[")
-//                .replaceAll("\\)","]");
+    private JsonObject StartRideForPairedUserDetailsObject(String AutoNo) {
         StartRideForPairedUserRequestModel requestModel = new StartRideForPairedUserRequestModel();
         requestModel.setUserId(UserId);
         requestModel.setUserRideId(UserRideId);
-      //  requestModel.setP_start_lat_long(newcurrentlatLngStr);
         return new Gson().toJsonTree(requestModel).getAsJsonObject();
     }
 
@@ -1116,8 +1137,8 @@ public class PairSuccessScreen extends BaseActivity implements OnMapReadyCallbac
 //                                Bitmap bitmap = Bitmap.createScaledBitmap(bmp, 60, 60, false);
                                 Bitmap pinbitmap = Utilities.DrawableToBitmap(PairSuccessScreen.this,R.drawable.person_30px);
                                 Bitmap dropbitmap = Utilities.DrawableToBitmap(PairSuccessScreen.this,R.drawable.red_person30px);
-                                SetMarkerOnMap(PinlatLng.latitude,PinlatLng.longitude,pinbitmap);
-                                SetMarkerOnMap(droplatLng.latitude,droplatLng.longitude,dropbitmap);
+                                SetMarkerOnMap(PinlatLng.latitude,PinlatLng.longitude,BitmapDescriptorFactory.HUE_AZURE);
+                                SetMarkerOnMap(droplatLng.latitude,droplatLng.longitude,BitmapDescriptorFactory.HUE_RED);
                                 SetShareBtn(mRespone.getResult().get(0).getUserSourceAddress(),mRespone.getResult().get(0).getUserDestAddress());
 //                                try {
 //                                URL url = new URL(APIConstants.IMAGE_URL+UserPflPic);

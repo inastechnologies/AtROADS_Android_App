@@ -99,7 +99,7 @@ public class HelpActivity extends BaseActivity {
     private void initViews()
     {
         toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle(getString(R.string.help));
+        toolbar.setTitle("Share Feedback");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -131,7 +131,15 @@ public class HelpActivity extends BaseActivity {
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CallHelpAPI();
+                if(titleEt.getText().toString().equals("")|| DescEt.getText().toString().equals("")){
+
+                    Toast.makeText(HelpActivity.this,"Enter proper title and description of feedback",Toast.LENGTH_LONG).show();
+                    return;
+
+                }else {
+                    showProgressDialog();
+                    CallHelpAPI();
+                }
             }
         });
 
@@ -247,6 +255,7 @@ public class HelpActivity extends BaseActivity {
 
                     @Override
                     public void onError(Throwable e) {
+                        hideProgressDialog();
                         if (e instanceof HttpException) {
                             ((HttpException) e).code();
                             ((HttpException) e).message();
@@ -264,6 +273,7 @@ public class HelpActivity extends BaseActivity {
                     public void onNext(HelpResponseModel mResponse) {
                         Log.i(TAG, "HelpResponseModel: "+mResponse);
 
+                        hideKeyBoard();
                         // Toast.makeText(PairActivity.this, mResponse.getMessage(), Toast.LENGTH_SHORT).show();
                         if(mResponse.getStatus() == 0)
                         {

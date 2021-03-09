@@ -10,20 +10,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.inas.atroads.R;
-import com.inas.atroads.views.Activities.ChatActivity;
-import com.inas.atroads.views.Activities.StartUpActivity;
-import com.inas.atroads.views.Activities.UserDetails;
 import com.inas.atroads.views.UI.MobileNumberRegisterScreen;
-import com.inas.atroads.views.UI.SpalshScreen;
-import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
 
 
 public class StartUpVPAdapter extends PagerAdapter {
@@ -61,21 +52,20 @@ public class StartUpVPAdapter extends PagerAdapter {
         tv_slogan.setText(text[position]);
 
         Button btn_get_started= itemView.findViewById(R.id.btn_get_started);
-        ImageView forward = itemView.findViewById(R.id.forward);
+        //ImageView forward = itemView.findViewById(R.id.forward);
         if(position==2){
             btn_get_started.setVisibility(View.VISIBLE);
-            forward.setVisibility(View.GONE);
+            //forward.setVisibility(View.GONE);
         }else{
             btn_get_started.setVisibility(View.GONE);
-            forward.setVisibility(View.GONE);
+            //forward.setVisibility(View.VISIBLE);
         }
 
-        forward.setOnClickListener(new View.OnClickListener() {
+        /*forward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
             }
-        });
+        });*/
         btn_get_started.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

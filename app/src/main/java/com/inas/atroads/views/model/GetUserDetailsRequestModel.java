@@ -14,6 +14,8 @@ public class GetUserDetailsRequestModel {
     private int mUserId;
     @SerializedName("email_id")
     private String email_id;
+    @SerializedName("referral_code")
+    private  String referralCode;
 
     public String getGender() {
         return mGender;
@@ -46,4 +48,13 @@ public class GetUserDetailsRequestModel {
     public void setEmail_id(String email_id) {
         this.email_id = email_id;
     }
+    public String getreferralCode() {
+        return referralCode;
+    }
+
+    public void setreferralCode(String referralCode) {
+        this.referralCode = referralCode;
+    }
+
+
 }

@@ -11,17 +11,38 @@
         android:id="@+id/include"
         layout="@layout/toolbar_layout" />
 
+    <LinearLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        tools:ignore="MissingConstraints">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="350dp"
+            android:layout_height="250dp"
+            android:visibility="visible"
+            android:layout_gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/atroads_transparent" />
+
+    </LinearLayout>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="150dp"
         android:background="@drawable/round_rect_for_otp_screen"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include">
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -90,30 +111,30 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/verifytxv" />
 
-<!--        <com.google.android.material.textfield.TextInputLayout-->
-<!--            android:id="@+id/otpTextInputLayout"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="32dp"-->
-<!--            android:layout_marginTop="32dp"-->
-<!--            android:layout_marginEnd="32dp"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/verifyotptxv">-->
+        <!--        <com.google.android.material.textfield.TextInputLayout-->
+        <!--            android:id="@+id/otpTextInputLayout"-->
+        <!--            android:layout_width="0dp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="32dp"-->
+        <!--            android:layout_marginTop="32dp"-->
+        <!--            android:layout_marginEnd="32dp"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/verifyotptxv">-->
 
-<!--            <EditText-->
-<!--                android:id="@+id/otpEditText"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^*(),./-+_;:'? "-->
-<!--                android:hint="@string/enter_otp"-->
-<!--                android:imeOptions="actionDone"-->
-<!--                android:inputType="phone"-->
-<!--                android:maxLength="5"-->
-<!--                android:singleLine="true"-->
-<!--                android:textColorHint="@color/black"-->
-<!--                app:met_floatingLabel="highlight" />-->
-<!--        </com.google.android.material.textfield.TextInputLayout>-->
+        <!--            <EditText-->
+        <!--                android:id="@+id/otpEditText"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^*(),./-+_;:'? "-->
+        <!--                android:hint="@string/enter_otp"-->
+        <!--                android:imeOptions="actionDone"-->
+        <!--                android:inputType="phone"-->
+        <!--                android:maxLength="5"-->
+        <!--                android:singleLine="true"-->
+        <!--                android:textColorHint="@color/black"-->
+        <!--                app:met_floatingLabel="highlight" />-->
+        <!--        </com.google.android.material.textfield.TextInputLayout>-->
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -144,10 +165,10 @@
                 android:layout_height="60dp"
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/edittxt_bg"
-                android:maxLength="1"
                 android:gravity="center"
                 android:hint="0"
                 android:inputType="phone"
+                android:maxLength="1"
                 android:textColor="@color/black" />
 
             <EditText
@@ -156,10 +177,10 @@
                 android:layout_height="60dp"
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/edittxt_bg"
-                android:maxLength="1"
                 android:gravity="center"
                 android:hint="0"
                 android:inputType="phone"
+                android:maxLength="1"
                 android:textColor="@color/black" />
 
             <EditText
@@ -168,10 +189,10 @@
                 android:layout_height="60dp"
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/edittxt_bg"
-                android:maxLength="1"
                 android:gravity="center"
                 android:hint="0"
                 android:inputType="phone"
+                android:maxLength="1"
                 android:textColor="@color/black" />
 
         </LinearLayout>
@@ -190,7 +211,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

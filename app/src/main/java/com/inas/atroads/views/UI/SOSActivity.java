@@ -23,6 +23,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.provider.ContactsContract;
 import android.telephony.SmsManager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -34,16 +35,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.inas.atroads.R;
 import com.inas.atroads.services.AtroadsService;
 import com.inas.atroads.services.ServiceFactory;
 import com.inas.atroads.sos.LocationUtils;
 import com.inas.atroads.util.localData.BaseActivity;
 import com.inas.atroads.views.Activities.HomeMapsActivity;
+import com.inas.atroads.views.model.HelpRequestModel;
+import com.inas.atroads.views.model.HelpResponseModel;
 import com.inas.atroads.views.model.Req_AddEmergencyContact;
 import com.inas.atroads.views.model.Req_GetEmergencyContacts;
 import com.inas.atroads.views.model.Res_AddEmergencyContact;
 import com.inas.atroads.views.model.Res_GetEmergencyContacts;
+import com.inas.atroads.views.model.SMSRequestModel;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -61,6 +67,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import retrofit2.adapter.rxjava.HttpException;
 import rx.Subscriber;
+import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -86,6 +93,7 @@ public class SOSActivity extends BaseActivity
     int UserId;
      MediaPlayer mp;
     private static final String DEFAULT = "N/A";
+    private Subscription mSubscription;
 
     int PERMISSION_ALL = 1;
     String[] PERMISSIONS = {
@@ -233,12 +241,20 @@ public class SOSActivity extends BaseActivity
                 else if(str_mobile.equals(""))
                 {
                     Toast.makeText(SOSActivity.this, getResources().getString(R.string.enter_mobile), Toast.LENGTH_SHORT).show();
-                }
-                else if(str_email.equals(""))
-                {
-                    Toast.makeText(SOSActivity.this, getResources().getString(R.string.enter_email), Toast.LENGTH_SHORT).show();
-                }
-                else
+                }else if(!str_email.equals("")){
+                    if(!isValidEmail(str_email)) {
+                        Toast.makeText(SOSActivity.this, "Enter valid Email-id", Toast.LENGTH_SHORT).show();
+                    }else{
+                        if(contactsList.size() < 3)
+                        {
+                            addEmergencyContacts();
+                        }
+                        else
+                        {
+                            showDialogForLimit();
+                        }
+                    }
+                } else
                 {
 
                     if(contactsList.size() < 3)
@@ -333,7 +349,13 @@ public class SOSActivity extends BaseActivity
     {
         String name = edt_name.getText().toString();
         String mobile = edt_mobile.getText().toString();
-        String email = edt_email.getText().toString();
+        String email;
+        if(edt_email.getText().toString().equals("") || edt_email.getText().toString().isEmpty()){
+            email="";
+        }else{
+             email = edt_email.getText().toString();
+        }
+
         int userId = 10;
 
         Req_AddEmergencyContact req_addEmergencyContact = new Req_AddEmergencyContact(name,mobile,email,UserId);
@@ -472,19 +494,12 @@ public class SOSActivity extends BaseActivity
                         String myLocation = "";
                         if(contactsList != null && contactsList.size() > 0)
                         {
-
-
                             mp.start();
                             myLocation = LocationUtils.getMyLocation(SOSActivity.this);
-                            Log.v(TAG,"In setOnClickListenerForSOSBtn() Location = " + myLocation);
-                            Log.v(TAG,"Location = " + myLocation);
-                            //showDialog();
-                            sendSMS(myLocation);
-                          //  sendEmail(myLocation);
-                            Log.v(TAG,"Email sent");
+                            String contact_no = contactsList.get(0).getMobileNumber();
+                            String sendLocation=  getResources().getString(R.string.sos_msg).concat(" ").concat("My Location is : ").concat(myLocation) +"\n and contact me on this number-"+Mobile;
+                            CallHelpAPI(sendLocation,contact_no);
 
-                            String contact_no = contactsList.get(0).getMobileNumber();//"8142327425";
-                            Log.v(TAG,"contact_no = " + contact_no);
                             if(contact_no != null)
                             {
                                 if(isValidPhone(contact_no))
@@ -622,7 +637,7 @@ public class SOSActivity extends BaseActivity
                 try
                 {
                     Log.v(TAG,"tempMobileNumber = " + contactsList.get(i).getMobileNumber());
-                    String sos_msg = getResources().getString(R.string.sos_msg).concat(" ").concat("My Location is : ").concat(myLocation);
+                    String sos_msg = getResources().getString(R.string.sos_msg).concat(" ").concat("My Location is : ").concat(myLocation) +"\n and contact me on this number-"+Mobile;
                     MultipleSMS(tempMobileNumber,sos_msg);
                     Thread.sleep(1000);
                 }
@@ -657,25 +672,12 @@ public class SOSActivity extends BaseActivity
             {
 
                 String myLocation = LocationUtils.getMyLocation(SOSActivity.this);;
-				/*if ((ContextCompat.checkSelfPermission(SOSActivity.this,Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) && (ContextCompat.checkSelfPermission(SOSActivity.this,Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(SOSActivity.this,Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED))
-				{
-				*/
-				/*if (!hasPermissions(SOSActivity.this, PERMISSIONS)) {
-					ActivityCompat.requestPermissions(SOSActivity.this, PERMISSIONS, PERMISSION_ALL);
-				}
-				else
-				{
-					myLocation = LocationUtils.getMyLocation(SOSActivity.this);
 
-				}
-				*/
                 mp.start();
-                sendSMS(myLocation);
-                //sendEmail(myLocation);
-                Log.v(TAG,"Email sent");
-
                 String contact_no = contactsList.get(0).getMobileNumber();//"8142327425";
-                Log.v(TAG,"contact_no = " + contact_no);
+                String sendLocation=  getResources().getString(R.string.sos_msg).concat(" ").concat("My Location is : ").concat(myLocation) +"\n and contact me on this number-"+Mobile;
+                CallHelpAPI(sendLocation,contact_no);
+
                 if(contact_no != null)
                 {
                     if(isValidPhone(contact_no)) {
@@ -691,14 +693,6 @@ public class SOSActivity extends BaseActivity
                     Toast.makeText(SOSActivity.this, "Contact No is null", Toast.LENGTH_SHORT).show();
                 }
                 dialogInterface.dismiss();
-                //showDialogToCall();
-				/*}
-				else
-				{
-					ActivityCompat.requestPermissions(SOSActivity.this,new String[]{Manifest.permission.SEND_SMS},101);
-				}*/
-
-
             }
         });
 
@@ -903,7 +897,7 @@ public class SOSActivity extends BaseActivity
                 } else {
                     // permission denied, boo! Disable the
                     // functionality that depends on this permission.
-                    Toast.makeText(this, "This App needs to Location Access", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(this, "This App needs to Location Access", Toast.LENGTH_SHORT).show();
                 }
                 return;
             }
@@ -957,4 +951,68 @@ public class SOSActivity extends BaseActivity
                 }
         }
     }
+
+
+
+    /*
+     * CallGetUserInfoAPI
+     * */
+    private void CallHelpAPI(String myLocation, String contact_no){
+
+        JsonObject object = SmsObject(myLocation,contact_no);
+        AtroadsService service = ServiceFactory.createRetrofitService(this, AtroadsService.class);
+        mSubscription = service.SMSResponse(object)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<HelpResponseModel>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            ((HttpException) e).code();
+                            ((HttpException) e).message();
+                            ((HttpException) e).response().errorBody();
+                            try {
+                                ((HttpException) e).response().errorBody().string();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onNext(HelpResponseModel mResponse) {
+                        Log.i(TAG, "HelpResponseModel: "+mResponse);
+
+                        // Toast.makeText(PairActivity.this, mResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                        if(mResponse.getStatus() == 0)
+                        {
+                            Toast.makeText(SOSActivity.this, mResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                        else if(mResponse.getStatus() == 1) {
+                            Toast.makeText(SOSActivity.this, mResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                            onBackPressed();
+                        }
+                    }
+                });
+
+    }
+
+
+    private JsonObject SmsObject(String myLocation, String contact_no)
+    {
+        SMSRequestModel requestModel = new SMSRequestModel();
+        requestModel.setmessage(myLocation);
+        requestModel.setmobilenumber(contact_no);
+        return new Gson().toJsonTree(requestModel).getAsJsonObject();
+    }
+
+    public final static boolean isValidEmail(CharSequence target) {
+        return !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+    }
+
 }

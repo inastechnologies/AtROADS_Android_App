@@ -1,6 +1,8 @@
 package com.inas.atroads.views.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,10 +19,14 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.inas.atroads.R;
 import com.inas.atroads.services.AtroadsService;
 import com.inas.atroads.services.ServiceFactory;
+import com.inas.atroads.views.UI.SOSActivity;
 import com.inas.atroads.views.UI.ViewEmergencyContacts;
+import com.inas.atroads.views.model.DeleteEmergContRequestModel;
 import com.inas.atroads.views.model.Req_EditEmergencyContact;
 import com.inas.atroads.views.model.Res_EditEmergencyContact;
 import com.inas.atroads.views.model.Res_GetEmergencyContacts;
@@ -75,7 +81,14 @@ public class ViewContactsAdapter  extends RecyclerView.Adapter<ViewContactsAdapt
         final Res_GetEmergencyContacts.Sos emergencyContacts = contactsList.get(position);
         holder.txt_name.setText(emergencyContacts.getName());
         holder.txt_mobile.setText(emergencyContacts.getMobileNumber());
-        holder.txt_email.setText(emergencyContacts.getEmailId());
+
+        if(emergencyContacts.getEmailId().equals("")){
+            holder.txt_email.setText("NA");
+        }else {
+            holder.txt_email.setText(emergencyContacts.getEmailId());
+        }
+
+
 
         holder.iv_edit.setOnClickListener(new View.OnClickListener()
         {
@@ -85,6 +98,14 @@ public class ViewContactsAdapter  extends RecyclerView.Adapter<ViewContactsAdapt
                 Log.v(TAG, "before editContacts");
                 editContacts(emergencyContacts);
                 Log.v(TAG, "after editContacts");
+            }
+        });
+
+        holder.iv_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Integer sos_id = emergencyContacts.getId();
+                callDeleteEmergencyContactsApi(sos_id);
             }
         });
 
@@ -260,14 +281,13 @@ public class ViewContactsAdapter  extends RecyclerView.Adapter<ViewContactsAdapt
                             String message = res_editEmergencyContact.getMessage();
                             if(message != null)
                             {
-
                                 Toast.makeText(mActivity, message, Toast.LENGTH_SHORT).show();
-                                notifyDataSetChanged();
-                                setEmergencyContactsList(contactsList);
-                                ViewEmergencyContacts viewEmergencyContacts = new ViewEmergencyContacts();
-                                viewEmergencyContacts.refreshContacts();
-                                Log.v(TAG, "In onNext() contactsList = " + getEmergencyContactsList());
-                                dialog.dismiss();
+                                Intent intent = new Intent(context,ViewEmergencyContacts.class);
+                                context.startActivity(intent);
+                                ((Activity)context).finish();
+
+                                //notifyDataSetChanged();
+                                //dialog.dismiss();
                             }
                             else
                             {
@@ -301,7 +321,7 @@ public class ViewContactsAdapter  extends RecyclerView.Adapter<ViewContactsAdapt
     public class MyViewHolder extends RecyclerView.ViewHolder
     {
         TextView txt_name, txt_mobile, txt_email;
-        ImageView iv_edit;
+        ImageView iv_edit,iv_delete;
 
         public MyViewHolder(@NonNull View itemView)
         {
@@ -310,11 +330,76 @@ public class ViewContactsAdapter  extends RecyclerView.Adapter<ViewContactsAdapt
             txt_mobile = itemView.findViewById(R.id.txt_mobile_sos_view_contact);
             txt_email = itemView.findViewById(R.id.txt_email_sos_view_contact);
             iv_edit = itemView.findViewById(R.id.iv_edit_sos_view_contact);
+            iv_delete= itemView.findViewById(R.id.iv_delete_sos_view_contact);
+
 
         }
     }
 
+    private void callDeleteEmergencyContactsApi( Integer sos_id)
+    {
+        //GetSharedPrefs();
+        //Req_EditEmergencyContact req_editEmergencyContact = new Req_EditEmergencyContact(name,mobile,email,UserId,id);
 
+        GetSharedPrefs();
+        JsonObject object = deleteContactObject(sos_id,UserId);
+        AtroadsService service = ServiceFactory.createRetrofitService(mActivity,AtroadsService.class);
+        service.deleteEmergencyContacts(object)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<Res_EditEmergencyContact>()
+                {
+                    @Override
+                    public void onCompleted()
+                    {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e)
+                    {
+                        Log.v(TAG,"e.getLocalizedMessage() : " + e.getLocalizedMessage());
+                        Toast.makeText(mActivity,"Server Down:" + e.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
+                        if (e instanceof HttpException) {
+                            ((HttpException) e).code();
+                            ((HttpException) e).message();
+                            ((HttpException) e).response().errorBody();
+                            try {
+                                ((HttpException) e).response().errorBody().string();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onNext(Res_EditEmergencyContact res_editEmergencyContact)
+                    {
+                        if(res_editEmergencyContact.getStatus() == 1)
+                        {
+                            Toast.makeText(mActivity,res_editEmergencyContact.getMessage(),Toast.LENGTH_SHORT).show();
+                            ((Activity)context).finish();
+                        }
+                        else
+                        {
+                            Toast.makeText(mActivity,res_editEmergencyContact.getMessage(),Toast.LENGTH_SHORT).show();
+                            Log.v(TAG, "Response null");
+                        }
+
+                    }
+                });
+
+
+    }
+
+    private JsonObject deleteContactObject(Integer sos_id, Integer userId)
+    {
+        DeleteEmergContRequestModel requestModel = new DeleteEmergContRequestModel();
+        requestModel.setUserId(userId);
+        requestModel.setsos_id(sos_id);
+        return new Gson().toJsonTree(requestModel).getAsJsonObject();
+    }
 
 }
 

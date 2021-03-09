@@ -116,10 +116,10 @@ public class ChatActivity extends BaseActivity implements OnMapReadyCallback {
     private static final int REQUEST_CAPTURE_IMAGE = 2;
     private static final int REQUEST_WRITE_PERMISSION = 3;
     private static final int REQUEST_CAMERA_PERMISSION = 4;
-    LinearLayout layout;
+    LinearLayout layoutchat;
     ImageView sendButton,shareLocationBtn;
     EditText messageArea;
-    ScrollView scrollView;
+    ScrollView scrollView_chat;
     Firebase reference1, reference2,reference3,reference4;
     private int PLACE_PICKER_REQUEST = 1;
     private String TAG = "ChatActivity";
@@ -162,7 +162,6 @@ public class ChatActivity extends BaseActivity implements OnMapReadyCallback {
         SetViewsFromLayout();
         GetSharedPrefs();
         CallGetUserInfoAPI();
-
     }
 
 
@@ -171,11 +170,11 @@ public class ChatActivity extends BaseActivity implements OnMapReadyCallback {
      */
     private void SetViewsFromLayout()
     {
-        layout = (LinearLayout)findViewById(R.id.layout1);
+        layoutchat = (LinearLayout)findViewById(R.id.layout1);
         sendButton = (ImageView)findViewById(R.id.sendButton);
         messageArea = (EditText)findViewById(R.id.messageArea);
         fab();
-        scrollView = (ScrollView)findViewById(R.id.scrollView);
+        scrollView_chat = (ScrollView)findViewById(R.id.scrollView_chat);
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(getIntent().getStringExtra("OtheruserName"));
         setSupportActionBar(toolbar);
@@ -191,6 +190,15 @@ public class ChatActivity extends BaseActivity implements OnMapReadyCallback {
         Log.i(TAG, "SetViewsFromLayout: UserDetails.chatWith"+UserDetails.chatWith);
         Log.i(TAG, "SetViewsFromLayout: UserDetails.username"+UserDetails.username);
         SetProgressDialog();
+
+        scrollView_chat.post(new Runnable() {
+            @Override
+            public void run() {
+                scrollView_chat.fullScroll(ScrollView.FOCUS_DOWN);
+            }
+        });
+        scrollView_chat.scrollTo(0, scrollView_chat.getBottom());
+       // scrollView.fullScroll(View.FOCUS_DOWN);
     }
 
 
@@ -311,12 +319,6 @@ public class ChatActivity extends BaseActivity implements OnMapReadyCallback {
             */
     private void GetSharedPrefs()
     {
-//        SharedPreferences pref = getApplicationContext().getSharedPreferences("LoginPref", 0);
-//        UserId = pref.getInt("user_id", 0);
-//        Mobile = pref.getString("mobile_number",DEFAULT);
-//        Email =  pref.getString("email_id",DEFAULT);
-//        Username = pref.getString("user_name",DEFAULT);
-//        Log.i(TAG, "GetSharedPrefs: UserId: "+UserId);
         SharedPreferences pref = getApplicationContext().getSharedPreferences("RegPref", 0); // 0 - for private mode
         UserId = pref.getInt("user_id", 0);
         Mobile = pref.getString("mobile_number",DEFAULT);
@@ -462,13 +464,6 @@ public class ChatActivity extends BaseActivity implements OnMapReadyCallback {
             Log.d("exception", e.toString());
             // display error state to the user
         }
-       /* Intent pictureIntent = new Intent(
-                MediaStore.ACTION_IMAGE_CAPTURE
-        );
-        if (pictureIntent.resolveActivity(this.getPackageManager()) != null) {
-            startActivityForResult(pictureIntent,
-                    REQUEST_CAPTURE_IMAGE);
-        }*/
     }
 
 
@@ -916,8 +911,9 @@ public class ChatActivity extends BaseActivity implements OnMapReadyCallback {
             textView.setLayoutParams(lp);
 
             textView.setBackgroundResource(R.drawable.rounded_corner2);
-            layout.addView(textView);
+            layoutchat.addView(textView);
             messageArea.setText("");
+            scrollView_chat.fullScroll(View.FOCUS_DOWN);
         }
         else if(type == 2){
             TextView textView = new TextView(ChatActivity.this);
@@ -926,8 +922,9 @@ public class ChatActivity extends BaseActivity implements OnMapReadyCallback {
             lp.setMargins(10, 10, 180, 10);
             textView.setLayoutParams(lp);
             textView.setBackgroundResource(R.drawable.rounded_corner1);
-            layout.addView(textView);
+            layoutchat.addView(textView);
             messageArea.setText("");
+            scrollView_chat.fullScroll(View.FOCUS_DOWN);
         }
         else if(type == 3)
         {
@@ -950,8 +947,9 @@ public class ChatActivity extends BaseActivity implements OnMapReadyCallback {
                     startActivity(i);
                 }
             });
-            layout.addView(button);
+            layoutchat.addView(button);
             messageArea.setText("");
+            scrollView_chat.fullScroll(View.FOCUS_DOWN);
         }
         else if(type == 4) {
             ImageView button = new ImageView(ChatActivity.this);
@@ -976,8 +974,9 @@ public class ChatActivity extends BaseActivity implements OnMapReadyCallback {
                     startActivity(i);
                 }
             });
-            layout.addView(button);
+            layoutchat.addView(button);
             messageArea.setText("");
+            scrollView_chat.fullScroll(View.FOCUS_DOWN);
         }
         else if(type == 5) {
             ImageView imageView = new ImageView(ChatActivity.this);
@@ -1008,8 +1007,9 @@ public class ChatActivity extends BaseActivity implements OnMapReadyCallback {
                 }
             });
 
-            layout.addView(imageView);
+            layoutchat.addView(imageView);
             messageArea.setText("");
+            scrollView_chat.fullScroll(View.FOCUS_DOWN);
         }
         else if(type == 6) {
             ImageView imageView = new ImageView(ChatActivity.this);
@@ -1037,10 +1037,10 @@ public class ChatActivity extends BaseActivity implements OnMapReadyCallback {
                     dialog.show();
                 }
             });
-            layout.addView(imageView);
+            layoutchat.addView(imageView);
             messageArea.setText("");
         }
-        scrollView.fullScroll(View.FOCUS_DOWN);
+        scrollView_chat.fullScroll(View.FOCUS_DOWN);
     }
 
 
@@ -1050,8 +1050,7 @@ public class ChatActivity extends BaseActivity implements OnMapReadyCallback {
      * @param imageUrl
      * @param imageView
      */
-    private void LoadImageFromUrl(Context context, String imageUrl, ImageView imageView)
-    {
+    private void LoadImageFromUrl(Context context, String imageUrl, ImageView imageView) {
         Picasso.with(context).load(imageUrl).error(R.drawable.ic_menu_gallery).into(imageView);
     }
 
@@ -1068,13 +1067,11 @@ public class ChatActivity extends BaseActivity implements OnMapReadyCallback {
         } catch (SecurityException se) {
 
         }
-
         //Edit the following as per you needs
         googleMap.setTrafficEnabled(true);
         googleMap.setIndoorEnabled(true);
         googleMap.setBuildingsEnabled(true);
         googleMap.getUiSettings().setZoomControlsEnabled(true);
-        //
 
         LatLng placeLocation = new LatLng(latitude, longitude); //Make them global
         Marker placeMarker = googleMap.addMarker(new MarkerOptions().position(placeLocation)

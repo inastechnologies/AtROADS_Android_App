@@ -104,7 +104,7 @@ public class ReferEarnActivity extends BaseActivity {
             public void onClick(View v) {
                 Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
                 sharingIntent.setType("text/plain");
-                String content = "Hey..! Im using ATROADS App. You can download this By the following link.";
+                String content = "Hey..! Im using ATROADS App. You can download this By the following link.\n https://play.google.com/store/apps/details?id=com.inas.atroads";
                 sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "ATROADS");
                 sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, content);
                 startActivity(Intent.createChooser(sharingIntent, "Share via"));
@@ -118,7 +118,7 @@ public class ReferEarnActivity extends BaseActivity {
                 Intent whatsappIntent = new Intent(android.content.Intent.ACTION_SEND);
                 whatsappIntent.setType ("text/plain");
                 whatsappIntent.setPackage("com.whatsapp");
-                String content = "Hey..! Im using ATROADS App. You can download this By the following link. and your refferal code is: "+refferalCode;
+                String content = "Hey..! Im using ATROADS App. You can download this By the following link \n https://play.google.com/store/apps/details?id=com.inas.atroads \n and your refferal code is: "+refferalCode;
                 whatsappIntent.putExtra(
                         Intent.EXTRA_TEXT,
                         content);
