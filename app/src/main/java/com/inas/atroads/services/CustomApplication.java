@@ -12,6 +12,8 @@ import androidx.lifecycle.ProcessLifecycleOwner;
 
 import com.google.firebase.FirebaseApp;
 import com.inas.atroads.R;
+import com.inas.atroads.views.Chat.AGApplication;
+import com.inas.atroads.views.Chat.ChatManager;
 
 import java.util.Locale;
 
@@ -19,10 +21,13 @@ public class CustomApplication extends Application
 {
     private static CustomApplication sInstance;
     public static Geocoder geoCoder;
+    private static ChatManager mChatManager;
     @Override
     public void onCreate() {
         super.onCreate();
         sInstance = this;
+        mChatManager = new ChatManager(this);
+        mChatManager.init();
         geoCoder = new Geocoder(getAppContext(), Locale.getDefault());
         ProcessLifecycleOwner.get().getLifecycle().addObserver(new AppLifecycleListener());
         FirebaseApp.initializeApp(this);
@@ -52,6 +57,8 @@ public class CustomApplication extends Application
         super.attachBaseContext(base);
     }
 
-
+    public static ChatManager getChatManager() {
+        return mChatManager;
+    }
 
 }

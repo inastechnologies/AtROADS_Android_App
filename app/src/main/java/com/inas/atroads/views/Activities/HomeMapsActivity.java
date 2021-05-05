@@ -33,9 +33,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationListener;
-import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -86,12 +84,12 @@ import com.inas.atroads.services.APIConstants;
 import com.inas.atroads.services.AtroadsService;
 import com.inas.atroads.services.CustomApplication;
 import com.inas.atroads.services.ServiceFactory;
-import com.inas.atroads.util.Utilities;
 import com.inas.atroads.util.localData.FetchURL;
+import com.inas.atroads.views.Chat.AGApplication;
+import com.inas.atroads.views.Chat.ChatManager;
 import com.inas.atroads.views.GpsUtils;
 import com.inas.atroads.views.Interface.TaskLoadedCallback;
 import com.inas.atroads.views.UI.MobileNumberRegisterScreen;
-import com.inas.atroads.views.UI.PairedDetailsScreen;
 import com.inas.atroads.views.UI.SOSActivity;
 import com.inas.atroads.views.UI.SchedulingRideScreen;
 import com.inas.atroads.views.UI.UploadQRActivity;
@@ -111,7 +109,6 @@ import com.inas.atroads.views.model.GetUserInfoResponseModel;
 import com.inas.atroads.views.model.OnGoingRideRequestModel;
 import com.inas.atroads.views.model.OnGoingRidesResponseModel;
 import com.inas.atroads.views.model.PairedDetailsRequestModel;
-import com.inas.atroads.views.model.PairedDetailsResponseModel;
 import com.inas.atroads.views.model.PairedUserDetailsRequestModel;
 import com.inas.atroads.views.model.PairedUserDetailsResponseModel;
 import com.inas.atroads.views.model.PayloadModel;
@@ -146,6 +143,9 @@ import java.util.Date;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import io.agora.rtm.ErrorInfo;
+import io.agora.rtm.ResultCallback;
+import io.agora.rtm.RtmClient;
 import retrofit2.adapter.rxjava.HttpException;
 import rx.Subscriber;
 import rx.Subscription;
@@ -203,6 +203,10 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 	Location mLocation;
 	Toolbar toolbar;
 	PayloadModel payloadModel;
+
+	private RtmClient mRtmClient;
+	private boolean mIsInChat = false;
+
 	/*****************************END OF DECLARATIONS**********************************/
 
 	@Override
@@ -210,6 +214,9 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home_maps);
 		toolbar = findViewById(R.id.toolbar);
+
+		ChatManager mChatManager = CustomApplication.getChatManager();
+		mRtmClient = mChatManager.getRtmClient();
 
 		SharedPreferences pref = getApplicationContext().getSharedPreferences("USERnMAE", 0); // 0 - for private mode
 		String headNmae = pref.getString("USER_HEAD_NAME","");
@@ -242,11 +249,42 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 		}*/
 		//payloadModel= getIntent().getExtras("FCM_Payload");
 
+
 		initGAPIClient();
 		AskPermission();
 		SetNavigationDrawer();
 		PairedUserDetailsAPI();
+		doLogin();
 	}
+
+	/**
+	 * API CALL: login RTM server
+	 */
+	private void doLogin() {
+		mIsInChat = true;
+		mRtmClient.login(null, "Neha", new ResultCallback<Void>() {
+			@Override
+			public void onSuccess(Void responseInfo) {
+				Log.i(TAG, "login success");
+				runOnUiThread(() -> {
+
+					Toast.makeText(HomeMapsActivity.this,"lOgin",Toast.LENGTH_LONG).show();
+
+				});
+			}
+
+			@Override
+			public void onFailure(ErrorInfo errorInfo) {
+				Log.i(TAG, "login failed: " + errorInfo.getErrorDescription());
+				runOnUiThread(() -> {
+				//	mLoginBtn.setEnabled(true);
+				//	mIsInChat = false;
+				//	showToast(getString(R.string.login_failed));
+				});
+			}
+		});
+	}
+
 
 	/*private void handleIntent(Intent intent) {
 		String user_id= intent.getStringExtra("home");
@@ -441,6 +479,18 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 		UserId = pref.getInt("user_id", 0);
 		Mobile = pref.getString("mobile_number",DEFAULT);
 		Email =  pref.getString("email_id",DEFAULT);
+
+//		SendBird.connect(String.valueOf(UserId), new SendBird.ConnectHandler() {
+//			@Override
+//			public void onConnected(User user, SendBirdException e) {
+//				if (e != null) {
+//					// Handle error.
+//				}
+//
+//				Toast.makeText(HomeMapsActivity.this,"connected to sendbird",Toast.LENGTH_LONG).show();
+//				// The user is connected to Sendbird server.
+//			}
+//		});
 		CallGetUserInfoAPI();
 
 		Log.i(TAG, "GetSharedPrefs: UserId: "+UserId);
@@ -1378,6 +1428,8 @@ public class HomeMapsActivity extends AppCompatActivity implements OnMapReadyCal
 				Intent inti = new Intent(HomeMapsActivity.this, UsersActivity.class);
 				inti.putExtra("FROMACTIVITY", "HomeScreen");
 				startActivity(inti);
+				/*Intent intent = new Intent(HomeMapsActivity.this, GroupChannelActivity.class);
+				startActivity(intent);*/
 				break;
 
 			case R.id.refer_nav:

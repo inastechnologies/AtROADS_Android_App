@@ -11,25 +11,20 @@ android {
         applicationId "com.inas.atroads"
         minSdkVersion 24
         targetSdkVersion 29
-        versionCode 6
+        versionCode 7
         versionName "1.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         resConfigs "en"
     }
     buildTypes {
         release {
-            buildConfigField "String", "LOCAL_URL", '"http://18.138.154.234:5005/atroads/"'
-            //shrinkResources true
-            //minifyEnabled true
-           // debuggable false
-           // proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "LOCAL_URL", '"http://3.6.9.31:5005/atroads/"'
         }
     }
     flavorDimensions "default"
     productFlavors {
         dev {
-            buildConfigField "String", "LOCAL_URL", '"http://18.138.154.234:5005/atroads/"'
-            //applicationId = var
+            buildConfigField "String", "LOCAL_URL", '"http://3.6.9.31:5005/atroads/"'
         }
     }
     compileOptions {
@@ -56,20 +51,13 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     implementation 'com.android.support:design:29.1.0'
-    // http://square.github.io/okhttp/
+
     implementation 'com.squareup.okhttp3:logging-interceptor:3.6.0'
-    //https://github.com/ReactiveX/RxAndroid
     implementation 'io.reactivex:rxandroid:1.2.1'
     implementation 'io.reactivex:rxjava:1.1.6'
     implementation 'com.mikhaellopez:circularimageview:3.0.2'
-    //  //  https://github.com/ReactiveX/RxAndroid
-    //    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
-    //https://mvnrepository.com/artifact/com.squareup.retrofit2/converter-gson
     implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
-    // Because RxAndroid releases are few and far between, it is recommended you also
-    // explicitly depend on RxJava's latest version for bug fixes and new features.
-    //    compile 'io.reactivex.rxjava2:rxjava:2.0.1'
-    //https://mvnrepository.com/artifact/com.squareup.retrofit2/adapter-rxjava
+
     implementation 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
     implementation 'com.android.support:cardview-v7:29.1.0'
     implementation 'com.android.support:palette-v7:29.1.0'
@@ -88,18 +76,6 @@ dependencies {
     implementation 'com.google.android.gms:play-services-places:17.0.0'
     implementation 'com.google.android.libraries.places:places:2.4.0'
 
-    //
-    //    implementation 'com.google.android.gms:play-services-maps:16.1.0'
-    //    implementation 'com.google.android.gms:play-services-location:16.0.0'
-    //    implementation 'com.google.android.gms:play-services-places:16.0.0'
-    //    implementation 'com.google.android.libraries.places:places:2.0.0'
-    /*  // Don't forget to change the line below with the latest version of Parse SDK for Android
-        implementation "com.github.parse-community.Parse-SDK-Android:parse:1.21.0"
-
-        // Don't forget to change the line below with the latest version of Parse Facebook Utils SDK for Android
-        implementation "com.github.parse-community:ParseFacebookUtils-Android:1.14.0"
-
-        implementation 'com.facebook.android:facebook-android-sdk:4.37.0'*/
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'androidx.core:core-ktx:+'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -113,33 +89,24 @@ dependencies {
     implementation 'com.github.stfalcon:smsverifycatcher:0.3.2'
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.17'
     implementation 'com.google.firebase:firebase-messaging:20.1.5'
-    implementation 'com.google.firebase:firebase-analytics:17.3.0'
     implementation 'com.google.firebase:firebase-auth:19.3.0'
-    implementation 'com.google.firebase:firebase-database:19.2.1'
     implementation 'com.google.firebase:firebase-core:17.2.3'
-    implementation 'com.google.firebase:firebase-messaging:20.1.3'
     implementation 'com.google.firebase:firebase-analytics:17.2.3'
-    implementation 'com.google.firebase:firebase-auth:19.3.0'
     implementation 'com.google.firebase:firebase-database:19.2.1'
-    implementation 'com.google.firebase:firebase-core:17.2.3'
     implementation 'com.firebase:firebase-client-android:2.5.2'
-    //add this
     implementation 'com.google.firebase:firebase-storage:19.1.1'
     implementation 'com.leinardi.android:speed-dial:3.1.1'
     implementation 'com.pixplicity.sharp:library:1.1.0'
     implementation 'com.skyfishjy.ripplebackground:library:1.0.1'
-   // implementation(name: "razorpay-android-3.8.10", ext: 'aar')
-   // implementation 'com.shreyaspatil:EasyUpiPayment:2.1'
-   // implementation files('libs/razorpay-upi-intent-sdk.jar')
     implementation 'com.journeyapps:zxing-android-embedded:4.1.0'
-   // implementation(name: 'sinch-android-rtc', version: '+', ext: 'aar')
-    //implementation 'com.github.gratusik:AGIKSwipeButton:1.0.1'
- //   implementation 'com.github.stfalcon:swipeable-button:0.1.0'
     implementation 'com.google.firebase:firebase-crashlytics-ktx:17.2.1'
-    //implementation 'com.sendbird.sdk:sendbird-android-sdk:3.0.149'
-//    implementation 'org.osmdroid:osmdroid-android:6.1.8'
-////    implementation 'org.osmdroid:osmdroid-geopackage:6.1.8'
-//    implementation 'org.osmdroid:osmdroid-mapsforge:6.1.8'
+    implementation 'org.jsoup:jsoup:1.11.2'
+    implementation 'com.google.android.play:core:1.8.0'
+//    implementation 'com.zoho.salesiq:mobilisten:2.2'
+    //implementation files('libs\\agora-rtm-sdk.jar')
+    implementation 'io.agora.rtm:rtm-sdk:1.4.1'
+
+
 }
 
 repositories {

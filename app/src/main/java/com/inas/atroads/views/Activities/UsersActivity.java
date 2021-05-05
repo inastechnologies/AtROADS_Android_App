@@ -78,7 +78,7 @@ public class UsersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_users);
         GetSharedPrefs();
-       // UserRideId = getIntent().getIntExtra("UserRideId", 0);
+        // UserRideId = getIntent().getIntExtra("UserRideId", 0);
         usersList = (RecyclerView)findViewById(R.id.usersList);
         noUsersText = (TextView)findViewById(R.id.noUsersText);
         lin_nodata= findViewById(R.id.lin_nodata);
@@ -189,7 +189,7 @@ public class UsersActivity extends AppCompatActivity {
             usersList.setAdapter(adapter);
             //MyListAdapter adapter=new MyListAdapter(this, al,al_pic);
             //usersList.setAdapter(adapter);
-           // usersList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, al,al_pic));
+            // usersList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, al,al_pic));
         }
 
         pd.dismiss();

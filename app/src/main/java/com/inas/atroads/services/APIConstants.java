@@ -3,12 +3,10 @@ package com.inas.atroads.services;
 public interface APIConstants {
 
 
-   // String BASE_URL = "http://18.139.34.127:5005/wego/";
-   // String BASE_URL = "http://18.138.154.234:5005/atroads/";
-    String BASE_URL = "http://13.235.235.58:5005/atroads/";
+    String BASE_URL = "http://3.6.9.31:5005/atroads/";
 
    // String IMAGE_URL = "http://18.138.154.234/ATROADS/";
-    String IMAGE_URL = "http://13.235.235.58/ATROADS";
+    String IMAGE_URL = "http://3.6.9.31/ATROADS";
 
     //Login
     String LOGINPage = BASE_URL + "login";

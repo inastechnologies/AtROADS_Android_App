@@ -324,4 +324,69 @@ This Website is not for use by any minors (defined as those who are not at least
     <string name="others">Others</string>
     <string name="whats_app">WhatsApp</string>
     <string name="select_date">Select Date</string>
+
+
+
+    <!-- all -->
+    <string name="all_app_version">Sample UI v%1$s / SDK v%2$s</string>
+
+    <string name="all_create">Create</string>
+    <string name="all_invite">Invite</string>
+
+    <string name="all_group_channels">Group Channels</string>
+    <string name="all_open_channels">Open Channels</string>
+
+    <!-- main -->
+    <string name="main_drawer_open">Open navigation drawer</string>
+    <string name="main_drawer_close">Close navigation drawer</string>
+    <string name="select_channel_type">Select channel type</string>
+    <string name="blocked_members_list">Blocked members</string>
+
+    <!-- login -->
+    <string name="login_user_id">User ID</string>
+    <string name="login_user_nickname">Nickname</string>
+    <string name="login_connect">Connect</string>
+    <string name="login_disconnect">Disconnect</string>
+
+    <!-- Open Channel List -->
+    <string name="open_channel_list_participant_count">%1$d participants</string>
+
+    <string name="create_open_channel">Create Open Channel</string>
+    <string name="participant_list">Participants</string>
+
+    <!-- Group Channel List -->
+    <string name="group_channel_list_file_message_text">%1$s has uploaded a file.</string>
+
+    <string name="create_group_channel">Create Group Channel</string>
+    <string name="member_list">Members</string>
+    <string name="invite_member">Invite members</string>
+
+    <string name="member_info"></string>
+
+    <!-- Group Channel -->
+    <string name="user_typing">%s is typing</string>
+    <string name="two_users_typing">%s and %s are typing</string>
+    <string name="users_typing"> Multiple users are typing</string>
+
+    <!-- Content descriptions -->
+    <string name="open_channel_chat_content_desc_profile">Profile image</string>
+
+    <!-- Menu actions -->
+    <string name="action_create_channel">Create channel</string>
+
+    <string name="download">Download</string>
+    <string name="cancel">Cancel</string>
+    <string name="upload">Upload</string>
+    <string name="resend_message">Resend</string>
+    <string name="delete_message">Delete</string>
+
+    <!-- Message Status -->
+    <string name="message_sending">Sending</string>
+    <string name="message_failed">Failed</string>
+
+
+    <string translatable="false" name="agora_app_id">"26082193e9814003afe8ed01fab8694f"</string>
+
+    <string name="ZoloApp_key">eRqJXR4b8ZkjQaUexhVYWUp6MndKADaGE8IA0L0udBo%3D_in</string>
+    <string name="ZoloAccess_key">G03VQIyK3OM6NoUCuxuXCN04u2acsB6OT0MnFvNgoSOWaYLA0RQenYGWwecr4vfHvBGTvMul%2BDK3YJIUrs4wnXEAyE3rd35WHUnFt4bKyePfFwuXxpEWHwVx099XyoM3ie1aOOkN%2BipUQ6epHLtDpbPSZK%2FbHDVv</string>
 </resources>
